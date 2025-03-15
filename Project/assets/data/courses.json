@@ -1,0 +1,68 @@
+{
+  "courses": [
+    {
+      "id": "CS101",
+      "name": "Introduction to Computer Science",
+      "credit_hours": 3,
+      "category": "Programming",
+      "description": "An introductory course to the fundamentals of computer science and programming.",
+      "prerequisites": []
+    },
+    {
+      "id": "CS201",
+      "name": "Data Structures",
+      "credit_hours": 3,
+      "category": "Programming",
+      "description": "A comprehensive study of data structures and their implementations.",
+      "prerequisites": ["CSE101"]
+    },
+    {
+      "id": "CS301",
+      "name": "Database Systems",
+      "credit_hours": 3,
+      "category": "Databases",
+      "description": "Introduction to database design, implementation and management.",
+      "prerequisites": ["CSE101", "CSE201"]
+    },
+    {
+      "id": "CE155",
+      "name": "Computer Architecture I",
+      "credit_hours": 3,
+      "category": "Architecture",
+      "description": "Introduction to computer architecture and organization.",
+      "prerequisites": ["CSE101", "CSE201"]
+    },
+    {
+      "id": "MATH101",
+      "name": "Calculus I",
+      "credit_hours": 3,
+      "category": "Mathematics",
+      "description": "Introduction to differential and integral calculus.",
+      "prerequisites": []
+    },
+    {
+      "id": "PHYS101",
+      "name": "Physics I",
+      "credit_hours": 4,
+      "category": "Science",
+      "description": "Introduction to mechanics and thermodynamics.",
+      "prerequisites": ["MATH101"]
+    },
+    {
+      "id": "ARAB100",
+      "name": "Arabic Language",
+      "credit_hours": 3,
+      "category": "Language",
+      "description": "Introduction to Arabic language and literature.",
+      "prerequisites": []
+    },
+    {
+      "id": "ARAB200",
+      "name": "Arabic Language",
+      "credit_hours": 3,
+      "category": "Language",
+      "description": "Intermediate Arabic language and literature.",
+      "prerequisites": ["ARAB100"]
+    }
+  ]
+}
