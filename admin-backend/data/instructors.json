@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "id": "i1",
+      "name": "Dr. Sarah Johnson",
+      "expertise": ["Web Development", "JavaScript", "React"]
+    },
+    {
+      "id": "i2",
+      "name": "Dr. Michael Chen",
+      "expertise": ["Programming", "Algorithms", "Data Structures"]
+    },
+    {
+      "id": "i3",
+      "name": "Dr. Emily Wong",
+      "expertise": ["Databases", "SQL", "Data Modeling"]
+    },
+    {
+      "id": "i4",
+      "name": "Dr. James Wilson",
+      "expertise": ["Networking", "Security", "Cloud Computing"]
+    },
+    {
+      "id": "i5",
+      "name": "Dr. Aisha Rahman",
+      "expertise": ["Mobile Development", "UI/UX", "Software Engineering"]
+    }
+  ]
+}

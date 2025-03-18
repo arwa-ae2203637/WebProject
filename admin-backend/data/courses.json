@@ -1,0 +1,95 @@
+{
+  "data": [
+    {
+      "id": "c1",
+      "name": "Introduction to JavaScript",
+      "creditHours": 3,
+      "category": "Programming",
+      "prerequisites": [],
+      "status": "in-progress"
+    },
+    {
+      "id": "c2",
+      "name": "Database Systems",
+      "creditHours": 4,
+      "category": "Databases",
+      "prerequisites": ["Data Structures"],
+      "status": "in-progress"
+    },
+    {
+      "id": "c3",
+      "name": "Web Development",
+      "creditHours": 3,
+      "category": "Programming",
+      "prerequisites": ["Introduction to JavaScript"],
+      "status": "in-progress"
+    },
+    {
+      "id": "c4",
+      "name": "Network Security",
+      "creditHours": 3,
+      "category": "Security",
+      "prerequisites": ["Computer Networks"],
+      "status": "in-progress"
+    },
+    {
+      "id": "c5",
+      "name": "Computer Networks",
+      "creditHours": 4,
+      "category": "Networking",
+      "prerequisites": [],
+      "status": "in-progress"
+    },
+    {
+      "id": "123",
+      "name": "Introduction to AI",
+      "creditHours": 3,
+      "category": "Computer Science",
+      "prerequisites": ["Basic Math"],
+      "status": "pending"
+    },
+    {
+      "creditHours": "3",
+      "category": "programming",
+      "prerequisites": "math"
+    },
+    {
+      "name": "j",
+      "creditHours": 1,
+      "category": "programming",
+      "prerequisites": ["j"]
+    },
+    {
+      "id": "1",
+      "name": "newone",
+      "creditHours": "4",
+      "category": "programming",
+      "prerequisites": "cs2",
+      "status": "pending"
+    },
+    {
+      "id": "e33ea356-1c6d-43a1-8729-4fe6096c2309",
+      "name": "sd",
+      "creditHours": "4",
+      "category": "machine learning",
+      "prerequisites": "m",
+      "status": "in-progress"
+    },
+    {
+      "id": "b5355e03-aa2c-4d37-bb98-e472d0de1a79",
+      "name": "www",
+      "creditHours": "4",
+      "category": "artificial intelligence",
+      "prerequisites": "ww,ww",
+      "status": "in-progress"
+    },
+    {
+      "id": "d5ea0e83-0e17-4812-870a-cf9be97752a2",
+      "name": "ffk",
+      "creditHours": "4",
+      "category": "machine learning",
+      "prerequisites": "cssd",
+      "status": "pending"
+    }
+  ]
+}
