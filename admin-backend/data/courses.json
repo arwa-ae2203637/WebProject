@@ -1,39 +1,45 @@
 {
   "data": [
     {
-      "id": "c1",
-      "name": "Introduction to JavaScript",
+      "id": "cmps151",
+      "name": "Programming Concepts",
       "creditHours": 3,
       "category": "Programming",
       "prerequisites": [],
-      "status": "in-progress"
+      "status": "pending"
     },
     {
-      "id": "c2",
-      "name": "Database Systems",
+      "id": "cmps251",
+      "name": "Object-Oriented Programming",
       "creditHours": 4,
-      "category": "Databases",
-      "prerequisites": ["Data Structures"],
+      "category": "Programming",
+      "prerequisites": [
+        "Programming Concepts"
+      ],
       "status": "in-progress"
     },
     {
-      "id": "c3",
-      "name": "Web Development",
+      "id": "cmps350",
+      "name": "Web Development Fundamentals",
       "creditHours": 3,
       "category": "Programming",
-      "prerequisites": ["Introduction to JavaScript"],
-      "status": "in-progress"
+      "prerequisites": [
+        "Object-Oriented Programming"
+      ],
+      "status": "pending"
     },
     {
-      "id": "c4",
+      "id": "cmps351",
       "name": "Network Security",
       "creditHours": 3,
       "category": "Security",
-      "prerequisites": ["Computer Networks"],
+      "prerequisites": [
+        "Computer Networks"
+      ],
       "status": "in-progress"
     },
     {
-      "id": "c5",
+      "id": "cmps255",
       "name": "Computer Networks",
       "creditHours": 4,
       "category": "Networking",
@@ -41,55 +47,22 @@
       "status": "in-progress"
     },
     {
-      "id": "123",
+      "id": "cmps155",
       "name": "Introduction to AI",
       "creditHours": 3,
       "category": "Computer Science",
-      "prerequisites": ["Basic Math"],
+      "prerequisites": [
+        "Basic Math"
+      ],
       "status": "pending"
     },
     {
-      "creditHours": "3",
-      "category": "programming",
-      "prerequisites": "math"
-    },
-    {
-      "name": "j",
-      "creditHours": 1,
-      "category": "programming",
-      "prerequisites": ["j"]
-    },
-    {
-      "id": "1",
-      "name": "newone",
-      "creditHours": "4",
-      "category": "programming",
-      "prerequisites": "cs2",
-      "status": "pending"
-    },
-    {
-      "id": "e33ea356-1c6d-43a1-8729-4fe6096c2309",
-      "name": "sd",
-      "creditHours": "4",
-      "category": "machine learning",
-      "prerequisites": "m",
+      "id": "f487dd29-7d03-4801-9fbb-64ef8896ea3c",
+      "name": "new course",
+      "creditHours": "6",
+      "category": "web development",
+      "prerequisites": "data science",
       "status": "in-progress"
-    },
-    {
-      "id": "b5355e03-aa2c-4d37-bb98-e472d0de1a79",
-      "name": "www",
-      "creditHours": "4",
-      "category": "artificial intelligence",
-      "prerequisites": "ww,ww",
-      "status": "in-progress"
-    },
-    {
-      "id": "d5ea0e83-0e17-4812-870a-cf9be97752a2",
-      "name": "ffk",
-      "creditHours": "4",
-      "category": "machine learning",
-      "prerequisites": "cssd",
-      "status": "pending"
     }
   ]
 }

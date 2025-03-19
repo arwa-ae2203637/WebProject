@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - QU Student Management</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <button class="menu-btn">
+          <span class="material-icons">menu</span>
+        </button>
+        <h1>QU Student Management</h1>
+      </div>
+      <div class="header-right">
+        <span class="user-name">Admin User</span>
+        <div class="avatar">A</div>
+      </div>
+    </header>
+
+    <main>
+      <div class="dashboard-header">
+        <h2>Course Management</h2>
+        <button id="add-course-btn" class="add-btn">
+          <span class="material-icons">add</span>
+          Add Course
+        </button>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-group">
+          <label for="status-filter">Status:</label>
+          <select id="status-filter">
+            <option value="all">All</option>
+            <option value="pending">Pending Validation</option>
+            <option value="in-progress">In Progress</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="category-filter">Category:</label>
+          <select id="category-filter">
+            <option value="all">All</option>
+            <!-- Categories will be loaded dynamically from API -->
+          </select>
+        </div>
+      </div>
+
+      <div class="courses-container"></div>
+    </main>
+
+    <!-- Add Course Modal -->
+    <div id="add-course-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add New Course</h3>
+          <span class="close-modal">&times;</span>
+        </div>
+        <form id="add-course-form">
+          <div class="form-group">
+            <label for="course-name"
+              >Course Name:<span class="required">*</span></label
+            >
+            <input type="text" id="course-name" required />
+          </div>
+          <div class="form-group">
+            <label for="credit-hours"
+              >Credit Hours:<span class="required">*</span></label
+            >
+            <input type="number" id="credit-hours" min="1" max="6" required />
+          </div>
+          <div class="form-group">
+            <label for="course-category"
+              >Category:<span class="required">*</span></label
+            >
+            <select id="course-category" required>
+              <option value="">Select a category</option>
+              <!-- Categories will be loaded dynamically from API -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="prerequisites">Prerequisites (comma separated):</label>
+            <input
+              type="text"
+              id="prerequisites"
+              placeholder="e.g. CS101, CS102"
+            />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-form-btn">Cancel</button>
+            <button type="submit" class="submit-form-btn">Create Course</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Class Modal -->
+    <div id="add-class-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add New Class</h3>
+          <span class="close-modal">&times;</span>
+        </div>
+        <form id="add-class-form">
+          <div class="form-group">
+            <label for="class-crn">CRN:<span class="required">*</span></label>
+            <input type="text" id="class-crn" required />
+          </div>
+          <div class="form-group">
+            <label for="instructor"
+              >Instructor:<span class="required">*</span></label
+            >
+            <select id="instructor" required>
+              <option value="">Select an instructor</option>
+              <!-- Instructors will be loaded dynamically from API -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="class-limit"
+              >Class Limit:<span class="required">*</span></label
+            >
+            <input type="number" id="class-limit" min="5" max="50" required />
+          </div>
+          <div class="form-group">
+            <label for="schedule-days"
+              >Schedule Days:<span class="required">*</span></label
+            >
+            <div class="checkbox-group">
+              <label
+                ><input
+                  type="checkbox"
+                  name="days"
+                  value="mon"
+                  class="day-checkbox"
+                />
+                Monday</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="days"
+                  value="tue"
+                  class="day-checkbox"
+                />
+                Tuesday</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="days"
+                  value="wed"
+                  class="day-checkbox"
+                />
+                Wednesday</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="days"
+                  value="thu"
+                  class="day-checkbox"
+                />
+                Thursday</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="days"
+                  value="sun"
+                  class="day-checkbox"
+                />
+                Sunday</label
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="start-time"
+              >Start Time:<span class="required">*</span></label
+            >
+            <input type="time" id="start-time" required />
+          </div>
+          <div class="form-group">
+            <label for="end-time"
+              >End Time:<span class="required">*</span></label
+            >
+            <input type="time" id="end-time" required />
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-form-btn">Cancel</button>
+            <button type="submit" class="submit-form-btn">Create Class</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
