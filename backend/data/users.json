@@ -1,18 +1,20 @@
 [
   {
     "id": "S101",
-    "name": "Hamad Al-Marri",
-    "username": "hamad.almarri",
+    "name": "Saja Abdelmalik",
+    "username": "Saja.Abdelmalik",
     "password": "secure123",
     "userType": ["student"]
   },
+
   {
     "id": "S102",
-    "name": "Maryam Al-Sulaiti",
-    "username": "maryam.alsulaiti",
+    "name": "Maryam Ali",
+    "username": "maryam.ali",
     "password": "pass456",
     "userType": ["student"]
   },
+
   {
     "id": "S103",
     "name": "Jassim Al-Kuwari",
@@ -71,8 +73,8 @@
   },
   {
     "id": "i1",
-    "name": "Dr. Ahmed Al-Kuwari",
-    "username": "ahmed.alkuwari",
+    "name": "Dr. Mahmoud Barhmgi",
+    "username": "Mahmoud.Barhmgi",
     "password": "faculty123",
     "userType": ["instructor"]
   },
