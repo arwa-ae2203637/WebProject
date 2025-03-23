@@ -1,0 +1,154 @@
+{
+  "data": [
+    {
+      "id": "L01",
+      "courseId": "cmps151",
+      "instructorId": "i1",
+      "crn": "10001",
+      "classLimit": 35,
+      "enrolled": 30,
+      "schedule": "Sun, Tue 08:00-09:30",
+      "status": "started"
+    },
+    {
+      "id": "L02",
+      "courseId": "cmps151",
+      "instructorId": "i1",
+      "crn": "10002",
+      "classLimit": 35,
+      "enrolled": 25,
+      "schedule": "Mon, Wed 10:00-11:30",
+      "status": "started"
+    },
+    {
+      "id": "L03",
+      "courseId": "cmps251",
+      "instructorId": "i2",
+      "crn": "20001",
+      "classLimit": 30,
+      "enrolled": 28,
+      "schedule": "Sun, Tue 11:00-12:30",
+      "status": "started"
+    },
+    {
+      "id": "L04",
+      "courseId": "cmps251",
+      "instructorId": "i4",
+      "crn": "20002",
+      "classLimit": 30,
+      "enrolled": 22,
+      "schedule": "Mon, Wed 13:00-14:30",
+      "status": "started"
+    },
+    {
+      "id": "L05",
+      "courseId": "cmps303",
+      "instructorId": "i1",
+      "crn": "30001",
+      "classLimit": 25,
+      "enrolled": 20,
+      "schedule": "Sun, Tue 14:00-15:30",
+      "status": "started"
+    },
+    {
+      "id": "L06",
+      "courseId": "cmps255",
+      "instructorId": "i4",
+      "crn": "25501",
+      "classLimit": 30,
+      "enrolled": 25,
+      "schedule": "Mon, Wed 08:00-09:30",
+      "status": "started"
+    },
+    {
+      "id": "L07",
+      "courseId": "cmps351",
+      "instructorId": "i4",
+      "crn": "35101",
+      "classLimit": 25,
+      "enrolled": 18,
+      "schedule": "Sun, Tue 16:00-17:30",
+      "status": "started"
+    },
+    {
+      "id": "L08",
+      "courseId": "cmps350",
+      "instructorId": "i2",
+      "crn": "35001",
+      "classLimit": 30,
+      "enrolled": 0,
+      "schedule": "Mon, Wed 16:00-17:30",
+      "status": "pending"
+    },
+    {
+      "id": "L09",
+      "courseId": "cmps356",
+      "instructorId": "i5",
+      "crn": "35601",
+      "classLimit": 25,
+      "enrolled": 15,
+      "schedule": "Sun, Tue 13:00-14:30",
+      "status": "started"
+    },
+    {
+      "id": "L10",
+      "courseId": "cmps405",
+      "instructorId": "i3",
+      "crn": "40501",
+      "classLimit": 20,
+      "enrolled": 12,
+      "schedule": "Mon, Wed 14:30-16:00",
+      "status": "pending"
+    },
+    {
+      "id": "L11",
+      "courseId": "cmps151",
+      "instructorId": "i3",
+      "crn": "10003",
+      "classLimit": 35,
+      "enrolled": 32,
+      "schedule": "Tue, Thu 08:00-09:30",
+      "status": "started"
+    },
+    {
+      "id": "L12",
+      "courseId": "cmps251",
+      "instructorId": "i5",
+      "crn": "20003",
+      "classLimit": 30,
+      "enrolled": 26,
+      "schedule": "Tue, Thu 11:00-12:30",
+      "status": "started"
+    },
+    {
+      "id": "4a0a84bb-33a2-4dd1-94f8-7360ab0e6150",
+      "courseId": "85acda51-3e96-4403-a301-573fa0993027",
+      "instructorId": "i4",
+      "crn": "35002",
+      "classLimit": "50",
+      "enrolled": 0,
+      "schedule": "Mon 9:00 AM-12:00 PM",
+      "status": "cancelled"
+    },
+    {
+      "id": "b8c4b8e7-fc04-4586-8392-439b651601c4",
+      "courseId": "85acda51-3e96-4403-a301-573fa0993027",
+      "instructorId": "i2",
+      "crn": "35001",
+      "classLimit": "50",
+      "enrolled": 0,
+      "schedule": "Wed 12:00 AM-1:00 AM",
+      "status": "started"
+    },
+    {
+      "id": "9f7480ae-f183-4bf3-91bd-d1431cd68d40",
+      "courseId": "cmps151",
+      "instructorId": "i1",
+      "crn": "35000",
+      "classLimit": "50",
+      "enrolled": 0,
+      "schedule": "Thu 8:00 AM-9:00 PM",
+      "status": "started"
+    }
+  ]
+}

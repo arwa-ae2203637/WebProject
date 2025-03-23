@@ -1,0 +1,107 @@
+[
+  {
+    "id": "S101",
+    "name": "Hamad Al-Marri",
+    "username": "hamad.almarri",
+    "password": "secure123",
+    "userType": ["student"]
+  },
+  {
+    "id": "S102",
+    "name": "Maryam Al-Sulaiti",
+    "username": "maryam.alsulaiti",
+    "password": "pass456",
+    "userType": ["student"]
+  },
+  {
+    "id": "S103",
+    "name": "Jassim Al-Kuwari",
+    "username": "jassim.alkuwari",
+    "password": "jassim789",
+    "userType": ["student"]
+  },
+  {
+    "id": "S104",
+    "name": "Sara Al-Mohannadi",
+    "username": "sara.almohannadi",
+    "password": "sara2023",
+    "userType": ["student"]
+  },
+  {
+    "id": "S105",
+    "name": "Abdullah Al-Naimi",
+    "username": "abdullah.alnaimi",
+    "password": "abdullah456",
+    "userType": ["student"]
+  },
+  {
+    "id": "S106",
+    "name": "Noora Al-Thani",
+    "username": "noora.althani",
+    "password": "noora789",
+    "userType": ["student"]
+  },
+  {
+    "id": "S107",
+    "name": "Mohammed Al-Attiyah",
+    "username": "mohammed.alattiyah",
+    "password": "mohammed123",
+    "userType": ["student"]
+  },
+  {
+    "id": "S108",
+    "name": "Fatima Al-Misnad",
+    "username": "fatima.almisnad",
+    "password": "fatima456",
+    "userType": ["student"]
+  },
+  {
+    "id": "S109",
+    "name": "Ali Al-Khater",
+    "username": "ali.alkhater",
+    "password": "ali789",
+    "userType": ["student"]
+  },
+  {
+    "id": "S110",
+    "name": "Aisha Al-Emadi",
+    "username": "aisha.alemadi",
+    "password": "aisha123",
+    "userType": ["student"]
+  },
+  {
+    "id": "i1",
+    "name": "Dr. Ahmed Al-Kuwari",
+    "username": "ahmed.alkuwari",
+    "password": "faculty123",
+    "userType": ["instructor"]
+  },
+  {
+    "id": "i2",
+    "name": "Dr. Fatima Al-Thani",
+    "username": "fatima.althani",
+    "password": "faculty456",
+    "userType": ["instructor"]
+  },
+  {
+    "id": "i3",
+    "name": "Dr. Mohammed Al-Attiyah",
+    "username": "mohammed.alattiyah",
+    "password": "faculty789",
+    "userType": ["instructor"]
+  },
+  {
+    "id": "i4",
+    "name": "Dr. Noora Al-Misnad",
+    "username": "noora.almisnad",
+    "password": "faculty101",
+    "userType": ["instructor"]
+  },
+  {
+    "id": "i5",
+    "name": "Dr. Khalid Al-Sulaiti",
+    "username": "khalid.alsulaiti",
+    "password": "faculty202",
+    "userType": ["instructor"]
+  }
+]

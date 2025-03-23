@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "id": "i1",
+      "name": "Dr. Ahmed Al-Kuwari",
+      "expertise": ["Programming", "Algorithms", "Data Structures"]
+    },
+    {
+      "id": "i2",
+      "name": "Dr. Fatima Al-Thani",
+      "expertise": ["Web Development", "JavaScript", "React"]
+    },
+    {
+      "id": "i3",
+      "name": "Dr. Mohammed Al-Attiyah",
+      "expertise": ["Databases", "SQL", "Data Modeling"]
+    },
+    {
+      "id": "i4",
+      "name": "Dr. Noora Al-Misnad",
+      "expertise": ["Networking", "Security", "Cloud Computing"]
+    },
+    {
+      "id": "i5",
+      "name": "Dr. Khalid Al-Sulaiti",
+      "expertise": ["Mobile Development", "UI/UX", "Software Engineering"]
+    },
+    {
+      "id": "i6",
+      "name": "Dr. Hessa Al-Naimi",
+      "expertise": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Data Science"
+      ]
+    },
+    {
+      "id": "i7",
+      "name": "Dr. Jassim Al-Emadi",
+      "expertise": [
+        "Computer Architecture",
+        "Operating Systems",
+        "Embedded Systems"
+      ]
+    },
+    {
+      "id": "i8",
+      "name": "Dr. Maryam Al-Khater",
+      "expertise": ["Computer Graphics", "Game Development", "Virtual Reality"]
+    }
+  ]
+}

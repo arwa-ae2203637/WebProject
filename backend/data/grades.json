@@ -1,0 +1,102 @@
+[
+  {
+    "studentId": "S101",
+    "classId": "L03",
+    "grade": "B+"
+  },
+  {
+    "studentId": "S102",
+    "classId": "L03",
+    "grade": "A"
+  },
+  {
+    "studentId": "S103",
+    "classId": "L03",
+    "grade": "A-"
+  },
+  {
+    "studentId": "S104",
+    "classId": "L04",
+    "grade": "A+"
+  },
+  {
+    "studentId": "S105",
+    "classId": "L04",
+    "grade": "B"
+  },
+  {
+    "studentId": "S106",
+    "classId": "L05",
+    "grade": "B+"
+  },
+  {
+    "studentId": "S107",
+    "classId": "L05",
+    "grade": "A-"
+  },
+  {
+    "studentId": "S108",
+    "classId": "L06",
+    "grade": "B"
+  },
+  {
+    "studentId": "S109",
+    "classId": "L06",
+    "grade": "C+"
+  },
+  {
+    "studentId": "S110",
+    "classId": "L07",
+    "grade": "F"
+  },
+  {
+    "studentId": "S101",
+    "classId": "L01",
+    "grade": "A"
+  },
+  {
+    "studentId": "S102",
+    "classId": "L01",
+    "grade": "B+"
+  },
+  {
+    "studentId": "S103",
+    "classId": "L02",
+    "grade": "A-"
+  },
+  {
+    "studentId": "S104",
+    "classId": "L02",
+    "grade": "B"
+  },
+  {
+    "studentId": "S105",
+    "classId": "L09",
+    "grade": "A"
+  },
+  {
+    "studentId": "S106",
+    "classId": "L09",
+    "grade": "B+"
+  },
+  {
+    "studentId": "S107",
+    "classId": "L11",
+    "grade": "A+"
+  },
+  {
+    "studentId": "S108",
+    "classId": "L11",
+    "grade": "A"
+  },
+  {
+    "studentId": "S109",
+    "classId": "L12",
+    "grade": "B+"
+  },
+  {
+    "studentId": "S110",
+    "classId": "L12",
+    "grade": "A-"
+  }
+]

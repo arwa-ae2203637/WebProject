@@ -1,0 +1,126 @@
+{
+  "data": [
+    {
+      "id": "cmps151",
+      "name": "Programming Concepts",
+      "creditHours": 3,
+      "category": "Programming",
+      "prerequisites": [],
+      "status": "in-progress"
+    },
+    {
+      "id": "cmps251",
+      "name": "Object-Oriented Programming",
+      "creditHours": 4,
+      "category": "Programming",
+      "prerequisites": [
+        "cmps151"
+      ],
+      "status": "in-progress"
+    },
+    {
+      "id": "cmps303",
+      "name": "Data Structures",
+      "creditHours": 3,
+      "category": "Programming",
+      "prerequisites": [
+        "cmps251"
+      ],
+      "status": "in-progress"
+    },
+    {
+      "id": "cmps350",
+      "name": "Web Development",
+      "creditHours": 3,
+      "category": "Programming",
+      "prerequisites": [
+        "cmps251"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "cmps351",
+      "name": "Network Security",
+      "creditHours": 3,
+      "category": "Security",
+      "prerequisites": [
+        "cmps255"
+      ],
+      "status": "in-progress"
+    },
+    {
+      "id": "cmps255",
+      "name": "Computer Networks",
+      "creditHours": 4,
+      "category": "Networking",
+      "prerequisites": [],
+      "status": "in-progress"
+    },
+    {
+      "id": "cmps356",
+      "name": "Software Engineering",
+      "creditHours": 3,
+      "category": "Engineering",
+      "prerequisites": [
+        "cmps251"
+      ],
+      "status": "in-progress"
+    },
+    {
+      "id": "cmps405",
+      "name": "Artificial Intelligence",
+      "creditHours": 3,
+      "category": "Computer Science",
+      "prerequisites": [
+        "cmps303"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "cmps373",
+      "name": "Computer Architecture",
+      "creditHours": 3,
+      "category": "Computer Science",
+      "prerequisites": [],
+      "status": "pending"
+    },
+    {
+      "id": "cmps433",
+      "name": "Distributed Systems",
+      "creditHours": 3,
+      "category": "Computer Science",
+      "prerequisites": [
+        "cmps255"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "cmps345",
+      "name": "Database Management Systems",
+      "creditHours": 3,
+      "category": "Database",
+      "prerequisites": [
+        "cmps251"
+      ],
+      "status": "in-progress"
+    },
+    {
+      "id": "cmps411",
+      "name": "Mobile Application Development",
+      "creditHours": 3,
+      "category": "Programming",
+      "prerequisites": [
+        "cmps251"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "85acda51-3e96-4403-a301-573fa0993027",
+      "name": "Web Development",
+      "creditHours": "3",
+      "category": "web development",
+      "prerequisites": "Database",
+      "status": "in-progress"
+    }
+  ]
+}

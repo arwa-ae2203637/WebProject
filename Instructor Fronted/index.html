@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instructor Dashboard - QU Student Management</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <button class="menu-btn">
+          <span class="material-icons">menu</span>
+        </button>
+        <h1>QU Student Management</h1>
+      </div>
+      <div class="header-right">
+        <span class="user-name">John Smith</span>
+        <div class="avatar">J</div>
+      </div>
+    </header>
+
+    <main>
+      <div class="dashboard-header">
+        <h2>My Courses</h2>
+      </div>
+
+      <div class="courses-container">
+        <!-- Course cards will be inserted here by JavaScript -->
+      </div>
+    </main>
+
+    <!-- Student List Modal -->
+    <div id="student-list-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Student List - <span id="class-title">CS101</span></h3>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <table class="student-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Final Grade</th>
+              </tr>
+            </thead>
+            <tbody id="student-list">
+              <!-- Student rows will be inserted here by JavaScript -->
+            </tbody>
+          </table>
+          <div class="form-actions">
+            <button type="button" class="cancel-form-btn">Cancel</button>
+            <button type="button" class="submit-form-btn">Submit Grades</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
