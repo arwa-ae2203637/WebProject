@@ -1,19 +1,19 @@
-import { customAlphabet } from 'nanoid';
+import { customAlphabet } from "https://cdn.skypack.dev/nanoid";
 
 export class User{
   #id;
   #name;
-  #email;
+  #username;
   #password;
   #userType;
 
   constructor(obj){
-    if(this.constructor === User){
-      throw new Error("Can't instantiate abstract class");
-    }
-    this.#id = User.generateId(this.#userType);
+    // if(this.constructor === User){
+    //   throw new Error("Can't instantiate abstract class");
+    // }
+    this.#id = obj.id ?? User.generateId(this.#userType);
     this.#name = obj?.name ?? "";
-    this.#email = obj?.email ?? "";
+    this.#username = obj?.username ?? "";
     this.#password = obj?.password ?? "";
     this.#userType = obj?.userType ?? "";
   }
@@ -25,8 +25,8 @@ export class User{
   get name(){
     return this.#name;
   }
-  get email(){
-    return this.#email;
+  get username(){
+    return this.#username;
   }
   get password(){
     return this.#password;
@@ -37,8 +37,8 @@ export class User{
   set name(name){
     this.#name = name;
   }
-  set email(email){
-    this.#email = email;
+  set username(username){
+    this.#username = username;
   }
   set password(password){
     this.#password = password;
@@ -53,6 +53,12 @@ export class User{
     if (userType === 'admin') return `ADMIN-${numId()}`;
     else if (userType === 'student') return `STUD-${numId()}`;
     else return `INST-${numId()}`;
+  };
+
+
+  static fromJSON(json){
+    const object = typeof json === "string" ? JSON.parse(json) : json; 
+    return new User(object);
   }
 
 
@@ -60,7 +66,7 @@ export class User{
     return {
       id: this.#id,
       name: this.#name,
-      email: this.#email,
+      username: this.#username,
       password: this.#password,
       userType: this.#userType
     };
@@ -70,7 +76,7 @@ export class User{
     return `UserType: ${this.#userType}
             ID: ${this.#id}, 
             Name: ${this.#name}, 
-            Email: ${this.#email},`;
+            username: ${this.#username},`;
   }
   
 }
