@@ -1,23 +1,74 @@
 [
-    {
-        "id": 1,
-        "name": "John Doe",
-        "username": "johndoe",
-        "password": "123",
-        "userType": "student"
-    },
-    {
-        "id": 2,
-        "name": "Jane Doe",
-        "username": "janedoe",
-        "password": "123",
-        "userType": "instructor"
-    },
-    {
-        "id": 3,
-        "name": "Zane Doe",
-        "username": "zanedoe",
-        "password": "123",
-        "userType": "admin"
-    }
+  {
+    "id": 1,
+    "email": "student1@example.com",
+    "firstname": "John",
+    "lastname": "Ahmed",
+    "lastName": "Doe",
+    "userType": "student",
+    "completedCourses": [
+      { "name": "Python", "grade": "A+" },
+      { "name": "Data Structures", "grade": "B" }
+    ],
+    "currentCourses": [
+      { "name": "JavaScript", "instructor": "Dr. Smith" },
+      { "name": "Web Development", "instructor": "Prof. Brown" }
+    ],
+    "pendingCourses": [
+      { "name": "Machine Learning", "creditHours": 3 }
+    ]
+  },
+  {
+    "id": 2,
+    "email": "student2@example.com",
+    "firstname": "Jane",
+    "lastname": "Ahmed",
+    "userType": "student",
+    "completedCourses": [
+      { "name": "Database Systems", "grade": "A" },
+      { "name": "Software Engineering", "grade": "A-" }
+    ],
+    "currentCourses": [
+      { "name": "Cybersecurity", "instructor": "Dr. Johnson" },
+      { "name": "Artificial Intelligence", "instructor": "Prof. Lee" }
+    ],
+    "pendingCourses": [
+      { "name": "Blockchain Technology", "creditHours": 4 }
+    ]
+  },
+  {
+    "id": 3,
+    "email": "instructor1@example.com",
+    "firstname": "Jane",
+    "lastname": "Ahmed",
+    "userType": "instructor",
+    "expertise_area": ["Database Systems","Software Engineering"
+    ],
+    "assigned_classes": [
+    ]
+  },
+  {
+    "id": 4,
+    "email": "student3@example.com",
+    "firstname": "Ahmed",
+    "lastname": "Ahmed",
+    "userType": "student",
+    "completedCourses": [
+      { "name": "Computer Networks", "grade": "B+" }
+    ],
+    "currentCourses": [
+      { "name": "Operating Systems", "instructor": "Dr. Khalid" }
+    ],
+    "pendingCourses": [
+      { "name": "Cloud Computing", "creditHours": 3 },
+      { "name": "Advanced Algorithms", "creditHours": 4 }
+    ]
+  },
+  {
+    "id": 5,
+    "email": "admin1@example.com",
+    "firstname": "Jane",
+    "lastname": "Ahmed",
+    "userType": "admin"
+  }
 ]
