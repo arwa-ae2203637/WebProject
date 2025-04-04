@@ -1,14 +1,15 @@
-import { User } from './user';
+import { User } from './user.js';
 
 export class Admin extends User {
 
   constructor(obj){
-    super({...obj, userType: "admin"});
+    super({...obj});
   }
 
   // From JSON
   static fromJSON(json){
-    return JSON.parse(json);
+    const object = typeof json === "string" ? JSON.parse(json) : json; 
+    return new Admin(object);
   }
 
   // TO JSON

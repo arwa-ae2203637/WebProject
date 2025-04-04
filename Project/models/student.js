@@ -1,4 +1,4 @@
-import { User } from "models/user.js";
+import { User } from "./user.js";
 
 export class Student extends User{
   #completedCourses = [];
@@ -6,7 +6,7 @@ export class Student extends User{
   #pendingCourses = [];
 
   constructor(obj){
-    super({...obj, userType: "student"});
+    super({...obj});
     this.#completedCourses = obj?.completedCourses ?? [];
     this.#currentCourses = obj?.currentCourses ?? [];
     this.#pendingCourses = obj?.pendingCourses ?? [];
@@ -34,7 +34,8 @@ export class Student extends User{
 
   // FROM JSON
   static fromJSON(json){
-    return JSON.parse(json);
+    const object = typeof json === "string" ? JSON.parse(json) : json; 
+    return new Student(object);
   }
 
   // TO JSON

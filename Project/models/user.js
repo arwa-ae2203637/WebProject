@@ -9,9 +9,9 @@ export class User{
   #userType;
 
   constructor(obj){
-    // if(this.constructor === User){
-    //   throw new Error("Can't instantiate abstract class");
-    // }
+    if(this.constructor === User){
+      throw new Error("Can't instantiate abstract class");
+    }
     this.#id = obj.id ?? User.generateId(this.#userType);
     this.#firstName = obj?.firstName ?? "";
     this.#lastName = obj?.lastName ?? "";
@@ -65,8 +65,9 @@ export class User{
 
 
   static fromJSON(json){
-    const object = typeof json === "string" ? JSON.parse(json) : json; 
-    return new User(object);
+    // const object = typeof json === "string" ? JSON.parse(json) : json; 
+    // return new User(object);
+    throw new Error("Abstract method 'fromJSON()' must be implemented in a subclass");
   }
 
 

@@ -1,11 +1,11 @@
-import {User} from 'models/user.js';
+import {User} from './user.js';
 
 export class Instructor extends User{
   #expertise_area;
   #assigned_classes;
 
   constructor(obj){
-    super({...obj, userType: "instructor"});
+    super({...obj});
     this.#expertise_area = obj?.expertise_area ?? [];
     this.#assigned_classes = obj?.assigned_classes ?? [];
   }
@@ -26,7 +26,8 @@ export class Instructor extends User{
 
   // FROM JSON
   static fromJSON(json){
-    return JSON.parse(json);
+    const object = typeof json === "string" ? JSON.parse(json) : json; 
+    return new Instructor(object);
   }
 
   // TO JSON

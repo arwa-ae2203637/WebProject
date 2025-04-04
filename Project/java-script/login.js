@@ -1,16 +1,32 @@
-import { User } from "./user.js";
+// import { User } from "./user.js";
+import { Student } from "../models/student.js";
+import { Instructor } from "../models/instructor.js";
+import { Admin } from "../models/department-administrator.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
 
     let users = [];
-
     try {
         const response = await fetch("../assets/data/users.json");
         const data = await response.json();
-        users = data.map(user => User.fromJSON(user));
+        users = data.map(user => {
+            switch (user.userType) {
+                case "student":
+                    return Student.fromJSON(user);
+                case "instructor":
+                    return Instructor.fromJSON(user);
+                case "admin":
+                    return Admin.fromJSON(user);
+                default:
+                    console.error("Unknown user type:", user.userType);
+                    return null;
+            }
+        }).filter(user => user !== null);
     } catch (error) {
-        console.error("Error loading collection:", error);
+        console.error("Error loading users:", error);
     }
+
+    console.log(users);
 
     const loginButton = document.getElementById("login-button");
 

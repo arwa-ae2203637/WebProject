@@ -1,37 +1,39 @@
-let users = [];
+document.addEventListener("DOMContentLoaded", async () => {
+  let students = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('../assets/data/users.json')
-    .then(response => response.json())
-    .then(data => { 
-      users = data.filter(user => user.userType === "student");
-      updateWelcomeMessage();
-      updateUserProfile();
-      updateCourseTables();
-      updateProgressChart();
-    })
-    .catch(error => console.error("Error loading users:", error));
+  try{
+    const response = await fetch("../assets/data/users.json");
+    const data = await response.json();
+    console.log(data);
+    students = 
+      data.filter(user => user.userType === "student");
+  }
+  catch(error){
+    console.error("Error loading students:", error);
+  }
+
+  let loggedStudent = students.find(student => student.id === JSON.parse(localStorage.getItem("loggedUser")).id);
+  updateWelcomeMessage(loggedStudent);
+  updateUserProfile(loggedStudent);
+  updateCourseTables(loggedStudent);
+  updateProgressChart(loggedStudent);
+
 });
 
-function updateWelcomeMessage() {
-  if (users.length > 0) {
-    document.querySelector(".welcome").textContent = `Welcome, ${users[0].firstname}`;
-  }
+function updateWelcomeMessage(student) {
+    document.querySelector(".welcome").textContent = `Welcome, ${student.firstName}`;
 }
 
-function updateUserProfile() {
-  if (users.length > 0) {
+function updateUserProfile(student) {
     const avatarElement = document.querySelector(".avatar");
     const userNameElement = document.querySelector(".user-name");
     
-    avatarElement.textContent = `${users[0].firstname.charAt(0)}${users[0].lastname.charAt(0)}`  || "";  
-    userNameElement.textContent = `${users[0].firstname} ${users[0].lastname.charAt(0)}` || "User Name";  
-  }
+    avatarElement.textContent = `${student.firstName.charAt(0)}${student.lastName.charAt(0)}`  || "";  
+    userNameElement.textContent = `${student.firstName} ${student.lastName.charAt(0)}` || "User Name";  
 }
-function updateCourseTables() {
-  if (users.length > 0) {
+function updateCourseTables(student) {
     // UPDATING COMPLETED COURSES
-    const user = users[0]; 
+    const user = student; 
     const completedCourses = user.completedCourses; 
 
     const completedCoursesTable = document.querySelector("#completed .course-table tbody");
@@ -61,12 +63,11 @@ function updateCourseTables() {
         <td>${course.creditHours}</td>
       </tr>`
     ).join('');
-  }
+
 }
 
-function updateProgressChart() {
-  if (users.length > 0) {
-    const user = users[0];
+function updateProgressChart(student) {
+    const user = student;
     
     const totalCourses = user.completedCourses.length + user.currentCourses.length + user.pendingCourses.length;
     const completedCourses = user.completedCourses.length;
@@ -79,5 +80,4 @@ function updateProgressChart() {
 
     const progressLabel = document.querySelector(".chart-label");
     progressLabel.textContent = `${Math.round(progressPercentage)}%`;
-  }
 }

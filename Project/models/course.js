@@ -3,15 +3,91 @@ export class Course{
     #name;
     #credit_hours;
     #category;
-    #description;
+    // #description;
     #prerequisites;
+    #campus; 
+    #status;
 
     constructor(obj){
       this.#id = obj?.id ?? nanoid(10);
+      this.#name = obj?.name ?? "";
+      this.#credit_hours = obj?.credit_hours ?? 0;
+      this.#category = obj?.category ?? "";
+      // this.description = obj?.description ?? "";
+      this.#prerequisites = obj?.prerequisites ?? [];
+      this.#campus = obj?.campus ?? "";
+      this.#status = obj?.status ?? "";
+    }
+
+    get id(){
+      return this.#id;
+    }
+
+    get name(){
+      return this.#name;
+    }
+
+    get credit_hours(){
+      return this.#credit_hours;
+    }
+
+    get category(){
+      return this.#category;
+    }
+
+    //  get description(){
+    //    return this.#description;
+    // }
+
+    get prerequisites(){
+      return this.#prerequisites;
+    }
+
+    get campus(){
+      return this.#campus;
+    }
+
+    get status(){
+      return this.#status;
+    }
+
+    set id(value){
+      this.#id = value;
+    }
+
+    set name(value){
+
+      this.#name = value;
+
+    }
+
+    set credit_hours(value){
+      this.#credit_hours = value;
+    }
+
+    set category(value){
+      this.#category = value;
+    }
+
+    // set description(value){
+    //   this.#description = value;
+    // }
+
+    set prerequisites(value){
+      this.#prerequisites = value;
+    }
+
+    set campus(value){
+      this.#campus = value;
+    }
+
+    set status(value){
+      this.#status = value;
     }
 
     static fromJSON(json){
-      return JSON.parse(json);
+      const object = typeof json === "string" ? JSON.parse(json) : json; 
+      return new Course(object);
     }
 
     toJson(){
@@ -20,18 +96,20 @@ export class Course{
         name: this.#name,
         credit_hours: this.#credit_hours,
         category: this.#category,
-        description: this.#description,
-        prerequisites: this.#prerequisites
+        // description: this.#description,
+        prerequisites: this.#prerequisites,
+        campus: this.#campus,
+        status: this.#status
       };
     }
 
     toString(){
       return `Course -
-              ID: ${this.#id}, 
-              Name: ${this.#name}, 
-              Description: ${this.#description}, 
-              Credit Hours: ${this.#credit_hours},
-              Category: ${this.#category},
-              Prerequisites: ${this.#prerequisites} `;
+        ID: ${this.#id}, 
+        Name: ${this.#name}, 
+        Credit Hours: ${this.#credit_hours},
+        Category: ${this.#category},
+        Prerequisites: ${this.#prerequisites},
+        Campus: ${this.#campus},`;
     }
 }
