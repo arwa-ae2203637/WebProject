@@ -60,9 +60,9 @@ td {
   margin-bottom: 1rem;
   margin-top: 2rem;
   background-image: conic-gradient(
-    #333 70deg,
-    #999 0 235deg,
-    #ddd 0
+    #3D051B 70deg,
+    #6a3041 0 235deg,
+    #d1a9b1 0
   );
 }
 
@@ -90,15 +90,15 @@ td {
 }
 
 .legend-color.completed {
-  background-color: #333;
+  background-color: #3D051B;
 }
 
 .legend-color.pending {
-  background-color: #999;
+  background-color: #6a3041;
 }
 
 .legend-color.current {
-  background-color: #ddd;
+  background-color: #d1a9b1;
 }
 
 }
