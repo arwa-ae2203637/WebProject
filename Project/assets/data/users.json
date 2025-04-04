@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "email": "student1@example.com",
-    "firstname": "John",
-    "lastname": "Ahmed",
+    "firstName": "John",
     "lastName": "Doe",
+    "username": "student1@example.com",
+    "password": "123",
     "userType": "student",
     "completedCourses": [
       { "name": "Python", "grade": "A+" },
@@ -20,9 +20,10 @@
   },
   {
     "id": 2,
-    "email": "student2@example.com",
-    "firstname": "Jane",
-    "lastname": "Ahmed",
+    "firstName": "Jane",
+    "lastName": "Ahmed",
+    "username": "student2@example.com",
+    "password": "123",
     "userType": "student",
     "completedCourses": [
       { "name": "Database Systems", "grade": "A" },
@@ -38,9 +39,10 @@
   },
   {
     "id": 3,
-    "email": "instructor1@example.com",
-    "firstname": "Jane",
-    "lastname": "Ahmed",
+    "firstName": "Jane",
+    "lastName": "Ahmed",
+    "username": "instructor1@example.com",
+    "password": "123",
     "userType": "instructor",
     "expertise_area": ["Database Systems","Software Engineering"
     ],
@@ -49,9 +51,10 @@
   },
   {
     "id": 4,
-    "email": "student3@example.com",
-    "firstname": "Ahmed",
-    "lastname": "Ahmed",
+    "firstName": "Ahmed",
+    "lastName": "Ahmed",
+    "username": "student3@example.com",
+    "password": "123",
     "userType": "student",
     "completedCourses": [
       { "name": "Computer Networks", "grade": "B+" }
@@ -66,9 +69,10 @@
   },
   {
     "id": 5,
-    "email": "admin1@example.com",
-    "firstname": "Jane",
-    "lastname": "Ahmed",
+    "firstName": "Jane",
+    "lastName": "Ahmed",
+    "password": "123",
+    "username": "admin1@example.com",
     "userType": "admin"
   }
 ]
