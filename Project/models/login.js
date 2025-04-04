@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Error loading collection:", error);
     }
 
-    const loginForm = document.getElementById("loginForm");
     const loginButton = document.getElementById("login-button");
 
     loginButton.addEventListener("click", function (event) {
@@ -31,6 +30,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             alert("Invalid username or password.");
             return;
         }
+        localStorage.setItem("loggedUser", JSON.stringify({
+            id: user.id,
+            name: user.name,
+            username: user.username,
+            userType: user.userType,
+        }));
+
         if(user.userType === "admin"){
             window.location.href = "../html/admin-dashboard-screen.html"; 
         }
