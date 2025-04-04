@@ -75,7 +75,7 @@ function updateProgressChart(student) {
     const progressPercentage = (completedCourses / totalCourses) * 100;
 
     const progressBar = document.querySelector(".chart-progress");
-    progressBar.style.width = `${progressPercentage}%`;  
+    progressBar.style.width =`${progressPercentage}%`;  
     progressBar.setAttribute("data-progress", progressPercentage);
 
     const progressLabel = document.querySelector(".chart-label");

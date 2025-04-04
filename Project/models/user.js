@@ -64,6 +64,11 @@ export class User{
   };
 
 
+  // static fromJSON(json){
+  //   const object = typeof json === "string" ? JSON.parse(json) : json; 
+  //   return new User(object);
+  // }
+
   static fromJSON(json){
     // const object = typeof json === "string" ? JSON.parse(json) : json; 
     // return new User(object);
