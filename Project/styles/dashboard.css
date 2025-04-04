@@ -11,7 +11,10 @@ main {
   gap: 2rem;
 
 }
-
+.chart-label{
+  margin-left: 8.7rem;
+  margin-top: 0.4rem;
+}
 .course-card {
   background-color: white;
   border-radius: 12px;

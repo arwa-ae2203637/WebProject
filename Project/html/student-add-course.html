@@ -15,19 +15,6 @@
           <p>Choose your courses</p>
         </div>
 
-        <div class="search-container">
-            <div class="search-bar">
-                <img src="../assets/icons/search.svg" alt="Search" class="search-icon">
-                <input type="text" placeholder="Search course" class="search-input">
-            </div>
-            <select class="category-filter">
-                <option value="">All Categories</option>
-                <option value="Programming">Programming</option>
-                <option value="Database">Database</option>
-                <option value="Mathematics">Mathematics</option>
-            </select>
-        </div>
-
         <div class="user-profile">
           <div class="avatar">US</div>
           <span class="user-name">User Name</span>
@@ -46,8 +33,8 @@
             </div>
             <div class="space-box"></div>
             <nav>
-              <div class="options"> <img src="../assets/icons/registration-icon.png"> <a href="./student-registration.html" class="active">Registration</a></div>
-              <div class="options"> <img src="../assets/icons/dashboard-icon.svg"> <a href="./student-dashboard-screen.html">Dashboard</a></div>
+              <div class="options"> <img src="../assets/icons/registration-icon.png"> <a href="./registration.html" class="active">Registration</a></div>
+              <div class="options"> <img src="../assets/icons/dashboard-icon.svg"> <a href="./dashboard-screen.html">Dashboard</a></div>
               <div class="options"> <img src="../assets/icons/grade-icon.png"> <a href="#">Grades</a></div>
             </nav>
             
@@ -64,7 +51,11 @@
             <!-- Courses Table -->
             <main>
                 <div class="container">
-                <h2>Courses</h2>
+                    <div class="course-tittle">
+                        <button class="back-button">↩</button>    
+                        <h2>Courses</h2> 
+                    </div>
+            
                 <table class = "table">
                     <thead>
                         <tr>
