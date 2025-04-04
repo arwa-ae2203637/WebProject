@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/layout.css" />
     <link rel="stylesheet" href="../styles/dashboard.css" />
+    <script type="module" src="../java-script/student-dashboard.js"></script>
   </head>
   <body>
 
     <div class="header">
       <div>
-        <h2>Welcome, </h2>
+        <h2 class="welcome">Welcome, </h2>
         <p>Learning Path</p>
       </div>
       <div class="user-profile">
@@ -30,8 +31,8 @@
       </div>
       <div class="space-box"></div>
       <nav>
-        <div class="options"> <img src="../assets/icons/registration-icon.png"> <a href="#" class="active">Registration</a></div>
-        <div class="options"> <img src="../assets/icons/dashboard-icon.svg"> <a href="#">Dashboard</a></div>
+        <div class="options"> <img src="../assets/icons/registration-icon.png"> <a href="./registration.html" class="active">Registration</a></div>
+        <div class="options"> <img src="../assets/icons/dashboard-icon.svg"> <a href="./dashboard-screen.html">Dashboard</a></div>
         <div class="options"> <img src="../assets/icons/grade-icon.png"> <a href="#">Grades</a></div>
       </nav>
       
@@ -44,8 +45,8 @@
     </div>
 
     <main>
-      <div class="course-container">
-        <div class="course-card">
+      <div class="course-container" >
+        <div class="course-card" id="completed">
           <h3>Completed Courses</h3>
           <div class="course-table">
             <table>
@@ -57,14 +58,14 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Python</td>
-                  <td>A+</td>
+                  <td></td>
+                  <td></td>
               </tbody>
             </table>
           </div>
         </div>
         
-        <div class="course-card">
+        <div class="course-card" id="current">
           <h3>Current Courses</h3>
           <div class="course-table">
             <table>
@@ -76,8 +77,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>JavaScript</td>
-                  <td>Dr. ...</td>
+                  <td></td>
+                  <td></td>
                
               </tbody>
             </table>
@@ -86,7 +87,7 @@
           <div class="progress-chart">
             <div class="chart">
               <div class="chart-progress" data-progress="56"></div>
-              <div class="chart-label">56%</div>
+              <div class="chart-label"></div>
             </div>
             <div class="chart-legend">
               <div class="legend-item">
@@ -105,7 +106,7 @@
           </div>
         </div>
         
-        <div class="course-card">
+        <div class="course-card" id="pending">
           <h3>Pending Courses</h3>
           <div class="course-table">
             <table>

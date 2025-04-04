@@ -2,7 +2,8 @@ import { customAlphabet } from "https://cdn.skypack.dev/nanoid";
 
 export class User{
   #id;
-  #name;
+  #firstName;
+  #lastName;
   #username;
   #password;
   #userType;
@@ -12,7 +13,8 @@ export class User{
     //   throw new Error("Can't instantiate abstract class");
     // }
     this.#id = obj.id ?? User.generateId(this.#userType);
-    this.#name = obj?.name ?? "";
+    this.#firstName = obj?.firstName ?? "";
+    this.#lastName = obj?.lastName ?? "";
     this.#username = obj?.username ?? "";
     this.#password = obj?.password ?? "";
     this.#userType = obj?.userType ?? "";
@@ -22,8 +24,11 @@ export class User{
   get id(){
     return this.#id;
   }
-  get name(){
-    return this.#name;
+  get firstName(){
+    return this.#firstName;
+  }
+  get lastName(){
+    return this.#lastName;
   }
   get username(){
     return this.#username;
@@ -34,8 +39,11 @@ export class User{
   get userType(){
     return this.#userType;
   }
-  set name(name){
-    this.#name = name;
+  set firstName(firstName){
+    this.#firstName = firstName;
+  }
+  set lastName(lastName){
+    this.#lastName = lastName;
   }
   set username(username){
     this.#username = username;
@@ -65,7 +73,8 @@ export class User{
   toJson(){
     return {
       id: this.#id,
-      name: this.#name,
+      firstName: this.#firstName,
+      lastName: this.#lastName,
       username: this.#username,
       password: this.#password,
       userType: this.#userType
@@ -75,7 +84,8 @@ export class User{
   toString() {
     return `UserType: ${this.#userType}
             ID: ${this.#id}, 
-            Name: ${this.#name}, 
+            FirstName: ${this.#firstName}, 
+            LastName: ${this.#lastName},
             username: ${this.#username},`;
   }
   

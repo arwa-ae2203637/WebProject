@@ -20,6 +20,8 @@ body {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  text-align: center;
   p{
     margin: 0 0 0 0.1rem;
     font-size: 0.8rem;
@@ -27,6 +29,7 @@ body {
   h2{
     padding:0px;
     margin:0.5rem 0.5rem 0.5rem 0rem ;
+    color:#3D051B;
   }
 }
 .user-profile {
@@ -108,3 +111,11 @@ body {
 .sidebar-footer{
   justify-self: end;
 }
+
+main {
+  grid-area: main;
+  background-color: #F3F3F3;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
