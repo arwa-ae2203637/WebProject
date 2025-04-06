@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     updateCourseTables(courses);
-
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    updateUserProfile(loggedUser);
     const searchInput = document.querySelector("#search-input");
     const categoryFilter = document.querySelector(".category-filter");
 
@@ -87,4 +88,12 @@ function filter(courses, search, category){
          filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory) && course.name.toLowerCase().includes(searchTerm));
     }
     updateCourseTables(filteredCourses);
+}
+
+function updateUserProfile(student) {
+    const avatarElement = document.querySelector(".avatar");
+    const userNameElement = document.querySelector(".user-name");
+    
+    avatarElement.textContent = `${student.firstName.charAt(0)}${student.lastName.charAt(0)}`  || "";  
+    userNameElement.textContent = `${student.firstName} ${student.lastName.charAt(0)}` || "User Name";  
 }

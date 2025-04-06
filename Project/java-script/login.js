@@ -48,7 +48,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
         localStorage.setItem("loggedUser", JSON.stringify({
             id: user.id,
-            name: user.name,
+            firstName: user.firstName,
+            lastName: user.lastName,
             username: user.username,
             userType: user.userType,
         }));
