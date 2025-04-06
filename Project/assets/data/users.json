@@ -7,15 +7,15 @@
     "password": "123",
     "userType": "student",
     "completedCourses": [
-      { "name": "Python", "grade": "A+" },
-      { "name": "Data Structures", "grade": "B" }
+      { "name": "Python", "grade": "A+", "course_id": "python" },
+      { "name": "Data Structures", "grade": "B", "course_id": "data_structures" }
     ],
     "currentCourses": [
-      { "name": "JavaScript", "instructor": "Dr. Smith" },
-      { "name": "Web Development", "instructor": "Prof. Brown" }
+      { "name": "JavaScript", "instructor": "Dr. Smith", "course_id": "javascript" },
+      { "name": "Web Development", "instructor": "Prof. Brown", "course_id": "web_development" }
     ],
     "pendingCourses": [
-      { "name": "Machine Learning", "creditHours": 3 }
+      { "name": "Machine Learning", "creditHours": 3, "course_id": "machine_learning" }
     ]
   },
   {
@@ -26,15 +26,15 @@
     "password": "123",
     "userType": "student",
     "completedCourses": [
-      { "name": "Database Systems", "grade": "A" },
-      { "name": "Software Engineering", "grade": "A-" }
+      { "name": "Database Systems", "grade": "A", "course_id": "database_systems" },
+      { "name": "Software Engineering", "grade": "A-", "course_id": "software_engineering" }
     ],
     "currentCourses": [
-      { "name": "Cybersecurity", "instructor": "Dr. Johnson" },
-      { "name": "Artificial Intelligence", "instructor": "Prof. Lee" }
+      { "name": "Cybersecurity", "instructor": "Dr. Johnson", "course_id": "cybersecurity" },
+      { "name": "Artificial Intelligence", "instructor": "Prof. Lee", "course_id": "artificial_intelligence" }
     ],
     "pendingCourses": [
-      { "name": "Blockchain Technology", "creditHours": 4 }
+      { "name": "Blockchain Technology", "creditHours": 4, "course_id": "blockchain_technology" }
     ]
   },
   {
@@ -44,10 +44,8 @@
     "username": "instructor1@example.com",
     "password": "123",
     "userType": "instructor",
-    "expertise_area": ["Database Systems","Software Engineering"
-    ],
-    "assigned_classes": [
-    ]
+    "expertise_area": ["Database Systems", "Software Engineering"],
+    "assigned_classes": []
   },
   {
     "id": 4,
@@ -57,14 +55,14 @@
     "password": "123",
     "userType": "student",
     "completedCourses": [
-      { "name": "Computer Networks", "grade": "B+" }
+      { "name": "Computer Networks", "grade": "B+", "course_id": "computer_networks" }
     ],
     "currentCourses": [
-      { "name": "Operating Systems", "instructor": "Dr. Khalid" }
+      { "name": "Operating Systems", "instructor": "Dr. Khalid", "course_id": "operating_systems" }
     ],
     "pendingCourses": [
-      { "name": "Cloud Computing", "creditHours": 3 },
-      { "name": "Advanced Algorithms", "creditHours": 4 }
+      { "name": "Cloud Computing", "creditHours": 3, "course_id": "cloud_computing" },
+      { "name": "Advanced Algorithms", "creditHours": 4, "course_id": "advanced_algorithms" }
     ]
   },
   {

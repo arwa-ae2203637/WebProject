@@ -1,115 +1,104 @@
 export class Course{
-    #id;
-    #name;
-    #credit_hours;
-    #category;
-    // #description;
-    #prerequisites;
-    #campus; 
-    #status;
+  #id;
+  #name;
+  #credit_hours;
+  #category;
+  #prerequisites;
+  #campus; 
+  #status;
 
-    constructor(obj){
-      this.#id = obj?.id ?? nanoid(10);
-      this.#name = obj?.name ?? "";
-      this.#credit_hours = obj?.credit_hours ?? 0;
-      this.#category = obj?.category ?? "";
-      // this.description = obj?.description ?? "";
-      this.#prerequisites = obj?.prerequisites ?? [];
-      this.#campus = obj?.campus ?? "";
-      this.#status = obj?.status ?? "";
-    }
+  constructor(obj){
+    this.#id = obj?.id;
+    this.#name = obj?.name ?? "";
+    this.#credit_hours = obj?.credit_hours ?? 0;
+    this.#category = obj?.category ?? "";
+    this.#prerequisites = obj?.prerequisites ?? [];
+    this.#campus = obj?.campus ?? "";
+    this.#status = obj?.status ?? "";
+  }
 
-    get id(){
-      return this.#id;
-    }
+  get id(){
+    return this.#id;
+  }
 
-    get name(){
-      return this.#name;
-    }
+  get name(){
+    return this.#name;
+  }
 
-    get credit_hours(){
-      return this.#credit_hours;
-    }
+  get credit_hours(){
+    return this.#credit_hours;
+  }
 
-    get category(){
-      return this.#category;
-    }
+  get category(){
+    return this.#category;
+  }
+  
+  get prerequisites(){
+    return this.#prerequisites;
+  }
 
-    //  get description(){
-    //    return this.#description;
-    // }
+  get campus(){
+    return this.#campus;
+  }
 
-    get prerequisites(){
-      return this.#prerequisites;
-    }
+  get status(){
+    return this.#status;
+  }
 
-    get campus(){
-      return this.#campus;
-    }
+  set id(value){
+    this.#id = value;
+  }
 
-    get status(){
-      return this.#status;
-    }
+  set name(value){
 
-    set id(value){
-      this.#id = value;
-    }
+    this.#name = value;
 
-    set name(value){
+  }
 
-      this.#name = value;
+  set credit_hours(value){
+    this.#credit_hours = value;
+  }
 
-    }
+  set category(value){
+    this.#category = value;
+  }
 
-    set credit_hours(value){
-      this.#credit_hours = value;
-    }
+  set prerequisites(value){
+    this.#prerequisites = value;
+  }
 
-    set category(value){
-      this.#category = value;
-    }
+  set campus(value){
+    this.#campus = value;
+  }
 
-    // set description(value){
-    //   this.#description = value;
-    // }
+  set status(value){
+    this.#status = value;
+  }
 
-    set prerequisites(value){
-      this.#prerequisites = value;
-    }
+  static fromJSON(json){
+    const object = typeof json === "string" ? JSON.parse(json) : json; 
+    return new Course(object);
+  }
 
-    set campus(value){
-      this.#campus = value;
-    }
+  toJson(){
+    return {
+      id: this.#id,
+      name: this.#name,
+      credit_hours: this.#credit_hours,
+      category: this.#category,
+      prerequisites: this.#prerequisites,
+      campus: this.#campus,
+      status: this.#status
+    };
+  }
 
-    set status(value){
-      this.#status = value;
-    }
-
-    static fromJSON(json){
-      const object = typeof json === "string" ? JSON.parse(json) : json; 
-      return new Course(object);
-    }
-
-    toJson(){
-      return {
-        id: this.#id,
-        name: this.#name,
-        credit_hours: this.#credit_hours,
-        category: this.#category,
-        // description: this.#description,
-        prerequisites: this.#prerequisites,
-        campus: this.#campus,
-        status: this.#status
-      };
-    }
-
-    toString(){
-      return `Course -
-        ID: ${this.#id}, 
-        Name: ${this.#name}, 
-        Credit Hours: ${this.#credit_hours},
-        Category: ${this.#category},
-        Prerequisites: ${this.#prerequisites},
-        Campus: ${this.#campus},`;
-    }
+  toString(){
+    return `Course -
+      ID: ${this.#id}, 
+      Name: ${this.#name}, 
+      Credit Hours: ${this.#credit_hours},
+      Category: ${this.#category},
+      Prerequisites: ${this.#prerequisites},
+      Campus: ${this.#campus},`;
+  }
 }

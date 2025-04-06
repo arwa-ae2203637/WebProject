@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/layout.css" />
-    <link rel="stylesheet" href="../styles/registration.css" />
+    <link rel="stylesheet" href="../styles/student-add-course.css" />
+    <script type="module" src="../java-script/student-add-course.js"></script>
     <title>Student Portal</title>
 </head>
 <body>
@@ -33,8 +34,8 @@
             </div>
             <div class="space-box"></div>
             <nav>
-              <div class="options"> <img src="../assets/icons/registration-icon.png"> <a href="./student-registration.html" class="active">Registration</a></div>
-              <div class="options"> <img src="../assets/icons/dashboard-icon.svg"> <a href="./student-dashboard-screen.html">Dashboard</a></div>
+              <div class="options"> <img src="../assets/icons/registration-icon.png"> <a href="./registration.html" class="active">Registration</a></div>
+              <div class="options"> <img src="../assets/icons/dashboard-icon.svg"> <a href="./dashboard-screen.html">Dashboard</a></div>
               <div class="options"> <img src="../assets/icons/grade-icon.png"> <a href="#">Grades</a></div>
             </nav>
             
@@ -42,7 +43,7 @@
             <div class="sidebar-footer">
               <div class="options"> <img src="../assets/icons/circle-help.svg"> <a href="#">Help</a></div>
                 <div class="options"> <img src="../assets/icons/phone.svg"> <a href="#">Contact us</a></div>
-                <div class="options"> <img src="../assets/icons/log-out.svg"> <a href="./login.html">Log out</a></div>
+                <div class="options"> <img src="../assets/icons/log-out.svg"> <a href="#">Log out</a></div>
               </div>
           </div>
         
@@ -52,59 +53,24 @@
             <main>
                 <div class="container">
                     <div class="course-tittle">
-                        <button class="back-button">↩</button>    
-                        <h2>Courses</h2> 
+                        <a href="./student-registration.html"><button class="back-button">↩</button></a>
+                        <h2 class="course-name">Courses</h2> 
                     </div>
             
                 <table class = "table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Course number</th>
-                            <th>Category</th>
+                            <th>CRN</th>
+                            <th>Instructor</th>
+                            <th>Schedule</th>
                             <th>Hours</th>
-                            <th>Campus</th>
+                            <th>Availability</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Enroll</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>OOP</td>
-                            <td>251</td>
-                            <td>Programming</td>
-                            <td>3</td>
-                            <td>Female</td>
-                            <td>Available</td>
-                            <td><button>View</button></td>
-                        </tr>
-                        <tr>
-                            <td>JavaScript</td>
-                            <td>350</td>
-                            <td>Programming</td>
-                            <td>3</td>
-                            <td>Female</td>
-                            <td>Pending</td>
-                            <td><button>View</button></td>
-                        </tr>
-                        <tr>
-                            <td>Data Structures</td>
-                            <td>303</td>
-                            <td>Programming</td>
-                            <td>4</td>
-                            <td>Female</td>
-                            <td>Available</td>
-                            <td><button>View</button></td>
-                        </tr>
-                        <tr>
-                            <td>SQL</td>
-                            <td>351</td>
-                            <td>Database</td>
-                            <td>3</td>
-                            <td>Female</td>
-                            <td>Closed</td>
-                            <td><button>View</button></td>
-                        </tr>
+                       
                     </tbody>
                 </table>
                 

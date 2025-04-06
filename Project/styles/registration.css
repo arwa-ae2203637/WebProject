@@ -12,6 +12,13 @@ color:#3D051B;
   gap: 15px;
 }
 
+.header{
+  p{
+    align-self: start;
+    justify-self: start;
+  }
+}
+
 .search-bar {
   display: flex;
   align-items: center;

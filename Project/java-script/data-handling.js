@@ -1,52 +1,81 @@
-import fs from "fs/promises";
+import { Course } from "../models/course.js";
+import { User } from "../models/user.js";
+import { Class } from "../models/class.js";
+import { Student } from "../models/student.js";
+import { Instructor } from "../models/instructor.js";
+import { Admin } from "../models/department-administrator.js";
 
-export let users = [];
-export let courses = [];
 
-export async function saveUsers() {
+export async function loadData() {
+  const [coursesResponse, usersResponse, classesResponse] = await Promise.all([
+    fetch("../assets/data/courses.json"),
+    fetch("../assets/data/users.json"),
+    fetch("../assets/data/classes.json")
+  ]);
+
+  const courses = (await coursesResponse.json()).map(c => Course.fromJSON(c));
+  const courseMap = Object.fromEntries(courses.map(c => [c.id, c.toJson()]));
+
+  const classes = (await classesResponse.json()).map(cls => {
+    const courseData = courseMap[cls.course_id];
+    return Class.fromJSON({ ...courseData, ...cls });
+  });
+
+  const users = (await usersResponse.json()).map(u => {
+    switch (u.userType?.toLowerCase()) {
+      case "student":
+        return Student.fromJSON(u);
+      case "instructor":
+        return Instructor.fromJSON(u);
+      case "admin":
+        return Admin.fromJSON(u);
+      default:
+        return User.fromJSON(u);
+    }
+  });
+
+  return { courses, users, classes };
+}
+
+
+export function getLoggedUser(users) {
+  const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || "null");
+  return users?.find(u => u.id === loggedUser?.id);
+}
+
+export function getSelectedCourse(courses) {
+  const selectedCourse = JSON.parse(localStorage.getItem("selectedCourse") || "null");
+  return courses.find(c => c.id === selectedCourse?.id);
+}
+
+export async function getAllClasses(courseId) {
+  const { classes } = await loadData();
+  return classes.filter(cls => cls.course_id === courseId);
+}
+
+export async function getAllUsers() {
+  const { users } = await loadData();
+  return users;
+}
+
+export async function getAllCourses() {
+  const { courses } = await loadData();
+  return courses;
+}
+
+export function updateUserProfile(student) {
   try {
-    await fs.writeFile("../assets/data/users.json", JSON.stringify(users, null, 2), "utf8");
-  } catch (error) {
-    console.error("Error saving users file:", error);
-    throw error;
+      const avatarElement = document.querySelector(".avatar");
+      const userNameElement = document.querySelector(".user-name");
+            
+      const firstName = student.firstName;
+      const lastName = student.lastName;
+
+      console.log(student);
+      
+      avatarElement.textContent = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+      userNameElement.textContent = `${firstName} ${lastName.charAt(0)}`.trim();
+  } catch(err) {
+      console.error("Error updating profile:", err);
   }
-}
-
-export async function loadUsers() {
-  try {
-    const data = await fs.readFile("../assets/data/users.json", "utf8");
-    users = JSON.parse(data);
-    return users;
-  } catch (error) {
-    console.error("Error loading users file:", error);
-    throw error;
-  }
-}
-
-export async function saveCourses() {
-  try {
-    await fs.writeFile("../assets/data/courses.json", JSON.stringify(courses, null, 2), "utf8");
-  } catch (error) {
-    console.error("Error saving courses file:", error);
-    throw error;
-  }
-}
-
-export async function loadCourses() {
-  try {
-    const data = await fs.readFile("../assets/data/courses.json", "utf8");
-    courses = JSON.parse(data);
-    return courses;
-  } catch (error) {
-    console.error("Error loading courses file:", error);
-    throw error;
-  }
-}
-
-export function toStringUsers() {
-  return users.map(user => JSON.stringify(user, null, 2)).join("\n");
-}
-
-export function toStringCourses() {
-  return courses.map(course => JSON.stringify(course, null, 2)).join("\n");
 }
