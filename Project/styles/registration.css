@@ -14,6 +14,7 @@ color:#3D051B;
 
 .search-bar {
   display: flex;
+  align-items: center;
   align-content: center;
   background-color: white;
   border: 1px solid #ddd;
@@ -33,7 +34,7 @@ color:#3D051B;
 
 }
 
-.search-input {
+#search-input {
   border: none;
   outline: none;
   font-size: 14px;
