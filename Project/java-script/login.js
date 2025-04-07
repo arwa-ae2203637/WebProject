@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             window.location.href = "../html/admin-dashboard-screen.html"; 
         }
         else if(user.userType === "student"){
-            window.location.href = "../html/student-dashboard-screen.html"; 
+            window.location.href = "../html/student-registration.html"; 
         }
         else if(user.userType === "instructor"){
             window.location.href = "../html/instructor-dashboard-screen.html"; 
