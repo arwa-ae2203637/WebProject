@@ -1,36 +1,25 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  let students = [];
+import { getLoggedUser , getAllUsers , updateUserProfile} from "./data-handling.js";
 
+document.addEventListener("DOMContentLoaded", async () => {
   try{
-    const response = await fetch("../assets/data/users.json");
-    const data = await response.json();
-    console.log(data);
-    students = 
-      data.filter(user => user.userType === "student");
+    const users = await getAllUsers();
+        console.log(users);
+    let loggedStudent = getLoggedUser(users);
+    updateUserProfile(getLoggedUser(users));
+    updateWelcomeMessage(loggedStudent);
+    updateUserProfile(loggedStudent);
+    updateCourseTables(loggedStudent);
+    updateProgressChart(loggedStudent);
   }
   catch(error){
     console.error("Error loading students:", error);
   }
-
-  let loggedStudent = students.find(student => student.id === JSON.parse(localStorage.getItem("loggedUser")).id);
-  updateWelcomeMessage(loggedStudent);
-  updateUserProfile(loggedStudent);
-  updateCourseTables(loggedStudent);
-  updateProgressChart(loggedStudent);
-
 });
 
 function updateWelcomeMessage(student) {
     document.querySelector(".welcome").textContent = `Welcome, ${student.firstName}`;
 }
 
-function updateUserProfile(student) {
-    const avatarElement = document.querySelector(".avatar");
-    const userNameElement = document.querySelector(".user-name");
-    
-    avatarElement.textContent = `${student.firstName.charAt(0)}${student.lastName.charAt(0)}`  || "";  
-    userNameElement.textContent = `${student.firstName} ${student.lastName.charAt(0)}` || "User Name";  
-}
 function updateCourseTables(student) {
     // UPDATING COMPLETED COURSES
     const user = student; 
