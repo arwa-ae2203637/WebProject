@@ -123,6 +123,9 @@
 .schedule-days {
   display: flex;
   gap: 5px; 
+ height:2.1rem;
+  margin-top: 0.8rem;
+
 }
 
 .day {
@@ -133,6 +136,7 @@
   border-radius: 3px;
   font-size: 0.9em;
   text-align: center;
+  height:1rem;
 }
 
 .day.scheduled {
