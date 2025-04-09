@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/layout.css" />
+    <link rel="stylesheet" href="../styles/student-add-course.css" />
+    <script type="module" src="../scripts/student-add-course.js"></script>
+    <title>Student Portal</title>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+          <h2 class="title">Registration </h2>
+          <p>Choose your courses</p>
+        </div>
+
+        <div class="user-profile">
+          <div class="avatar">US</div>
+          <span class="user-name">User Name</span>
+          <span class="dropdown-icon">▼</span>
+        </div>
+        
+     </div>
+
+
+        <!-- Sidebar -->
+        <div class = "side">
+            <div>
+            <div class="title">
+              <img src="../assets/media/qu-logo.png" alt="logo" />
+              <h2>Qatar University Portal</h2>
+            </div>
+            <div class="space-box"></div>
+            <nav>
+              <div class="options"> <img src="../assets/icons/registration-icon.png"> <a href="./student-registration.html" class="active">Registration</a></div>
+              <div class="options"> <img src="../assets/icons/dashboard-icon.svg"> <a href="./student-dashboard-screen.html">Dashboard</a></div>
+              <div class="options"> <img src="../assets/icons/grade-icon.png"> <a href="#">Grades</a></div>
+            </nav>
+            
+            </div>
+            <div class="sidebar-footer">
+              <div class="options"> <img src="../assets/icons/circle-help.svg"> <a href="#">Help</a></div>
+                <div class="options"> <img src="../assets/icons/phone.svg"> <a href="#">Contact us</a></div>
+                <div class="options"> <img src="../assets/icons/log-out.svg"> <a href="./login.html">Log out</a></div>
+              </div>
+          </div>
+        
+
+
+            <!-- Courses Table -->
+            <main>
+                <div class="container">
+                    <div class="course-tittle">
+                        <a href="./student-registration.html"><button class="back-button">↩</button></a>
+                        <h2 class="course-name">Courses</h2> 
+                    </div>
+            
+                <table class = "table">
+                    <thead>
+                        <tr>
+                            <th>CRN</th>
+                            <th>Instructor</th>
+                            <th>Schedule</th>
+                            <th>Hours</th>
+                            <th>Availability</th>
+                            <th>Status</th>
+                            <th>Enroll</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+                
+                <!-- Pagination -->
+                <div class="pages">
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>...</button>
+                    <button>20</button>
+                </div>
+
+            </div>
+        </main>
+
+
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "/[slug]/route": "app/[slug]/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/classes/[crn]/route": "app/classes/[crn]/route.js",
+  "/classes/[id]/route": "app/classes/[id]/route.js",
+  "/classes/route": "app/classes/route.js",
+  "/courses/route": "app/courses/route.js",
+  "/route": "app/route.js",
+  "/users/[id]/route": "app/users/[id]/route.js",
+  "/users/route": "app/users/route.js"
+}
