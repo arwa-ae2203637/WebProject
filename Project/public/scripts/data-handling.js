@@ -13,8 +13,6 @@ export async function fetchUsers() {
     try {
       const response = await fetch(API_URL_USERS);
       let users = await response.json();
-      // users = users.map(user => User.fromJSON());
-      // console.log(users);
       return users;
     } catch (error) {
       console.error('Error fetching Users:', error);
@@ -122,7 +120,7 @@ export async function addCourse(course) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({course}),
+      body: JSON.stringify(course),
     });
     
     if (response.status === 201) {
@@ -173,7 +171,6 @@ export async function fetchClasses() {
   try {
     const response = await fetch(API_URL_CLASS);
     let classses = await response.json();
-    // console.log(courses);
     return classses;
   } catch (error) {
     console.error('Error fetching classes:', error);
@@ -187,13 +184,14 @@ export async function addClass(cls) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({cls}),
+      body: JSON.stringify(cls),
     });
     
     if (response.status === 201) {
       console.log("Class added");
-    } else if (response.status === 409) {
-      alert('Class with this title already exists');
+    } 
+    else if (response.status === 409) {
+      alert('Class with this crn already exists');
     }
   } catch (error) {
     console.error('Error adding class:', error);
@@ -232,7 +230,6 @@ export async function deleteClass(crn) {
     console.error('Error deleting task:', error);
   }
 }
-
 
 //   export async function loadData() {
 //     const [coursesResponse, classesResponse] = await Promise.all([

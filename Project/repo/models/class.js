@@ -1,21 +1,23 @@
 import { Course } from "./course.js";
 
-export class Class extends Course{
+export class Class {
     #crn;
     #course_id
     #instructor;
     #class_limit;
     #schedule
     #students;
+    #status;
 
     constructor(obj){ 
-        super({...obj});
+        // super({...obj});
         this.crn = obj.crn;
         this.course_id = obj?.course_id ?? "";
         this.instructor = obj?.instructor ?? "";
         this.class_limit = obj?.class_limit ?? 0;
         this.schedule = obj?.schedule ?? [];
         this.students = obj?.students ?? [];
+        this.status = obj?.status ?? "active";
     }
 
     // SETTERS AND GETTERS
@@ -55,6 +57,12 @@ export class Class extends Course{
     set students(students){
       this.#students = students;
     }
+    get status(){
+      return this.#status;
+    }
+    set status(status){
+      this.#status = status;
+    }
 
     static fromJSON(json){
       const object = typeof json === "string" ? JSON.parse(json) : json; 
@@ -64,26 +72,29 @@ export class Class extends Course{
     // TOJSON METHOD
     toJSON(){
       return {
-        ...super.toJSON(),
+        // ...super.toJSON(),
         crn: this.#crn,
         course_id: this.#course_id,
         instructor: this.#instructor,
         class_limit: this.#class_limit,
         schedule: this.#schedule,
-        students: this.#students
+        students: this.#students,
+        status: this.#status,
       };
     }
 
 
     // TOSTRING METHOD
     toString() {
-      return `${super.toString()}
+      return `
               Class -
               CRN: ${this.crn}, 
               Course ID: ${this.course_id},
               Instructor: ${this.instructor}, 
               Class Limit: ${this.class_limit},
               Schedule: ${this.schedule},
-              Students: ${this.students},`;
+              Students: ${this.students},
+              Status: ${this.status}
+              `;
     }
 }

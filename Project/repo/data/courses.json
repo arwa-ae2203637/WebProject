@@ -70,7 +70,23 @@
     "prerequisites": ["ARAB100"],
     "campus": "Male",
     "status": "Active"
+  },
+  {
+    "id": "pDOkUup0mmDxFZ_7o2TSn",
+    "name": "Hello",
+    "credit_hours": "3",
+    "category": "database",
+    "prerequisites": "None",
+    "campus": "female",
+    "status": "Pending"
+  },
+  {
+    "id": "CMPS350",
+    "name": "Web Development",
+    "credit_hours": "2",
+    "category": "programming",
+    "prerequisites": "CS251",
+    "campus": "female",
+    "status": "Pending"
   }
 ]
-
-

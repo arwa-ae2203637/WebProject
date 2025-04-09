@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }));
 
         if(user.userType === "admin"){
-            window.location.href = "./admin-dashboard-screen.html"; 
+            window.location.href = "./admin-course-management.html"; 
         }
         else if(user.userType === "student"){
             window.location.href = "./student-registration.html"; 

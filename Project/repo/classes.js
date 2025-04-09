@@ -48,8 +48,8 @@ export async function read(crn){
 
 export async function create(body){
     const classes = await load();
+    console.log("create", classes.toString());
     const duplicate = classes.find((cls) => cls.crn == body.crn);
-
     if(duplicate){
         throw new Error(`Class with crn ${body.crn} already exists`);
     }
@@ -60,7 +60,7 @@ export async function create(body){
     classes.push(cls);
 
     await save(classes);
-    return cl;
+    return cls;
 }  
 
 export async function update(crn, cls){
