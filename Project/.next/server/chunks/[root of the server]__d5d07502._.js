@@ -1,6 +1,6 @@
 module.exports = {
 
-"[project]/.next-internal/server/app/classes/route/actions.js [app-rsc] (server actions loader, ecmascript)": (function(__turbopack_context__) {
+"[project]/.next-internal/server/app/classes/[crn]/route/actions.js [app-rsc] (server actions loader, ecmascript)": (function(__turbopack_context__) {
 
 var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
 {
@@ -327,25 +327,35 @@ const mod = __turbopack_context__.x("next/dist/server/app-render/after-task-asyn
 
 module.exports = mod;
 }}),
-"[project]/app/classes/route.js [app-route] (ecmascript)": ((__turbopack_context__) => {
+"[project]/app/classes/[crn]/route.js [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
+    "DELETE": (()=>DELETE),
     "GET": (()=>GET),
-    "POST": (()=>POST)
+    "PUT": (()=>PUT)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$classes$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/repo/classes.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [app-route] (ecmascript)");
 ;
 ;
-async function GET() {
+async function GET(reuqest, { params }) {
     try {
-        const classes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$classes$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["read"])();
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(classes.map((cls)=>cls.toJSON()), {
-            status: 200
-        });
+        const { crn } = await params;
+        try {
+            const cls = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$classes$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["read"])(crn);
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(cls.toJSON(), {
+                status: 200
+            });
+        } catch (e) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                message: "Not found"
+            }, {
+                status: 404
+            });
+        }
     } catch (e) {
         console.error(e);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
@@ -355,32 +365,35 @@ async function GET() {
         });
     }
 }
-async function POST(request, { params }) {
+async function PUT(request, { params }) {
     try {
-        let cls;
-        try {
-            cls = await request.json();
-        } catch (e) {
-            return new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"]("Invalid request", {
-                status: 400
-            });
-        }
-        try {
-            cls = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$classes$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["create"])(cls);
-        } catch (e) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                message: "Conflict"
-            }, {
-                status: 409
-            });
-        }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(cls.toJSON(), {
-            status: 201
+        const { crn } = await params;
+        const body = await request.json();
+        const updated = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$classes$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["update"])(crn, body);
+        console.log(updated);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(updated.toJSON(), {
+            status: 200
         });
     } catch (e) {
         console.error(e);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            message: "Error"
+            message: "Update failed"
+        }, {
+            status: 500
+        });
+    }
+}
+async function DELETE(request, { params }) {
+    try {
+        const { crn } = await params;
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$classes$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["remove"])(crn);
+        return new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"](null, {
+            status: 204
+        });
+    } catch (e) {
+        console.error(e);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            message: "Delete failed"
         }, {
             status: 500
         });
@@ -390,4 +403,4 @@ async function POST(request, { params }) {
 
 };
 
-//# sourceMappingURL=%5Broot%20of%20the%20server%5D__356768a0._.js.map
+//# sourceMappingURL=%5Broot%20of%20the%20server%5D__d5d07502._.js.map

@@ -27,7 +27,7 @@ export async function read(crn){
     if(crn){
         const cls = classes.find((cls) => cls.crn == crn);
         if(!cls){
-            throw new Error(`Class with id ${crn} not found`);
+            throw new Error(`Class with crn ${crn} not found`);
         }
         return cls;
     }
@@ -51,7 +51,7 @@ export async function create(body){
     const duplicate = classes.find((cls) => cls.crn == body.crn);
 
     if(duplicate){
-        throw new Error(`Class with id ${body.id} already exists`);
+        throw new Error(`Class with crn ${body.crn} already exists`);
     }
     let cls = Class.fromJSON(body);
     // console.log(body.userType);
@@ -80,7 +80,7 @@ export async function remove(crn){
     const classes = await load();
     const index = classes.findIndex((cls) => cls.crn == crn);
     if(index === -1){
-        throw new Error(`Class with id ${id} not found`);
+        throw new Error(`Class with crn ${crn} not found`);
     }
     classes.splice(index, 1);
 

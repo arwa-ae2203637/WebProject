@@ -17,12 +17,6 @@ export class Student extends User{
     this.#courses = courses;
   }
 
-  addCourse(obj){
-    const course = new StudentCourse(obj);
-    this.#courses.push(course);
-    return course;
-  }
-
   // FROM JSON
   static fromJSON(json){
     const object = typeof json === "string" ? JSON.parse(json) : json; 

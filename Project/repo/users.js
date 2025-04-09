@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import { User } from "./models/user.js";
 import { Student } from "./models/student.js";
 import { Instructor } from "./models/instructor.js";
-import { Admin } from "./models/department-administrator.js";
+import { Admin } from "./models/administrator.js";
 
 export async function load(){
     try{

@@ -21,6 +21,7 @@ export async function fetchUsers() {
     }
   }
 
+
 // export async function fetchUsers() {
 //   try {
 //     const response = await fetch(API_URL_USERS);
@@ -199,9 +200,9 @@ export async function addClass(cls) {
   }
 }
 
-export async function updateClass(id, newClass) {
+export async function updateClass(crn, newClass) {
   try {
-    const response = await fetch(`${API_URL_CLASS}/${id}`, {
+    const response = await fetch(`${API_URL_CLASS}/${crn}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -218,9 +219,9 @@ export async function updateClass(id, newClass) {
 }
 
 // Delete a task
-export async function deleteClass(id) {
+export async function deleteClass(crn) {
   try {
-    const response = await fetch(`${API_URL_CLASS}/${id}`, {
+    const response = await fetch(`${API_URL_CLASS}/${crn}`, {
       method: 'DELETE',
     });
     

@@ -36,6 +36,12 @@
         "course_id": "CS101",
         "status": "pending",
         "grade": "N/A"
+      },
+      {
+        "crn": "2002",
+        "course_id": "CS201",
+        "status": "pending",
+        "grade": "N/A"
       }
     ]
   },
@@ -112,5 +118,13 @@
         "grade": "N/A"
       }
     ]
+  },
+  {
+    "id": 4,
+    "firstName": "Ahmed",
+    "lastName": "Ahmed",
+    "username": "inst@example.com",
+    "password": "123",
+    "userType": "admin"
   }
 ]
