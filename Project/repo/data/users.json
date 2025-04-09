@@ -8,37 +8,25 @@
     "userType": "student",
     "courses": [
       {
-        "crn": 1002,
-        "course_id": "data_structures",
-        "status": "completed",
-        "grade": "B"
-      },
-      {
-        "crn": 1003,
-        "course_id": "javascript",
-        "status": "current",
-        "grade": "N/A"
-      },
-      {
-        "crn": 1004,
+        "crn": "1004",
         "course_id": "web_development",
         "status": "current",
         "grade": "N/A"
       },
       {
-        "crn": 1005,
+        "crn": "1005",
         "course_id": "machine_learning",
         "status": "pending",
         "grade": "N/A"
       },
       {
-        "crn": "2003",
-        "course_id": "CS201",
+        "crn": "1001",
+        "course_id": "CS101",
         "status": "pending",
         "grade": "N/A"
       },
       {
-        "crn": "2002",
+        "crn": "2001",
         "course_id": "CS201",
         "status": "pending",
         "grade": "N/A"
@@ -54,31 +42,31 @@
     "userType": "student",
     "courses": [
       {
-        "crn": 2001,
+        "crn": "2001",
         "course_id": "database_systems",
         "status": "completed",
         "grade": "A"
       },
       {
-        "crn": 2002,
+        "crn": "2002",
         "course_id": "software_engineering",
         "status": "completed",
         "grade": "A-"
       },
       {
-        "crn": 2003,
+        "crn": "2003",
         "course_id": "cybersecurity",
         "status": "current",
         "grade": "N/A"
       },
       {
-        "crn": 2004,
+        "crn": "2004",
         "course_id": "artificial_intelligence",
         "status": "current",
         "grade": "N/A"
       },
       {
-        "crn": 2005,
+        "crn": "2005",
         "course_id": "blockchain_technology",
         "status": "pending",
         "grade": "N/A"
@@ -94,25 +82,25 @@
     "userType": "student",
     "courses": [
       {
-        "crn": 3001,
+        "crn": "3001",
         "course_id": "computer_networks",
         "status": "completed",
         "grade": "B+"
       },
       {
-        "crn": 3002,
+        "crn": "3002",
         "course_id": "operating_systems",
         "status": "current",
         "grade": "N/A"
       },
       {
-        "crn": 3003,
+        "crn": "3003",
         "course_id": "cloud_computing",
         "status": "pending",
         "grade": "N/A"
       },
       {
-        "crn": 3004,
+        "crn": "3004",
         "course_id": "advanced_algorithms",
         "status": "pending",
         "grade": "N/A"
