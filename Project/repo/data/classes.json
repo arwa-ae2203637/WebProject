@@ -1,0 +1,58 @@
+[
+  {
+    "crn": "1001",
+    "course_id": "CS101",
+    "instructor": "Dr. Smith",
+    "class_limit": 30,
+    "schedule": "S/T/TH 10:00-11:00",
+    "students": ["S1001", "S1002", "S1003"]
+  },
+  {
+  "crn": "1002",
+  "course_id": "CS101",
+  "instructor": "Dr. Smith",
+  "class_limit": 30,
+  "schedule": "M/W 10:00-11:00",
+  "students": ["S1001", "S1002", "S1003"]
+  },
+  {
+    "crn": "1003",
+    "course_id": "CS101",
+    "instructor": "Prof. Johnson",
+    "class_limit": 25,
+    "schedule": "S/T/TH 13:00-14:30",
+    "students": ["S1004", "S1005"]
+  },
+  {
+    "crn": "1004",
+    "course_id": "CS101",
+    "instructor": "Prof. Jane",
+    "class_limit": 30,
+    "schedule": "TH 13:00-14:30",
+    "students": ["S1004", "S1005","S1004", "S1005","S1004", "S1005","S1004", "S1005"]
+  },
+  {
+    "crn": "2001",
+    "course_id": "CS201",
+    "instructor": "Dr. Lee",
+    "class_limit": 20,
+    "schedule": "M/W 14:00-15:30",
+    "students": ["S1001", "S1006"]
+  },
+  {
+    "crn": "2002",
+    "course_id": "CS201",
+    "instructor": "Dr. Lee",
+    "class_limit": 20,
+    "schedule": "M/W 14:00-15:30",
+    "students": ["S1001", "S1006"]
+  },
+  {
+    "crn": "2003",
+    "course_id": "CS201",
+    "instructor": "Dr. Lee",
+    "class_limit": 20,
+    "schedule": "M/W 14:00-15:30",
+    "students": ["S1001", "S1006"]
+  }
+]
