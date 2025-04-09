@@ -30,6 +30,12 @@
         "course_id": "CS201",
         "status": "pending",
         "grade": "N/A"
+      },
+      {
+        "crn": "1003",
+        "course_id": "CS101",
+        "status": "pending",
+        "grade": "N/A"
       }
     ]
   },

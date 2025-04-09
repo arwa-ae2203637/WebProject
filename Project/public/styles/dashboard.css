@@ -1,0 +1,104 @@
+
+main {
+  grid-area: main;
+  background-color: #F3F3F3;
+  padding: 1.5rem;
+  overflow-y: auto;
+
+.course-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+}
+.chart-label{
+  margin-left: 8.7rem;
+  margin-top: 0.4rem;
+}
+.course-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  font-weight: 600;
+  font-size:0.2;
+  color: #333;
+  background-color: #f8f7f7;
+}
+
+td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.progress-chart {
+  border-top: black 1px solid;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  background-image: conic-gradient(
+    #3D051B 70deg,
+    #6a3041 0 235deg,
+    #d1a9b1 0
+  );
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  margin:0rem;
+  width: 100%;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  p{
+    margin:0.1rem;
+  }
+}
+
+.legend-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.2rem;
+}
+
+.legend-color.completed {
+  background-color: #3D051B;
+}
+
+.legend-color.pending {
+  background-color: #6a3041;
+}
+
+.legend-color.current {
+  background-color: #d1a9b1;
+}
+
+}
