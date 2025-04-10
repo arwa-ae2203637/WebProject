@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     dh.updateUserProfile(loggedUser);
     updateWelcomeMessage(loggedUser);
-    updateCourseTables(loggedUser,courses,classes);
+    updateCourseTables(loggedUser,courses,classes,users);
     updateProgressChart(loggedUser.courses);
   }
   catch(error){
@@ -27,12 +27,17 @@ function updateWelcomeMessage(student) {
     document.querySelector(".welcome").textContent = `Welcome, ${student.firstName}`;
 }
 
-
-function updateCourseTables(student, courses, classes) {
+function updateCourseTables(student, courses, classes, users) {
   const courseMap = {};
   const classMap = {};
+  const instructorMap = {};
   
-  // MAP COURSES
+  users.forEach(user => {
+    if (user.userType === "instructor") {
+      instructorMap[user.id] = `${user.firstName} ${user.lastName}`;
+    }
+  });
+  
   courses.forEach(course => {
       courseMap[course.id] = {
           name: course.name,
@@ -41,20 +46,21 @@ function updateCourseTables(student, courses, classes) {
       };
   });
   
-  // MAP CLASSES
   classes.forEach(cls => {
       classMap[cls.crn] = {
-          instructor: cls.instructor,
+          instructor: instructorMap[cls.instructor] || 'N/A', 
           schedule: cls.schedule
       };
   });
 
+  console.log("Course map:", courseMap);
+  console.log("Class map:", classMap);
+  
   // UPDATING COMPLETED COURSES
   const completedCourses = student.courses.filter(course => course.status === "completed");
   const completedCoursesTable = document.querySelector("#completed .course-table tbody");
   completedCoursesTable.innerHTML = completedCourses.map(userCourse => {
       const courseInfo = courseMap[userCourse.course_id] || {};
-      const classInfo = classMap[userCourse.crn] || {};
       return `
       <tr>
           <td>${courseInfo.name || userCourse.course_id}</td>
@@ -62,7 +68,7 @@ function updateCourseTables(student, courses, classes) {
       </tr>`;
   }).join('');
   
-  // UPDATING CURRENT COURSES
+  // UPDATING CURRENT COURSES (now shows instructor name)
   const currentCourses = student.courses.filter(course => course.status === "current");
   const currentCoursesTable = document.querySelector("#current .course-table tbody");
   currentCoursesTable.innerHTML = currentCourses.map(userCourse => {
@@ -86,7 +92,6 @@ function updateCourseTables(student, courses, classes) {
           <td>${courseInfo.creditHours || 'N/A'}</td>
       </tr>`;
   }).join('');
-
 }
 
 function updateProgressChart(userCourses) {

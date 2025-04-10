@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       let assignedClasses = classes.filter((classObj) => 
           loggedUser.assigned_classes.includes(classObj.crn)
       );
+      assignedClasses = assignedClasses.filter((cls)=>cls.status == "active");
 
       console.log("Assigned classes:", assignedClasses);
 

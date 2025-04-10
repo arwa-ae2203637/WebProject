@@ -12,10 +12,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log("Selected class:", selectedClass);
   
       const loggedUser = dh.getLoggedUser(users);
-
-      students = users.filter(user => 
+    
+      const students = users.filter(user => 
         user.userType === "student" && 
-        user.courses.some(course => course.crn === selectedClass.crn)
+        user.courses.some(course => 
+          course.crn === selectedClass.crn && 
+          course.status !== "pendind" 
+        )
       );
   
       console.log("All students in class CRN", selectedClass.crn, ":", students);
@@ -48,12 +51,12 @@ function updateStudentTable(students, selectedClassCRN) {
         ? students.map(student => {
             const course = student.courses.find(c => c.crn === selectedClassCRN);
             const currentGrade = course?.grade || "N/A";
-            
             return `
             <tr data-student-id="${student.id}" data-crn="${selectedClassCRN}">
                 <td>${student.firstName}</td>
                 <td>${student.lastName}</td>
                 <td>${student.username}</td>
+                <td>${course.status}</td>
                 <td>
                     <select class="grade-dropdown" data-initial-grade="${currentGrade}">
                         <option value="A" ${currentGrade === 'A' ? 'selected' : ''}>A</option>
@@ -87,8 +90,10 @@ function updateStudentTable(students, selectedClassCRN) {
                     const courseToUpdate = studentToUpdate.courses.find(c => c.crn === crn);
 
                     courseToUpdate.grade = newGrade;
+                    courseToUpdate.status = "completed";
 
                     await dh.updateUser(studentToUpdate.id, studentToUpdate);
+                    updateStudentTable(students, selectedClassCRN)
                     e.target.dataset.initialGrade = newGrade;
                 } catch (error) {
                     console.error('Error updating grade:', error);
