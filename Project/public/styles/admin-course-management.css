@@ -862,3 +862,27 @@ form {
   min-height: 220px; /* Set a minimum height for consistency */
   transition: height 0.3s ease;
 }
+
+.status-button{
+  margin-top:0.8rem;
+  background-color: var(--white);
+  border-radius: 0.7rem;
+  border: none;  
+  padding: 0.4rem 0.6rem;
+}
+.status-button:hover{
+  background-color: #ef9a9a;
+  color: var(--text-primary);
+}
+
+.status-button.active{
+  background-color: var(--primary-dark);
+  color: white;
+}
+
+.status-btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:13rem;
+}

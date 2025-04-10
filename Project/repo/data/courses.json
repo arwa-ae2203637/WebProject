@@ -6,7 +6,7 @@
     "category": "Programming",
     "prerequisites": [],
     "campus": "Female",
-    "status": "Closed"
+    "status": "Pending"
   },
   {
     "id": "CS201",
@@ -15,7 +15,7 @@
     "category": "Programming",
     "prerequisites": ["CSE101"],
     "campus": "Female",
-    "status": "Active"
+    "status": "Pending"
   },
   {
     "id": "CS301",
@@ -24,7 +24,7 @@
     "category": "Database",
     "prerequisites": ["CSE101", "CSE201"],
     "campus": "Male",
-    "status": "Pending"
+    "status": "Closed"
   },
   {
     "id": "ARAB200",
@@ -42,7 +42,7 @@
     "category": "Programming",
     "prerequisites": "None",
     "campus": "female",
-    "status": "Pending"
+    "status": "Active"
   },
   {
     "id": "MED132",
@@ -51,6 +51,6 @@
     "category": "Medicine",
     "prerequisites": "MED300",
     "campus": "Male",
-    "status": "Pending"
+    "status": "Active"
   }
 ]
