@@ -8,18 +8,6 @@
     "userType": "student",
     "courses": [
       {
-        "crn": "1004",
-        "course_id": "web_development",
-        "status": "current",
-        "grade": "N/A"
-      },
-      {
-        "crn": "1005",
-        "course_id": "machine_learning",
-        "status": "pending",
-        "grade": "N/A"
-      },
-      {
         "crn": "1001",
         "course_id": "CS101",
         "status": "pending",
@@ -28,14 +16,14 @@
       {
         "crn": "1003",
         "course_id": "CS101",
-        "status": "pending",
+        "status": "current",
         "grade": "N/A"
       },
       {
         "crn": "2002",
         "course_id": "CS201",
-        "status": "pending",
-        "grade": "N/A"
+        "status": "completed",
+        "grade": "A"
       }
     ]
   },
@@ -49,33 +37,15 @@
     "courses": [
       {
         "crn": "2001",
-        "course_id": "database_systems",
+        "course_id": "CS301",
         "status": "completed",
         "grade": "B"
       },
       {
         "crn": "2002",
-        "course_id": "software_engineering",
+        "course_id": "CS201",
         "status": "completed",
         "grade": "A-"
-      },
-      {
-        "crn": "2003",
-        "course_id": "cybersecurity",
-        "status": "current",
-        "grade": "N/A"
-      },
-      {
-        "crn": "2004",
-        "course_id": "artificial_intelligence",
-        "status": "current",
-        "grade": "N/A"
-      },
-      {
-        "crn": "2005",
-        "course_id": "blockchain_technology",
-        "status": "pending",
-        "grade": "N/A"
       }
     ]
   },
@@ -88,56 +58,25 @@
     "userType": "student",
     "courses": [
       {
-        "crn": "3001",
-        "course_id": "computer_networks",
+        "crn": "2001",
+        "course_id": "CS301",
         "status": "completed",
-        "grade": "B+"
-      },
-      {
-        "crn": "3002",
-        "course_id": "operating_systems",
-        "status": "current",
-        "grade": "N/A"
+        "grade": "A"
       },
       {
         "crn": "3003",
-        "course_id": "cloud_computing",
-        "status": "pending",
+        "course_id": "ARAB200",
+        "status": "current",
         "grade": "N/A"
-      },
-      {
-        "crn": "3004",
-        "course_id": "advanced_algorithms",
-        "status": "pending",
-        "grade": "N/A"
-      },
-      {
-        "crn": "2001",
-        "course_id": "database_systems",
-        "status": "completed",
-        "grade": "A"
       }
     ]
   },
   {
-<<<<<<< Updated upstream
     "id": 3,
-=======
-    "id": 5,
-    "firstName": "Ahmed",
-    "lastName": "Ahmed",
-    "username": "adm@example.com",
-    "password": "123",
-    "userType": "admin"
-  },
-  {
-    "id": 6,
->>>>>>> Stashed changes
     "firstName": "Ahmed",
     "lastName": "Ahmed",
     "username": "inst@example.com",
     "password": "123",
-<<<<<<< Updated upstream
     "userType": "admin"
   },
   {
@@ -154,16 +93,37 @@
     ],
     "assigned_classes": [
       "2001",
-      "2002",
-      "2003"
+      "2002"
+    ]
+  },
+  {
+    "id": 6,
+    "firstName": "Smith",
+    "lastName": "Johnson",
+    "username": "inst2@example.com",
+    "password": "123",
+    "userType": "instructor",
+    "expertise_area": [
+      "Computer Science",
+      "Programming"
+    ],
+    "assigned_classes": [
+      "1001",
+      "1002"
+    ]
+  },
+  {
+    "id": 7,
+    "firstName": "Ahmed",
+    "lastName": "Ali",
+    "username": "inst3@example.com",
+    "password": "123",
+    "userType": "instructor",
+    "expertise_area": [
+      "Arabic Language"
+    ],
+    "assigned_classes": [
+      "3003"
     ]
   }
 ]
-=======
-    "userType": "instructor",
-    "expertise_area": [],
-    "assigned_classes": []
-  }
-
-]
->>>>>>> Stashed changes
