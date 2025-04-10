@@ -76,7 +76,7 @@
     "course_id": "CS201",
     "instructor": 5,
     "class_limit": "33",
-    "schedule": "T/TH 00:25-00:30",
+    "schedule": "T/TH/W 00:25-00:30",
     "students": [],
     "status": "active"
   }
