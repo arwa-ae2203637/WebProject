@@ -5,13 +5,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const selectedCourse = JSON.parse(localStorage.getItem("selectedCourse"));
         let courseClasses = await dh.fetchClasses();
         courseClasses = courseClasses.filter(cls => cls.course_id === selectedCourse.id);
-        // await getAllClasses(selectedCourse.id);
         const users = await dh.fetchUsers();
-        console.log(`Add course page users:`);
-        console.log(users);
+
         dh.updateUserProfile(dh.getLoggedUser(users));
         updateCourseHeader(selectedCourse);
-        updateClassesTable(courseClasses);
+        updateClassesTable(courseClasses,users);
 
         document.querySelectorAll('.add-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -33,7 +31,7 @@ function updateCourseHeader(course) {
     }
 }
 
-function updateClassesTable(classes) {
+function updateClassesTable(classes,users) {
     const tableBody = document.querySelector("table tbody");
     
     if (classes.length === 0) {
@@ -55,7 +53,26 @@ function updateClassesTable(classes) {
           const isScheduled = parsedDays.includes(day);
           return `<span class="day ${isScheduled ? 'scheduled' : ''}">${day}</span>`;
       }).join('');
-  
+      let buttonText = "Add";
+    //   const users = dh.fetchUsers();
+    //   console.log(dh.getLoggedUser(users).id);
+      const isEnrolled = cls.students.includes(dh.getLoggedUser(users).id);
+      const isClosed = cls.students.length >= cls.class_limit;
+      if(isEnrolled){
+        buttonText = "Enrolled";
+      }
+        else if(isClosed){
+            buttonText = "Closed";
+        }
+        else{
+            buttonText = "Add";
+        }
+
+   //   <td>
+            //       <button class="add-btn" ${cls.students.length >= cls.class_limit ? 'disabled' : ''}>
+            //           ${cls.students.length >= cls.class_limit ? 'Closed' : 'Add'}
+            //       </button>
+            //   </td>
       return `
           <tr>
               <td>${cls.crn}</td>
@@ -65,39 +82,28 @@ function updateClassesTable(classes) {
               <td>${cls.students.length}/${cls.class_limit}</td>
               <td>${cls.students.length >= cls.class_limit ? 'Closed' : 'Available'}</td>
               <td>
-                  <button class="add-btn" ${cls.students.length >= cls.class_limit ? 'disabled' : ''}>
-                      ${cls.students.length >= cls.class_limit ? 'Closed' : 'Add'}
-                  </button>
-              </td>
+              <button class="add-btn" 
+                  ${isEnrolled || isClosed ? 'disabled' : ''}>
+                  ${buttonText}
+              </button>
+             </td>
           </tr>
       `;
   }).join('');
 }
 
 async function enrollInClass(crn,course_id) {
-  try {
-    //   console.log(`Enrolling in class ${crn}`);
-      
-    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-
+  try {      
     const users = await dh.fetchUsers();
     const classes = await dh.fetchClasses();
-    //   const [users, classes] = await Promise.all([
-    //       getAllUsers(),
-    //       getAllClasses(course_id)
-    //   ]);
+    const courses = await dh.fetchCourses();
 
-      const student = users?.find(u => u.id === loggedUser.id);
+      const student = dh.getLoggedUser(users);
       const cls = classes?.find(c => c.crn === crn);
-      console.log(`Add Course Student courses: `);
-      console.log(student.courses);
-        console.log(`Add course Class: `);
-      console.log(cls);
+      const course = courses?.find(c => c.id === course_id);
 
-    //   student.pendingCourses = student.pendingCourses || [];
-  
-      const hasPending = student.courses.some(c => c.crn === crn);
-      const hasEnrolled = student.courses?.some(c => c.crn === crn);
+      const hasPending = student.courses.some(c => c.course_id === course_id);
+      const hasEnrolled = student.courses?.some(c => c.course_id === course_id);
       
       if (hasPending || hasEnrolled) {
           alert(hasPending 
@@ -105,9 +111,31 @@ async function enrollInClass(crn,course_id) {
               : "You are already enrolled in this class");
           return;
       }
-      // Check if the class is full
-      // check if class has been approved by the admin
-      // update class 
+
+      if (cls.students.length >= cls.class_limit) {
+        alert("This class is already full");
+        return;
+    }
+
+      if (course.prerequisites && course.prerequisites.length > 0) {
+        const missingPrerequisites = course.prerequisites.filter(prereqId => {
+            return !student.courses.some(c => 
+                c.course_id === prereqId && 
+                c.status === "completed" && 
+                c.grade !== "F" 
+            );
+        });
+
+        if (missingPrerequisites.length > 0) {
+            const missingCourses = missingPrerequisites.map(id => {
+                const c = courses.find(c => c.id === id);
+                return c ? c.name : id;
+            }).join(", ");
+            
+            alert(`You must complete these prerequisites first: ${missingCourses}`);
+            return false;
+        }
+    }
 
     student.courses.push({
           crn: cls.crn,
@@ -116,11 +144,20 @@ async function enrollInClass(crn,course_id) {
           grade: "N/A"
       });
 
+    cls.students.push(student.id);
+
       console.log("Add Course page student: ");
       console.log(student);
-    dh.updateUser(student.id, student);
-      
-      alert(`Enrollment request submitted for ${cls.name} (${crn})`);
+      console.log(cls);
+      console.log(cls.students);
+      dh.updateUser(student.id, student);
+      dh.updateClass(cls.crn, cls);
+
+      //// UPDATE THE CLASS TABLE
+      const selectedCourse = JSON.parse(localStorage.getItem("selectedCourse"));
+      const courseClasses = classes.filter(cls => cls.course_id === selectedCourse.id);
+      updateClassesTable(courseClasses,users);
+      alert(`Enrollment request submitted for ${selectedCourse.name} (${crn})`);
       return true;
   } catch (error) {
       console.error("Enrollment failed:", error);
