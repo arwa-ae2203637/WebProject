@@ -74,3 +74,4 @@ export async function remove(id){
 
     await save(courses);
 }
+

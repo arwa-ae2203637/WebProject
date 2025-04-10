@@ -74,22 +74,22 @@ function updateCourseTables(courses) {
     }
 }
 
-function filter(courses, search, category){
-    const searchTerm = search.value.trim().toLowerCase();
-    const selectedCategory = category.value.toLowerCase();
-    let filteredCourses = [...courses];
-    // if (selectedCategory === "" && searchTerm === "") {
-    //     updateCourseTables(filteredCourses);
+    function filter(courses, search, category){
+        const searchTerm = search.value.trim().toLowerCase();
+        const selectedCategory = category.value.toLowerCase();
+        let filteredCourses = [...courses];
+        // if (selectedCategory === "" && searchTerm === "") {
+        //     updateCourseTables(filteredCourses);
 
-    // }
-    if(selectedCategory === "" && searchTerm !== ""){
-         filteredCourses = courses.filter(course => course.name.toLowerCase().includes(searchTerm));
+        // }
+        if(selectedCategory === "" && searchTerm !== ""){
+            filteredCourses = courses.filter(course => course.name.toLowerCase().includes(searchTerm));
+        }
+        if(selectedCategory !== "" && searchTerm === ""){
+            filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory));
+        }
+        if(selectedCategory !== "" && searchTerm !== ""){
+            filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory) && course.name.toLowerCase().includes(searchTerm));
+        }
+        updateCourseTables(filteredCourses);
     }
-    if(selectedCategory !== "" && searchTerm === ""){
-         filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory));
-    }
-    if(selectedCategory !== "" && searchTerm !== ""){
-         filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory) && course.name.toLowerCase().includes(searchTerm));
-    }
-    updateCourseTables(filteredCourses);
-}

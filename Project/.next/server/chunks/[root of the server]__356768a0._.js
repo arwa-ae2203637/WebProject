@@ -156,23 +156,23 @@ __turbopack_context__.s({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$models$2f$course$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/repo/models/course.js [app-route] (ecmascript)");
 ;
-class Class extends __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$models$2f$course$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Course"] {
+class Class {
     #crn;
     #course_id;
     #instructor;
     #class_limit;
     #schedule;
     #students;
+    #status;
     constructor(obj){
-        super({
-            ...obj
-        });
+        // super({...obj});
         this.crn = obj.crn;
         this.course_id = obj?.course_id ?? "";
         this.instructor = obj?.instructor ?? "";
         this.class_limit = obj?.class_limit ?? 0;
         this.schedule = obj?.schedule ?? [];
         this.students = obj?.students ?? [];
+        this.status = obj?.status ?? "active";
     }
     // SETTERS AND GETTERS
     get crn() {
@@ -211,6 +211,12 @@ class Class extends __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$mode
     set students(students) {
         this.#students = students;
     }
+    get status() {
+        return this.#status;
+    }
+    set status(status) {
+        this.#status = status;
+    }
     static fromJSON(json) {
         const object = typeof json === "string" ? JSON.parse(json) : json;
         return new Class(object);
@@ -218,25 +224,28 @@ class Class extends __TURBOPACK__imported__module__$5b$project$5d2f$repo$2f$mode
     // TOJSON METHOD
     toJSON() {
         return {
-            ...super.toJSON(),
+            // ...super.toJSON(),
             crn: this.#crn,
             course_id: this.#course_id,
             instructor: this.#instructor,
             class_limit: this.#class_limit,
             schedule: this.#schedule,
-            students: this.#students
+            students: this.#students,
+            status: this.#status
         };
     }
     // TOSTRING METHOD
     toString() {
-        return `${super.toString()}
+        return `
               Class -
               CRN: ${this.crn}, 
               Course ID: ${this.course_id},
               Instructor: ${this.instructor}, 
               Class Limit: ${this.class_limit},
               Schedule: ${this.schedule},
-              Students: ${this.students},`;
+              Students: ${this.students},
+              Status: ${this.status}
+              `;
     }
 }
 }}),
@@ -288,6 +297,7 @@ async function read(crn) {
 }
 async function create(body) {
     const classes = await load();
+    console.log("create", classes.toString());
     const duplicate = classes.find((cls)=>cls.crn == body.crn);
     if (duplicate) {
         throw new Error(`Class with crn ${body.crn} already exists`);
@@ -297,7 +307,7 @@ async function create(body) {
     // console.log(user);
     classes.push(cls);
     await save(classes);
-    return cl;
+    return cls;
 }
 async function update(crn, cls) {
     const classes = await load();
@@ -332,6 +342,40 @@ module.exports = mod;
 
 var { g: global, __dirname } = __turbopack_context__;
 {
+// import * as repo from "@/repo/classes.js";
+// import { NextResponse } from "next/server";
+// export async function GET() {
+//     try{
+//         const classes = await repo.read();
+//         return NextResponse.json(classes.map(cls => cls.toJSON()), {status: 200});
+//     }
+//     catch(e){
+//         console.error(e);
+//         return NextResponse.json({ message: "Error" }, { status: 500 });
+//     }
+// }
+// export async function POST(request, {params}){
+//     try{
+//         let cls;
+//         try{
+//             cls = await request.json();
+//         }
+//         catch(e){
+//             return new NextResponse("Invalid request", { status: 400 });
+//         }
+//         try{
+//             cls = await repo.create(cls);
+//         }
+//         catch(e){
+//             return NextResponse.json({ message: "Conflict" }, { status: 409 });
+//         }
+//         return NextResponse.json(cls.toJSON(), { status: 201 });
+//     }
+//     catch(e){
+//         console.error(e);
+//         return NextResponse.json({ message: "Error" }, { status: 500 });
+//     }
+// }
 __turbopack_context__.s({
     "GET": (()=>GET),
     "POST": (()=>POST)
