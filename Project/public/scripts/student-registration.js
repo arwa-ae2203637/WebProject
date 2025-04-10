@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(users);
 
         updateCourseTables(courses);
-
+        loadCategories();
         const loggedUser = dh.getLoggedUser(users);
         console.log("Registration page logged user:");
         console.log(loggedUser);
@@ -91,5 +91,36 @@ function updateCourseTables(courses) {
         if(selectedCategory !== "" && searchTerm !== ""){
             filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory) && course.name.toLowerCase().includes(searchTerm));
         }
+        if(filteredCourses.length === 0){
+            const completedCoursesTable = document.querySelector(".tableBody");
+            completedCoursesTable.innerHTML = "<tr><td colspan='7'>No courses found</td></tr>";
+            return;
+        }
         updateCourseTables(filteredCourses);
     }
+
+    async function loadCategories() {
+        try{
+          const cateogriesResponse = await fetch("/assets/categories.json");   
+          const categories = await cateogriesResponse.json();
+          if(categories){
+            let categoryFilter = document.querySelector(".category-filter");
+            const allOption = categoryFilter.querySelector('option[value=""]');
+            categoryFilter.innerHTML = "";
+            if (allOption) categoryFilter.appendChild(allOption);
+        
+            categories.forEach((category) => {
+              const option = document.createElement("option");
+              option.value = category.toLowerCase();
+              option.textContent = category;
+              categoryFilter.appendChild(option);
+            });
+    
+          }
+        }
+        catch (error) {
+            console.error("Error loading categories:", error);
+            showNotification("Failed to load categories: " + error.message, "error");
+          }
+      }
+

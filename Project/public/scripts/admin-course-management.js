@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const elements = {
     coursesContainer: document.querySelector(".courses-container"),
-    // pendingCoursesContainer: document.querySelector(".pending-courses-container"),
-    // activeCoursesContainer: document.querySelector(".active-courses-container"),
     addCourseBtn: document.querySelector("#add-course-btn"),
     addCourseModal: document.querySelector("#add-course-modal"),
     addClassModal: document.querySelector("#add-class-modal"),
@@ -21,14 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     updateCourseTables(courses, classes);
     loadCategories();
-    elements.categoryFilter.addEventListener("change", () => {
-      filter( elements.categoryFilter, elements.statusFilter);
-  });
-  elements.statusFilter.addEventListener("change", () => {
-    filter( elements.categoryFilter, elements.statusFilter);  
-  });
-
-  setupEventListeners();
+    setupEventListeners();
 
 function updateCourseTables(courses, classes) {
   if (!elements.coursesContainer) return;
@@ -333,7 +324,15 @@ function updateCourseTables(courses, classes) {
       elements.addClassForm.addEventListener("submit", handleClassSubmit);
     }
 
+    elements.categoryFilter.addEventListener("change", () => {
+      filter( elements.categoryFilter, elements.statusFilter);
+    });
+    elements.statusFilter.addEventListener("change", () => {
+      filter( elements.categoryFilter, elements.statusFilter);  
+    });
+
   }
+
   function filter(category,status){
     const selectedCategory = category.value.toLowerCase();
     const selectedStatus = status.value.toLowerCase();
@@ -359,12 +358,12 @@ function updateCourseTables(courses, classes) {
     e.preventDefault();
 
     const formData = {
-      id: document.getElementById("course-id").value,
-      name: document.getElementById("course-name").value,
-      credit_hours: document.getElementById("credit-hours").value,
-      category: document.getElementById("course-category").value,
-      prerequisites: document.getElementById("prerequisites").value || "None",
-      campus: document.getElementById("course-campus").value,
+      id: document.querySelector("#course-id").value,
+      name: document.querySelector("#course-name").value,
+      credit_hours: document.querySelector("#credit-hours").value,
+      category: (document.querySelector("#course-category").value).charAt(0).toUpperCase()+document.querySelector("#course-category").value.slice(1),
+      prerequisites: document.querySelector("#prerequisites").value || "None",
+      campus:(document.querySelector("#course-campus").value).charAt(0).toUpperCase()+document.querySelector("#course-campus").value.slice(1),
       status: "Pending",
     };
 
@@ -401,7 +400,7 @@ function updateCourseTables(courses, classes) {
 
     const formData = {
       course_id: courseId,
-      instructor: instructorSelect.value,
+      instructor: parseInt(instructorSelect.value),
       crn: document.getElementById("class-crn").value,
       class_limit: document.getElementById("class-limit").value,
       schedule: formatSchedule(
@@ -523,22 +522,15 @@ async function updateClassStatus(button, newStatus) {
 
 
 function formatSchedule(days, startTime, endTime) {
-  const dayMap = {
-    sun: "Sun",
-    mon: "Mon",
-    tue: "Tue",
-    wed: "Wed",
-    thu: "Thu",
-  };
+  const dayMap = { sun: "S", mon: "M", tue: "T", wed: "W", thu: "TH"};
 
-  const formattedDays = days.map((day) => dayMap[day]).join(", ");
+  const formattedDays = days.map((day) => dayMap[day]).join("/");
 
   const formatTime = (timeStr) => {
     const [hours, minutes] = timeStr.split(":");
     const hour = Number.parseInt(hours);
-    const ampm = hour >= 12 ? "PM" : "AM";
-    const hour12 = hour % 12 || 12;
-    return `${hour12}:${minutes} ${ampm}`;
+    const minute = Number.parseInt(minutes);
+    return `${hour}:${minute}`;
   };
 
   return `${formattedDays} ${formatTime(startTime)}-${formatTime(endTime)}`;

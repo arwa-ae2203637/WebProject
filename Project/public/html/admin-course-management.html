@@ -14,13 +14,12 @@
     <script type="module" src="../scripts/admin-course-management.js"></script>
   </head>
   <body>
-
     <div class="header">
       <div>
         <h2 class="title">QU Student Management</h2>
         <p>Course Management</p>
       </div>
-<!-- 
+      <!-- 
       <div class="search-container">
         <div class="search-bar">
             <img src="../assets/icons/search.svg" alt="Search" class="search-icon">
@@ -49,33 +48,32 @@
         </div>
         <div class="space-box"></div>
         <nav>
-          <div class="options"> 
-            <img src="../assets/icons/dashboard-icon.svg"> 
+          <div class="options">
+            <img src="../assets/icons/dashboard-icon.svg" />
             <a href="./admin-dashboard-screen.html" class="active">Dashboard</a>
           </div>
-          <div class="options"> 
-            <img src="../assets/icons/registration-icon.png"> 
+          <div class="options">
+            <img src="../assets/icons/registration-icon.png" />
             <!-- <a href="./admin-add-course"> -->
-            <a href="#">
-                Course Management</a>
+            <a href="#"> Course Management</a>
           </div>
-          <div class="options"> 
-            <img src="../assets/icons/grade-icon.png"> 
+          <div class="options">
+            <img src="../assets/icons/grade-icon.png" />
             <a href="#">User Management</a>
           </div>
         </nav>
       </div>
       <div class="sidebar-footer">
-        <div class="options"> 
-          <img src="../assets/icons/circle-help.svg"> 
+        <div class="options">
+          <img src="../assets/icons/circle-help.svg" />
           <a href="#">Help</a>
         </div>
-        <div class="options"> 
-          <img src="../assets/icons/phone.svg"> 
+        <div class="options">
+          <img src="../assets/icons/phone.svg" />
           <a href="#">Contact us</a>
         </div>
-        <div class="options"> 
-          <img src="../assets/icons/log-out.svg"> 
+        <div class="options">
+          <img src="../assets/icons/log-out.svg" />
           <a href="./login.html">Log out</a>
         </div>
       </div>
@@ -96,7 +94,8 @@
           <select id="status-filter">
             <option value="all">All</option>
             <option value="pending">Pending Validation</option>
-            <option value="in-progress">In Progress</option>
+            <option value="active">Active</option>
+            <option value="closed">Closed</option>
           </select>
         </div>
         <div class="filter-group">
@@ -107,7 +106,6 @@
           </select>
         </div>
       </div>
-      
 
       <div class="courses-container"></div>
     </main>
@@ -272,7 +270,7 @@
       </div>
     </div>
 
-<!-- 
+    <!-- 
     <div id="add-course-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -354,7 +352,5 @@
         </form>
       </div>
     </div> -->
-
-
   </body>
 </html>

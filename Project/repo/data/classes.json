@@ -6,7 +6,7 @@
     "class_limit": 30,
     "schedule": "S/T/TH 10:00-11:00",
     "students": ["1"],
-    "status": "active"
+    "status": "closed"
   },
   {
     "crn": "1002",
@@ -42,6 +42,15 @@
     "class_limit": 20,
     "schedule": "M/W 14:00-15:30",
     "students": ["4"],
+    "status": "active"
+  },
+  {
+    "crn": "1245",
+    "course_id": "MED132",
+    "instructor": 7,
+    "class_limit": "25",
+    "schedule": "M/W 10:0-10:50",
+    "students": [],
     "status": "active"
   }
 ]

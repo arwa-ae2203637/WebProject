@@ -14,12 +14,6 @@
         "grade": "N/A"
       },
       {
-        "crn": "1003",
-        "course_id": "CS101",
-        "status": "current",
-        "grade": "N/A"
-      },
-      {
         "crn": "2002",
         "course_id": "CS201",
         "status": "completed",
@@ -39,7 +33,7 @@
         "crn": "2001",
         "course_id": "CS301",
         "status": "completed",
-        "grade": "B"
+        "grade": "C"
       },
       {
         "crn": "2002",
@@ -61,7 +55,7 @@
         "crn": "2001",
         "course_id": "CS301",
         "status": "completed",
-        "grade": "A"
+        "grade": "F"
       },
       {
         "crn": "3003",
@@ -75,7 +69,7 @@
     "id": 3,
     "firstName": "Ahmed",
     "lastName": "Ahmed",
-    "username": "inst@example.com",
+    "username": "adm@example.com",
     "password": "123",
     "userType": "admin"
   },
@@ -91,10 +85,7 @@
       "Artificial Intelligence",
       "Data Science"
     ],
-    "assigned_classes": [
-      "2001",
-      "2002"
-    ]
+    "assigned_classes": ["2001", "2002"]
   },
   {
     "id": 6,
@@ -103,14 +94,8 @@
     "username": "inst2@example.com",
     "password": "123",
     "userType": "instructor",
-    "expertise_area": [
-      "Computer Science",
-      "Programming"
-    ],
-    "assigned_classes": [
-      "1001",
-      "1002"
-    ]
+    "expertise_area": ["Computer Science", "Programming"],
+    "assigned_classes": ["1001", "1002"]
   },
   {
     "id": 7,
@@ -119,11 +104,7 @@
     "username": "inst3@example.com",
     "password": "123",
     "userType": "instructor",
-    "expertise_area": [
-      "Arabic Language"
-    ],
-    "assigned_classes": [
-      "3003"
-    ]
+    "expertise_area": ["Arabic Language"],
+    "assigned_classes": ["3003"]
   }
 ]

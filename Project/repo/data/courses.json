@@ -1,12 +1,12 @@
 [
   {
     "id": "CS101",
-    "name": "Introduction to Computer Science",
+    "name": "Introduction to CS",
     "credit_hours": 3,
     "category": "Programming",
     "prerequisites": [],
     "campus": "Female",
-    "status": "Active"
+    "status": "Closed"
   },
   {
     "id": "CS201",
@@ -21,7 +21,7 @@
     "id": "CS301",
     "name": "Database Systems",
     "credit_hours": 3,
-    "category": "Databases",
+    "category": "Database",
     "prerequisites": ["CSE101", "CSE201"],
     "campus": "Male",
     "status": "Pending"
@@ -34,5 +34,23 @@
     "prerequisites": ["ARAB100"],
     "campus": "Male",
     "status": "Active"
+  },
+  {
+    "id": "CMPS350",
+    "name": "Web Development",
+    "credit_hours": "3",
+    "category": "Programming",
+    "prerequisites": "None",
+    "campus": "female",
+    "status": "Pending"
+  },
+  {
+    "id": "MED132",
+    "name": "Introduction to MED",
+    "credit_hours": "3",
+    "category": "Medicine",
+    "prerequisites": "MED300",
+    "campus": "Male",
+    "status": "Pending"
   }
 ]
