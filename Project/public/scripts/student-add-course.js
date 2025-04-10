@@ -54,10 +54,11 @@ function updateClassesTable(classes,users) {
           return `<span class="day ${isScheduled ? 'scheduled' : ''}">${day}</span>`;
       }).join('');
       let buttonText = "Add";
-    //   const users = dh.fetchUsers();
-    //   console.log(dh.getLoggedUser(users).id);
       const isEnrolled = cls.students.includes(dh.getLoggedUser(users).id);
       const isClosed = cls.students.length >= cls.class_limit;
+
+      let instructor = users.find(user => user.id === cls.instructor);
+      console.log("Instructor: ", instructor);
       if(isEnrolled){
         buttonText = "Enrolled";
       }
@@ -67,16 +68,10 @@ function updateClassesTable(classes,users) {
         else{
             buttonText = "Add";
         }
-
-   //   <td>
-            //       <button class="add-btn" ${cls.students.length >= cls.class_limit ? 'disabled' : ''}>
-            //           ${cls.students.length >= cls.class_limit ? 'Closed' : 'Add'}
-            //       </button>
-            //   </td>
       return `
           <tr>
               <td>${cls.crn}</td>
-              <td>${cls.instructor}</td>
+              <td>Dr.${instructor.firstName} ${instructor.lastName}</td>
               <td class="schedule-days">${daysHtml}</td>
               <td>${time}</td>
               <td>${cls.students.length}/${cls.class_limit}</td>
