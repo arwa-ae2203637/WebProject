@@ -1,15 +1,22 @@
-import { getLoggedUser , getAllUsers , updateUserProfile} from "./data-handling.js";
+import * as dh from "./data-handling.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+  let users = [];
+  let courses = [];
+  let classes = [];
   try{
-    const users = await getAllUsers();
-        console.log(users);
-    let loggedStudent = getLoggedUser(users);
-    updateUserProfile(getLoggedUser(users));
-    updateWelcomeMessage(loggedStudent);
-    updateUserProfile(loggedStudent);
-    updateCourseTables(loggedStudent);
-    updateProgressChart(loggedStudent);
+    users = await dh.fetchUsers();
+    courses = await dh.fetchCourses();
+    classes = await dh.fetchClasses();
+
+    const loggedUser = dh.getLoggedUser(users);
+        console.log("Registration page logged user:");
+        console.log(loggedUser);
+
+    dh.updateUserProfile(loggedUser);
+    updateWelcomeMessage(loggedUser);
+    updateCourseTables(loggedUser,courses,classes);
+    updateProgressChart(loggedUser.courses);
   }
   catch(error){
     console.error("Error loading students:", error);
@@ -20,53 +27,87 @@ function updateWelcomeMessage(student) {
     document.querySelector(".welcome").textContent = `Welcome, ${student.firstName}`;
 }
 
-function updateCourseTables(student) {
-    // UPDATING COMPLETED COURSES
-    const user = student; 
-    const completedCourses = user.completedCourses; 
 
-    const completedCoursesTable = document.querySelector("#completed .course-table tbody");
-    completedCoursesTable.innerHTML = completedCourses.map(course => 
-      `<tr>
-        <td>${course.name}</td>
-        <td>${course.grade}</td>
-      </tr>`
-    ).join('');
-    
-    // UPDATING CURRENT COURSES
-    const currentCourses = user.currentCourses; 
-    const currentCoursesTable = document.querySelector("#current .course-table tbody");
-    currentCoursesTable.innerHTML = currentCourses.map(course => 
-      `<tr>
-        <td>${course.name}</td>
-        <td>${course.instructor}</td>
-      </tr>`
-    ).join('');
-    
-    // UPDATING PENDING COURSES
-    const pendingCourses = user.pendingCourses;
-    const pendingCoursesTable = document.querySelector("#pending .course-table tbody");
-    pendingCoursesTable.innerHTML = pendingCourses.map(course => 
-      `<tr>
-        <td>${course.name}</td>
-        <td>${course.creditHours}</td>
-      </tr>`
-    ).join('');
+function updateCourseTables(student, courses, classes) {
+  const courseMap = {};
+  const classMap = {};
+  
+  // MAP COURSES
+  courses.forEach(course => {
+      courseMap[course.id] = {
+          name: course.name,
+          creditHours: course.credit_hours,
+          category: course.category
+      };
+  });
+  
+  // MAP CLASSES
+  classes.forEach(cls => {
+      classMap[cls.crn] = {
+          instructor: cls.instructor,
+          schedule: cls.schedule
+      };
+  });
+
+  // UPDATING COMPLETED COURSES
+  const completedCourses = student.courses.filter(course => course.status === "completed");
+  const completedCoursesTable = document.querySelector("#completed .course-table tbody");
+  completedCoursesTable.innerHTML = completedCourses.map(userCourse => {
+      const courseInfo = courseMap[userCourse.course_id] || {};
+      const classInfo = classMap[userCourse.crn] || {};
+      return `
+      <tr>
+          <td>${courseInfo.name || userCourse.course_id}</td>
+          <td>${userCourse.grade}</td>
+      </tr>`;
+  }).join('');
+  
+  // UPDATING CURRENT COURSES
+  const currentCourses = student.courses.filter(course => course.status === "current");
+  const currentCoursesTable = document.querySelector("#current .course-table tbody");
+  currentCoursesTable.innerHTML = currentCourses.map(userCourse => {
+      const courseInfo = courseMap[userCourse.course_id] || {};
+      const classInfo = classMap[userCourse.crn] || {};
+      return `
+      <tr>
+          <td>${courseInfo.name || userCourse.course_id}</td>
+          <td>${classInfo.instructor || 'N/A'}</td>
+      </tr>`;
+  }).join('');
+  
+  // UPDATING PENDING COURSES
+  const pendingCourses = student.courses.filter(course => course.status === "pending");
+  const pendingCoursesTable = document.querySelector("#pending .course-table tbody");
+  pendingCoursesTable.innerHTML = pendingCourses.map(userCourse => {
+      const courseInfo = courseMap[userCourse.course_id] || {};
+      return `
+      <tr>
+          <td>${courseInfo.name || userCourse.course_id}</td>
+          <td>${courseInfo.creditHours || 'N/A'}</td>
+      </tr>`;
+  }).join('');
 
 }
 
-function updateProgressChart(student) {
-    const user = student;
+function updateProgressChart(userCourses) {
+    const totalCourses = userCourses.length;
+    const completedCount = userCourses.filter(c => c.status === "completed").length;
+    const currentCount = userCourses.filter(c => c.status === "current").length;
+    const pendingCount = userCourses.filter(c => c.status === "pending").length;
     
-    const totalCourses = user.completedCourses.length + user.currentCourses.length + user.pendingCourses.length;
-    const completedCourses = user.completedCourses.length;
-
-    const progressPercentage = (completedCourses / totalCourses) * 100;
-
-    const progressBar = document.querySelector(".chart-progress");
-    progressBar.style.width =`${progressPercentage}%`;  
-    progressBar.setAttribute("data-progress", progressPercentage);
-
-    const progressLabel = document.querySelector(".chart-label");
-    progressLabel.textContent = `${Math.round(progressPercentage)}%`;
+    const completedDeg = (completedCount / totalCourses) * 360;
+    const currentDeg = (currentCount / totalCourses) * 360;
+    
+    const chart = document.querySelector(".chart");
+    chart.style.backgroundImage = `conic-gradient(
+        #3D051B ${completedDeg}deg,
+        #6a3041 ${completedDeg}deg ${completedDeg + currentDeg}deg,
+        #d1a9b1 ${completedDeg + currentDeg}deg
+    )`;
+    
+    const chartLabel = document.querySelector(".chart-label");
+    if (chartLabel) {
+        const progressPercent = Math.round((completedCount / totalCourses) * 100);
+        chartLabel.textContent = `${progressPercent}%`;
+    }
 }
