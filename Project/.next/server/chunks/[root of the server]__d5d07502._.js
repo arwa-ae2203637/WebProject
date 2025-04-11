@@ -172,7 +172,7 @@ class Class {
         this.class_limit = obj?.class_limit ?? 0;
         this.schedule = obj?.schedule ?? [];
         this.students = obj?.students ?? [];
-        this.status = obj?.status ?? "active";
+        this.status = obj?.status ?? "pending";
     }
     // SETTERS AND GETTERS
     get crn() {

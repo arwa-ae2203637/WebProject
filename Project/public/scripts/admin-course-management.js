@@ -12,60 +12,74 @@ document.addEventListener("DOMContentLoaded", async () => {
     statusFilter: document.querySelector("#status-filter"),
     categoryFilter: document.querySelector("#category-filter"),
     courseCategory: document.querySelector("#course-category"),
-    instructorSelect: document.querySelector("#instructor") };
-    let users = await dh.fetchUsers();
-    const {courses, classes} = await loadCoursesAndClasses();
+    instructorSelect: document.querySelector("#instructor") 
+  };
+  
+  let users = await dh.fetchUsers();
+  let courses = [];
+  let classes = [];
+  
+  await refreshData();
+  setupEventListeners();
+  
+  const loggedUser = dh.getLoggedUser(users);
+  dh.updateUserProfile(loggedUser);
 
+  // Function to reload all data and refresh the UI
+  async function refreshData() {
+    const data = await loadCoursesAndClasses();
+    courses = data.courses;
+    classes = data.classes;
     updateCourseTables(courses, classes);
-    loadCategories();
-    setupEventListeners();
-    const loggedUser = dh.getLoggedUser(users);
-    dh.updateUserProfile(loggedUser);
+    applyFilters(); 
+  }
 
-    changeCourseStatus(courses, classes);
-
-    function changeCourseStatus(courses){
-      const statusButtons = document.querySelectorAll(".status-button");
+  function changeCourseStatus() {
+    const statusButtons = document.querySelectorAll(".status-button");
     
-      statusButtons.forEach((button) => {
-        button.addEventListener("click", async function () {
-          const courseCard = this.closest(".course-card");
-          const courseId = courseCard.getAttribute("data-course-id");
-          const course = courses.find((course) => course.id === courseId);
-          const newStatus = this.textContent.trim();
-              course.status = newStatus;
-          await dh.updateCourse(courseId, course);
-          const siblingButtons = courseCard.querySelectorAll(".status-button");
-          siblingButtons.forEach((btn) => btn.classList.remove("active"));
-          this.classList.add("active");
-    
-        });
+    statusButtons.forEach((button) => {
+      button.addEventListener("click", async function () {
+        const courseCard = this.closest(".course-card");
+        const courseId = courseCard.getAttribute("data-course-id");
+        const course = courses.find((course) => course.id === courseId);
+        const newStatus = this.textContent.trim();
+        
+        course.status = newStatus;
+        await dh.updateCourse(courseId, course);
+        
+        const siblingButtons = courseCard.querySelectorAll(".status-button");
+        siblingButtons.forEach((btn) => btn.classList.remove("active"));
+        this.classList.add("active");
+        
+        // No need to refresh the entire page - we've updated the button UI directly
+        // But we should refresh the data for any filtering operations
+        await refreshData();
       });
-    }
-    
-    
+    });
+  }
 
-  function updateCourseTables(courses, classes) {
+  function updateCourseTables(coursesToShow, classesToShow) {
     if (!elements.coursesContainer) return;
     elements.coursesContainer.innerHTML = "";
-    if (!courses || courses.length === 0) {
-      elements.coursesContainer.innerHTML = `<div class="error-message"> No courses found. Add a new course to get started.</div>`; return;
+    
+    if (!coursesToShow || coursesToShow.length === 0) {
+      elements.coursesContainer.innerHTML = `<div class="error-message"> No courses found. Add a new course to get started.</div>`;
+      return;
     }
 
-    courses.forEach((course) => {
+    coursesToShow.forEach((course) => {
       const courseCard = document.createElement("div");
       courseCard.classList.add("course-card");
       courseCard.setAttribute("data-course-id", course.id);
-      let statusClass = "Pending";
-      if (course.status === "Pending") statusClass = "Pending";
-      else if (course.status === "Closed") statusClass = "Closed";
-      else if (course.status === "Active") statusClass = "Active";
-    
+      
       courseCard.innerHTML = `
       <div class="course-header">
         <div class="course-title">${course.name}</div>
         <div class="course-badges"> <span class="badge category-badge">${course.category}</span> </div>
-        <div  class="status-btn-container" > <button class="status-button ${course.status === "Active" ? "active" : ""}">Active</button> <button class="status-button ${course.status === "Pending" ? "active" : ""}">Pending</button> <button class="status-button ${course.status === "Closed" ? "active" : ""}">Closed</button>
+        <div class="status-btn-container">
+          <button class="status-button ${course.status === "Active" ? "active" : ""}">Active</button>
+          <button class="status-button ${course.status === "Pending" ? "active" : ""}">Pending</button>
+          <button class="status-button ${course.status === "Closed" ? "active" : ""}">Closed</button>
         </div>
       </div>
       <div class="course-details">
@@ -74,14 +88,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
       <div class="class-container" id="class-container-${course.id}">
         <h4>Classes</h4>
-        <div class="class-cards"> ${renderClasses(classes, course.id)} </div>
+        <div class="class-cards"> ${renderClasses(classesToShow, course.id)} </div>
         <button class="add-class-btn" data-course-id="${course.id}">
           <span class="material-icons">add</span> Add Class
         </button>
       </div>`;
+      
       elements.coursesContainer.appendChild(courseCard);
     });
+    
+    // Reattach all event listeners after updating the DOM
     attachDynamicEventListeners();
+    // Reattach course status buttons event listeners
+    changeCourseStatus();
   }
 
   function renderClasses(classes, courseId) {
@@ -89,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if(classes != null && classes.length > 0){
       courseClasses = classes.filter((cls) => cls.course_id === courseId);
     }
-    if(!courseClasses || courseClasses.length === 0) return ` <div class="error-message"> No classes found for this course. Add a new class to get started.</div>`;
+    if(!courseClasses || courseClasses.length === 0) return `<div class="error-message"> No classes found for this course. Add a new class to get started.</div>`;
 
     return courseClasses.map((cls) => {
         const instructorId = cls.instructorDetails?.id || "";
@@ -100,7 +119,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const cancelDisabled = isCancelled ? "disabled" : "";
         const cancelBtnText = isCancelled ? "Cancelled" : "Cancel";
 
-        return ` <div class="class-card" data-class-id="${cls.crn}" data-course-id="${courseId}" data-instructor-id="${instructorId}">
+        return `<div class="class-card" data-class-id="${cls.crn}" data-course-id="${courseId}" data-instructor-id="${instructorId}">
           <div class="class-header">
             <span class="crn">CRN: ${cls.crn}</span>
             <span class="badge class-status-badge ${cls.status.toLowerCase()}">${cls.status}</span>
@@ -131,7 +150,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const cateogriesResponse = await fetch("/assets/categories.json");   
       const categories = await cateogriesResponse.json();
       if(categories) populateCategoryDropdowns(categories);
-
     }
     catch (error) {
       console.error("Error loading categories:", error);
@@ -167,7 +185,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function loadInstructors() {
     try {
-      const users = await dh.fetchUsers();
+      users = await dh.fetchUsers(); // Update users data
       const instructors = users.filter(user => user.userType === "instructor");
       if (instructors) {
         populateInstructorDropdown(instructors);
@@ -208,44 +226,57 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (elements.addCourseForm) elements.addCourseForm.addEventListener("submit", handleCourseSubmit);
     if (elements.addClassForm) elements.addClassForm.addEventListener("submit", handleClassSubmit);
-    if (elements.categoryFilter) elements.categoryFilter.addEventListener("change", () => { filter(elements.categoryFilter, elements.statusFilter);});
-    if (elements.statusFilter) elements.statusFilter.addEventListener("change", () => { filter(elements.categoryFilter, elements.statusFilter);  });
+    if (elements.categoryFilter) elements.categoryFilter.addEventListener("change", applyFilters);
+    if (elements.statusFilter) elements.statusFilter.addEventListener("change", applyFilters);
 
+    // Call loadCategories here so it's only called once
+    loadCategories();
   }
 
-  function filter(category, status) {
-    const selectedCategory = category.value.toLowerCase();
-    const selectedStatus = status.value.toLowerCase();
+  function applyFilters() {
+    if (!elements.categoryFilter || !elements.statusFilter) return;
+    
+    const selectedCategory = elements.categoryFilter.value.toLowerCase();
+    const selectedStatus = elements.statusFilter.value.toLowerCase();
 
     let filteredCourses = [...courses];
-    if(selectedCategory === "all" && selectedStatus === "all") filteredCourses = [...courses];
-    else if(selectedCategory === "all") filteredCourses = courses.filter(course => course.status.toLowerCase().includes(selectedStatus));
-    else if(selectedStatus === "all") filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory));
-    else if(selectedCategory !== "all" && selectedStatus !== "all") filteredCourses = courses.filter(course => course.category.toLowerCase().includes(selectedCategory) && course.status.toLowerCase().includes(selectedStatus));
+    
+    if(selectedCategory !== "all") {
+      filteredCourses = filteredCourses.filter(course => 
+        course.category.toLowerCase().includes(selectedCategory));
+    }
+    
+    if(selectedStatus !== "all") {
+      filteredCourses = filteredCourses.filter(course => 
+        course.status.toLowerCase().includes(selectedStatus));
+    }
 
     updateCourseTables(filteredCourses, classes);
   }
 
   async function handleCourseSubmit(e) {
     e.preventDefault();
+    let prerequisites = [];
+    if(document.querySelector("#prerequisites").value){
+      prerequisites = (document.querySelector("#prerequisites").value).split(",").map((prerequisite) => prerequisite.trim());
+    }
     const formData = {
       id: document.querySelector("#course-id").value,
       name: document.querySelector("#course-name").value,
       credit_hours: document.querySelector("#credit-hours").value,
       category: (document.querySelector("#course-category").value).charAt(0).toUpperCase()+document.querySelector("#course-category").value.slice(1),
-      prerequisites: document.querySelector("#prerequisites").value || "None",
-      campus:(document.querySelector("#course-campus").value).charAt(0).toUpperCase()+document.querySelector("#course-campus").value.slice(1),
+      prerequisites: prerequisites || [],
+      campus: (document.querySelector("#course-campus").value).charAt(0).toUpperCase()+document.querySelector("#course-campus").value.slice(1),
       status: "Pending",
     };
 
     try {
       await dh.addCourse(formData);
-
       elements.addCourseForm.reset();
       closeModal(elements.addCourseModal);
-      const {courses, classes} = await loadCoursesAndClasses();
-      updateCourseTables(courses, classes);
-
+      
+      // Refresh data and update UI
+      await refreshData();
       showNotification("Course added successfully", "success");
     } catch (error) {
       console.error("Error adding course:", error);
@@ -287,9 +318,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       elements.addClassForm.reset();
       closeModal(elements.addClassModal);
-      const {courses, classes} = await loadCoursesAndClasses();
-      updateCourseTables(courses, classes);
-
+      
+      // Refresh data and update UI
+      await refreshData();
       showNotification("Class added successfully", "success");
     } catch (error) {
       console.error("Error adding class:", error);
@@ -298,21 +329,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function attachDynamicEventListeners() {
-    document.querySelectorAll(".add-class-btn").forEach(btn => { 
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-    });
-    
-    document.querySelectorAll(".validate-btn:not([disabled])").forEach(btn => {
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-    });
-    
-    document.querySelectorAll(".cancel-btn:not([disabled])").forEach(btn => {
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-    });
-    
+    // Add Class button event listeners
     document.querySelectorAll(".add-class-btn").forEach((btn) => {
       btn.addEventListener("click", function () {
         const courseCard = this.closest(".course-card");
@@ -330,12 +347,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
+    // Validate button event listeners
     document.querySelectorAll(".validate-btn:not([disabled])").forEach((btn) => {
       btn.addEventListener("click", function () {
         updateClassStatus(this, "active");
       });
     });
 
+    // Cancel button event listeners
     document.querySelectorAll(".cancel-btn:not([disabled])").forEach((btn) => {
       btn.addEventListener("click", function () {
         updateClassStatus(this, "closed");
@@ -354,9 +373,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       cls.status = newStatus;
       await dh.updateClass(classId, cls);
-
-      const {courses: updatedCourses, classes: updatedClasses} = await loadCoursesAndClasses();
-      updateCourseTables(updatedCourses, updatedClasses);
+      
+      // Update students' course status if needed
+      let students = users.filter(user => user.userType === "student");
+      await Promise.all(
+        students.map(async (student) => {
+          let updated = false;
+          for (const course of student.courses || []) {
+            if (course.course_id === cls.course_id && course.status === "pending") {
+              course.status = "current";
+              updated = true;
+            }
+          }
+          if (updated) {
+            await dh.updateUser(student.id, student);
+          }
+        })
+      );
+      
+      // Refresh data and update UI
+      await refreshData();
       showNotification(`Class ${newStatus.toLowerCase()} successfully`, "success");
     } 
     catch (error) {
@@ -396,7 +432,7 @@ function showNotification(message, type = "info") {
     notification.classList.add("fade-out");
     setTimeout(() => {
       notification.remove();
-      if (notificationContainer.children.length === 0)  notificationContainer.remove();
+      if (notificationContainer.children.length === 0) notificationContainer.remove();
     }, 300);
   }, 3000);
 }

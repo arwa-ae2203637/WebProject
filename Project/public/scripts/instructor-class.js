@@ -13,13 +13,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   
       const loggedUser = dh.getLoggedUser(users);
     
-      const students = users.filter(user => 
-        user.userType === "student" && 
-        user.courses.some(course => 
-          course.crn === selectedClass.crn && 
-          course.status !== "pendind" 
-        )
-      );
+       students = users.filter(user =>  user.userType === "student" && 
+        user.courses.some(course => course.crn === selectedClass.crn && course.status !== "pending")
+       );
   
       console.log("All students in class CRN", selectedClass.crn, ":", students);
       

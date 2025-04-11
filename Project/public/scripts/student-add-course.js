@@ -113,6 +113,8 @@ async function enrollInClass(crn,course_id) {
     }
 
       if (course.prerequisites && course.prerequisites.length > 0) {
+        console.log("Checking prerequisites...");
+        console.log(course.prerequisites);
         const missingPrerequisites = course.prerequisites.filter(prereqId => {
             return !student.courses.some(c => 
                 c.course_id === prereqId && 

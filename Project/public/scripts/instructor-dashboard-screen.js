@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let courses = [];
   let users = [];
-  let classes = []
-;
+  let classes = [];
   try {
       users = await dh.fetchUsers();
       classes = await dh.fetchClasses();
@@ -71,8 +70,7 @@ function updateClassesTables(classes, courses) {
                 <td>${cls.students.length}/${cls.class_limit}</td>
                 <td>${cls.students.length >= cls.class_limit ? 'Closed' : 'Available'}</td>
                 <td><button class="view-button" data-index="${index}">View</button></td>
-            </tr>
-        `;
+            </tr>`;
       }).join('');
   }
 }

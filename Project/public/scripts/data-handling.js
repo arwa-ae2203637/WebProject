@@ -230,22 +230,4 @@ export async function deleteClass(crn) {
     console.error('Error deleting task:', error);
   }
 }
-
-//   export async function loadData() {
-//     const [coursesResponse, classesResponse] = await Promise.all([
-//       fetch("../repo/data/courses.json"),
-//       fetch("../repo/data/classes.json")
-//     ]);
-  
-//     const courses = (await coursesResponse.json()).map(c => Course.fromJSON(c));
-//     const courseMap = Object.fromEntries(courses.map(c => [c.id, c.toJson()]));
-  
-//     const classes = (await classesResponse.json()).map(cls => {
-//       const courseData = courseMap[cls.course_id];
-//       return Class.fromJSON({ ...courseData, ...cls });
-//     });
-  
-  
-//     return { courses, classes };
-//   }
   

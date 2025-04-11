@@ -1,7 +1,3 @@
-// import { User } from "./user.js";
-// import { Student } from "../";
-// import { Instructor } from "../models/instructor.js";
-// import { Admin } from "../models/department-administrator.js";
 import {fetchUsers } from "./data-handling.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -47,6 +43,4 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
     });
-
-
 });
