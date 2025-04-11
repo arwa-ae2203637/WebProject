@@ -3,6 +3,5 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/classes/route": "app/classes/route.js",
   "/courses/route": "app/courses/route.js",
-  "/users/[id]/route": "app/users/[id]/route.js",
   "/users/route": "app/users/route.js"
 }
