@@ -1,1 +1,256 @@
-[{"crn":"1001","course_id":"CS101","instructor":6,"class_limit":30,"schedule":"S/T/TH 10:00-11:00","students":["1"],"status":"closed"},{"crn":"1002","course_id":"CS101","instructor":6,"class_limit":30,"schedule":"M/W 10:00-11:00","students":[],"status":"closed"},{"crn":"2001","course_id":"CS301","instructor":5,"class_limit":20,"schedule":"M/W 14:00-15:30","students":["2","4"],"status":"active"},{"crn":"2002","course_id":"CS201","instructor":5,"class_limit":20,"schedule":"M/W 14:00-15:30","students":["1","2"],"status":"active"},{"crn":"3003","course_id":"ARAB200","instructor":7,"class_limit":20,"schedule":"M/W 14:00-15:30","students":["4"],"status":"closed"},{"crn":"1245","course_id":"MED132","instructor":7,"class_limit":"25","schedule":"M/W 10:00-10:50","students":[],"status":"active"},{"crn":"234","course_id":"CMPS350","instructor":7,"class_limit":"20","schedule":"M/T/TH 10:05-10:55","students":[],"status":"active"},{"crn":"56789434","course_id":"CMPS350","instructor":7,"class_limit":"12","schedule":"M/W 22:05-22:50","students":[],"status":"closed"},{"crn":"5678932","course_id":"CS201","instructor":5,"class_limit":"33","schedule":"T/TH/W 00:25-00:30","students":[],"status":"closed"},{"crn":"5678","course_id":"MED135","instructor":5,"class_limit":"30","schedule":"M/W 11:00-11:50","students":[1],"status":"active"},{"crn":"140000","course_id":"MED132","instructor":5,"class_limit":"23","schedule":"T 11:10-11:50","students":[],"status":"closed"},{"crn":"50000","course_id":"MED135","instructor":5,"class_limit":"23","schedule":"T 11:09-11:14","students":[],"status":"pending"},{"crn":"60000","course_id":"MED132","instructor":6,"class_limit":"34","schedule":"M/W 11:11-11:15","students":[],"status":"pending"},{"crn":"56789","course_id":"CS301","instructor":6,"class_limit":"34","schedule":"M/T 12:44-12:49","students":[],"status":"closed"}]
+[
+  {
+    "crn": "1001",
+    "course_id": "CS101",
+    "instructor": 6,
+    "class_limit": 30,
+    "schedule": "S/T/TH 10:00-11:00",
+    "students": [
+      1
+    ],
+    "status": "active"
+  },
+  {
+    "crn": "1002",
+    "course_id": "CS101",
+    "instructor": 6,
+    "class_limit": 30,
+    "schedule": "M/W 1:00-2:00",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "1003",
+    "course_id": "CS101",
+    "instructor": 6,
+    "class_limit": 30,
+    "schedule": "M/W 10:00-11:00",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "1004",
+    "course_id": "CS101",
+    "instructor": 6,
+    "class_limit": 30,
+    "schedule": "S/T/TH 9:00-10:00",
+    "students": [],
+    "status": "closed"
+  },
+  {
+    "crn": "2001",
+    "course_id": "CS301",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "M/W 14:00-15:30",
+    "students": [
+      "2",
+      "4"
+    ],
+    "status": "active"
+  },
+  {
+    "crn": "2002",
+    "course_id": "CS201",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "M/W 14:00-15:30",
+    "students": [
+      "1"
+    ],
+    "status": "active"
+  },
+  {
+    "crn": "2003",
+    "course_id": "CS201",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "S/T 11:00-12:30",
+    "students": [],
+    "status": "closed"
+  },
+  {
+    "crn": "2004",
+    "course_id": "CS201",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "T/TH 1:00-2:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "3003",
+    "course_id": "ARAB200",
+    "instructor": 7,
+    "class_limit": 20,
+    "schedule": "M/W 14:00-15:30",
+    "students": [
+      "4"
+    ],
+    "status": "active"
+  },
+  {
+    "crn": "3004",
+    "course_id": "ARAB100",
+    "instructor": 7,
+    "class_limit": 25,
+    "schedule": "M/W 09:00-10:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "4001",
+    "course_id": "MATH201",
+    "instructor": 6,
+    "class_limit": 35,
+    "schedule": "T/TH 08:00-09:30",
+    "students": [],
+    "status": "closed"
+  },
+  {
+    "crn": "9001",
+    "course_id": "PHYS101",
+    "instructor": 6,
+    "class_limit": 25,
+    "schedule": "M/W 13:00-14:00",
+    "students": [
+      1
+    ],
+    "status": "active"
+  },
+  {
+    "crn": "9002",
+    "course_id": "PHYS101",
+    "instructor": 6,
+    "class_limit": 25,
+    "schedule": "S/T/TH 13:00-14:00",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "4002",
+    "course_id": "PHYS201",
+    "instructor": 6,
+    "class_limit": 25,
+    "schedule": "M/W/F 13:00-14:00",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "5001",
+    "course_id": "CS401",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "T/TH 10:00-11:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "5002",
+    "course_id": "CS402",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "M/W 11:00-12:30",
+    "students": [],
+    "status": "closed"
+  },
+  {
+    "crn": "5003",
+    "course_id": "CS403",
+    "instructor": 5,
+    "class_limit": 15,
+    "schedule": "T/TH 14:00-15:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "5004",
+    "course_id": "CS404",
+    "instructor": 6,
+    "class_limit": 25,
+    "schedule": "M/W 15:00-16:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "6001",
+    "course_id": "ENGL101",
+    "instructor": 7,
+    "class_limit": 30,
+    "schedule": "T/TH 09:00-10:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "7001",
+    "course_id": "CS405",
+    "instructor": 5,
+    "class_limit": 18,
+    "schedule": "M/W 16:00-17:30",
+    "students": [],
+    "status": "pending"
+  },
+  {
+    "crn": "7002",
+    "course_id": "CS406",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "T/TH 11:00-12:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "7003",
+    "course_id": "CS407",
+    "instructor": 6,
+    "class_limit": 22,
+    "schedule": "M/W 08:00-09:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "7004",
+    "course_id": "CS408",
+    "instructor": 5,
+    "class_limit": 20,
+    "schedule": "T/TH 13:00-14:30",
+    "students": [],
+    "status": "pending"
+  },
+  {
+    "crn": "7005",
+    "course_id": "CS409",
+    "instructor": 6,
+    "class_limit": 25,
+    "schedule": "M/W 10:00-11:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "7006",
+    "course_id": "CS410",
+    "instructor": 5,
+    "class_limit": 15,
+    "schedule": "T/TH 15:00-16:30",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "123",
+    "course_id": "CS101",
+    "instructor": 5,
+    "class_limit": "20",
+    "schedule": "M/W 13:20-12:24",
+    "students": [],
+    "status": "active"
+  },
+  {
+    "crn": "8001",
+    "course_id": "CS909",
+    "instructor": 7,
+    "class_limit": "25",
+    "schedule": "M/W 12:30-13:30",
+    "students": [],
+    "status": "active"
+  }
+]
