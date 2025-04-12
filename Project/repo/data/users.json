@@ -1,1 +1,150 @@
-[{"id":1,"firstName":"John","lastName":"Doe","username":"student1@example.com","password":"123","userType":"student","courses":[{"crn":"1001","course_id":"CS101","status":"current","grade":"N/A"},{"crn":"2002","course_id":"CS201","status":"completed","grade":"A"},{"crn":"1002","course_id":"MED301","status":"completed","grade":"B+"},{"crn":"2001","course_id":"MED451","status":"completed","grade":"A-"},{"crn":"5678","course_id":"MED135","status":"completed","grade":"B"}]},{"id":2,"firstName":"Jane","lastName":"Ahmed","username":"student2@example.com","password":"123","userType":"student","courses":[{"crn":"2001","course_id":"CS301","status":"completed","grade":"C"},{"crn":"2002","course_id":"CS201","status":"completed","grade":"A-"}]},{"id":4,"firstName":"Ahmed","lastName":"Ahmed","username":"student3@example.com","password":"123","userType":"student","courses":[{"crn":"2001","course_id":"CS301","status":"completed","grade":"F"},{"crn":"3003","course_id":"ARAB200","status":"current","grade":"N/A"}]},{"id":3,"firstName":"Ahmed","lastName":"Ahmed","username":"adm@example.com","password":"123","userType":"admin"},{"id":5,"firstName":"Lee","lastName":"Ahmed","username":"inst1@example.com","password":"123","userType":"instructor","expertise_area":["Machine Learning","Artificial Intelligence","Data Science"],"assigned_classes":["2001","2002","5678932","5678","140000","50000"]},{"id":6,"firstName":"Smith","lastName":"Johnson","username":"inst2@example.com","password":"123","userType":"instructor","expertise_area":["Computer Science","Programming"],"assigned_classes":["1001","1002","60000","56789"]},{"id":7,"firstName":"Ahmed","lastName":"Ali","username":"inst3@example.com","password":"123","userType":"instructor","expertise_area":["Arabic Language"],"assigned_classes":["3003","234","56789434"]}]
+[
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "username": "student1@example.com",
+    "password": "123",
+    "userType": "student",
+    "courses": [
+      {
+        "crn": "1001",
+        "course_id": "CS101",
+        "status": "current",
+        "grade": "N/A"
+      },
+      {
+        "crn": "2002",
+        "course_id": "CS201",
+        "status": "completed",
+        "grade": "A"
+      },
+      {
+        "crn": "2001",
+        "course_id": "MED451",
+        "status": "completed",
+        "grade": "A-"
+      },
+      {
+        "crn": "5678",
+        "course_id": "MED135",
+        "status": "completed",
+        "grade": "B"
+      },
+      {
+        "crn": "9001",
+        "course_id": "PHYS101",
+        "status": "pending",
+        "grade": "N/A"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Ahmed",
+    "username": "student2@example.com",
+    "password": "123",
+    "userType": "student",
+    "courses": [
+      {
+        "crn": "2001",
+        "course_id": "CS301",
+        "status": "completed",
+        "grade": "C"
+      },
+      {
+        "crn": "2002",
+        "course_id": "CS201",
+        "status": "completed",
+        "grade": "A-"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "firstName": "Ahmed",
+    "lastName": "Ahmed",
+    "username": "student3@example.com",
+    "password": "123",
+    "userType": "student",
+    "courses": [
+      {
+        "crn": "2001",
+        "course_id": "CS301",
+        "status": "completed",
+        "grade": "F"
+      },
+      {
+        "crn": "3003",
+        "course_id": "ARAB200",
+        "status": "current",
+        "grade": "N/A"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "firstName": "Ahmed",
+    "lastName": "Ahmed",
+    "username": "adm@example.com",
+    "password": "123",
+    "userType": "admin"
+  },
+  {
+    "id": 5,
+    "firstName": "Lee",
+    "lastName": "Ahmed",
+    "username": "inst1@example.com",
+    "password": "123",
+    "userType": "instructor",
+    "expertise_area": [
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Data Science"
+    ],
+    "assigned_classes": [
+      "2001",
+      "2002",
+      "5678932",
+      "5678",
+      "140000",
+      "50000",
+      "1"
+    ]
+  },
+  {
+    "id": 6,
+    "firstName": "Smith",
+    "lastName": "Johnson",
+    "username": "inst2@example.com",
+    "password": "123",
+    "userType": "instructor",
+    "expertise_area": [
+      "Computer Science",
+      "Programming"
+    ],
+    "assigned_classes": [
+      "1001",
+      "1002",
+      "60000",
+      "56789"
+    ]
+  },
+  {
+    "id": 7,
+    "firstName": "Ahmed",
+    "lastName": "Ali",
+    "username": "inst3@example.com",
+    "password": "123",
+    "userType": "instructor",
+    "expertise_area": [
+      "Arabic Language"
+    ],
+    "assigned_classes": [
+      "3003",
+      "234",
+      "56789434"
+    ]
+  }
+]

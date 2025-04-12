@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("Registration page users");
         console.log(users);
 
+        courses = courses.filter(course => course.status !== "Close");
+
         updateCourseTables(courses);
         loadCategories();
         const loggedUser = dh.getLoggedUser(users);
