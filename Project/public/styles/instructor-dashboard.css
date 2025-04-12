@@ -205,4 +205,48 @@
   .search-input::placeholder {
     color: #999;
   }
+
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 15px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .table {
+    font-size: 10px;
+  }
+
+  .table th, .table td {
+    padding: 5px 6px;
+  }
+
+  .table th {
+    font-weight: 500;
+  }
+
+  .table button {
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+
+  .pages {
+    margin-top: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .pages button {
+    padding: 0.3rem;
+    font-size: 0.65rem;
+    min-width: 24px;
+  }
+}
+
   

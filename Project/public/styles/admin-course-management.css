@@ -223,18 +223,6 @@ main {
   color: #555;
 }
 
-.category-filter {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 30rem;
-  background-color: white;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  min-width: 180px;
-}
-
 .filter-group select {
   padding: 0.5rem;
   border-radius: 4px;
@@ -252,46 +240,31 @@ main {
 }
 
 .course-card {
-  background-color: var(--white);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-md);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid var(--gray-medium);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
-  min-height: 220px; /* Set a minimum height for consistency */
-  height:fit-content;
+  border: 1px solid #e0e0e0;
 }
 
 .course-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .course-header {
   padding: 1.25rem;
   position: relative;
-  color: var(--white);
-  background-color: var(--primary-color);  /* Using primary color by default */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100px;
+  color: white;
+  background-color: #3D051B;
 }
 
 .course-title {
   font-size: 1.25rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: var(--white);
-}
-
-/* Generate background colors for course headers from admin-course-management style */
-.course-card .course-header {
-  background-color: var(--primary-color);  /* Default to primary color */
+  color: white;
 }
 
 .badge {
@@ -305,14 +278,14 @@ main {
 
 .category-badge {
   background-color: rgba(255, 255, 255, 0.2);
-  color: var(--white);
+  color: white;
 }
 
 .status-badge {
   position: absolute;
   top: 10px;
   right: 10px;
-  color: var(--white);
+  color: white;
   z-index: 2;
 }
 
@@ -373,7 +346,7 @@ main {
 }
 
 .course-details strong {
-  color: var(--text-secondary);
+  color: #5f6368;
   font-weight: 500;
 }
 
@@ -389,9 +362,9 @@ main {
   margin-bottom: 0.75rem;
   font-size: 1rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: #202124;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--gray-medium);
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .class-cards {
@@ -399,20 +372,18 @@ main {
   flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 0.75rem;
-  flex-grow: 1;
 }
 
 .class-card {
-  background-color: var(--gray-light);
-  border-radius: var(--border-radius);
+  background-color: #f5f5f5;
+  border-radius: 8px;
   padding: 0.75rem;
-  border: 1px solid var(--gray-medium);
+  border: 1px solid #e0e0e0;
   transition: transform 0.2s, box-shadow 0.2s;
-  position: relative;
 }
 
 .class-card:hover {
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
@@ -425,7 +396,7 @@ main {
 
 .crn {
   font-weight: 500;
-  color: var(--text-primary);
+  color: #202124;
   font-size: 0.9rem;
 }
 
@@ -442,7 +413,7 @@ main {
 }
 
 .class-details strong {
-  color: var(--text-secondary);
+  color: #5f6368;
   font-weight: 500;
 }
 
@@ -455,7 +426,7 @@ main {
 .cancel-btn {
   padding: 0.4rem 0.75rem;
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 8px;
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 500;
@@ -465,7 +436,7 @@ main {
 
 .validate-btn {
   background-color: #8bc34a;
-  color: var(--white);
+  color: white;
 }
 
 .validate-btn:hover {
@@ -479,7 +450,7 @@ main {
 
 .cancel-btn {
   background-color: #ef5350;
-  color: var(--white);
+  color: white;
 }
 
 .cancel-btn:hover {
@@ -770,13 +741,60 @@ form {
     gap: 1rem;
   }
 
+  .dashboard-header h2 {
+    font-size: 1.3rem;
+  }
+
   .filter-section {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-group select {
+    width: 100%;
   }
 
   .courses-container {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .course-card {
+    margin-bottom: 1rem;
+  }
+
+  .course-header {
+    padding: 1rem;
+  }
+
+  .course-title {
+    font-size: 1.1rem;
+  }
+
+  .course-details {
+    padding: 0.8rem;
+  }
+
+  .class-container {
+    padding: 0 0.8rem 0.8rem;
+  }
+
+  .class-card {
+    padding: 0.6rem;
+  }
+
+  .class-actions {
+    flex-direction: column;
+  }
+
+  .validate-btn,
+  .cancel-btn {
+    width: 100%;
   }
 
   .modal-content {

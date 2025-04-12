@@ -1,88 +1,89 @@
-
 .title{
-color:#3D051B;
-}
-
-.search-container {
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 15px;
-}
-
-.header{
-  p{
-    align-self: start;
-    justify-self: start;
+  color:#3D051B;
   }
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 3rem;
-  padding: 8px 12px;
-  flex-grow: 1;
-  min-width: 30rem;
-  height:2rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-.search-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 10px;
-  opacity: 0.6;
-
-}
-
-#search-input {
-  border: none;
-  outline: none;
-  font-size: 14px;
-  width: 100%;
-  color: #333;
-}
-
-.search-input::placeholder {
-  color: #999;
-}
-
-.category-filter {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 30rem;
-  background-color: white;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  min-width: 180px;
-}
-
-
-main{
-  .container{
+  
+  .search-container {
     display: flex;
-    flex-direction: column;
-    background-color: white;
-    padding: 1.5rem;
-    border-radius:  1.5rem;
-    box-shadow: 0 1px 7px rgba(0,0,0,0.1);
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
   }
-}
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  font-size: 13px;
-  th {
+  
+  .header{
+    p{
+      align-self: start;
+      justify-self: start;
+    }
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 3rem;
+    padding: 8px 12px;
+    flex-grow: 1;
+    min-width: 30rem;
+    height:2rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
+  .search-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    opacity: 0.6;
+  
+  }
+  
+  #search-input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+    color: #333;
+  }
+  
+  .search-input::placeholder {
+    color: #999;
+  }
+  
+  .category-filter {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 30rem;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    min-width: 180px;
+  }
+  
+  
+  main{
+    .container{
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius:  1.5rem;
+      box-shadow: 0 1px 7px rgba(0,0,0,0.1);
+    }
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    font-size: 13px;
+  }
+  
+  .table th {
     background-color: #f8f9fa;
     color: #495057;
     font-weight: 600;
@@ -90,99 +91,140 @@ main{
     text-align: left;
     border-bottom: 1px solid #dee2e6;
   }
-  td {
+  
+  .table td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #dee2e6;
     color: #212529;
   }
-  tr:hover {
+  
+  .table tr:hover {
     background-color: #f8f9fa;
   }
   
-}
-
-/* Button Styles */
-button {
-  background-color: #8a1538;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-button:hover {
-  background-color: #6a102c;
-}
-
-/* Pagination Styles */
-main > div {
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
-  gap: 5px;
-
-  .pages{
-    margin-top:1.5rem;
-    margin-bottom: 0.5rem;
-    align-self: center;
-    button{
-      border-radius: 0.6rem;
-      padding:0.5rem;
-      background-color: #f8f9fa;
-      font-size: 0.8rem;
+  /* Mobile Responsive Design */
+  @media (max-width: 768px) {
+    .table {
+      font-size: 11px;
+    }
+  
+    .table th,
+    .table td {
+      padding: 6px 8px;
+    }
+  
+    .table th {
+      font-weight: 500;
+    }
+  
+    .table button {
+      padding: 4px 8px;
+      font-size: 10px;
+    }
+  
+    .search-bar {
+      min-width: auto;
+      height: 1.8rem;
+    }
+  
+    .category-filter {
+      min-width: 120px;
+      font-size: 11px;
+      padding: 6px 8px;
+    }
+  
+    .search-icon {
+      width: 14px;
+      height: 14px;
+    }
+  
+    #search-input {
+      font-size: 11px;
     }
   }
-
+  
+  /* Button Styles */
   button {
-    background-color: white;
-    color: #495057;
-    border: 1px solid #dee2e6;
-    padding: 5px 10px;
-    min-width: 32px;
-    font-weight: 400;
+    background-color: #8a1538;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background-color 0.2s;
   }
-
+  
   button:hover {
-    background-color: #f8f9fa;
-    color: #8a1538;
-    border-color: #8a1538;
+    background-color: #6a102c;
   }
-}
-
-
-
-
-/* Adjustments for the registration page */
-.registration-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  align-items: center;
-}
-
-.search-course {
-  display: flex;
-  gap: 10px;
-}
-
-.search-course input {
-  padding: 8px 12px;
-  border: 1px solid #ced4da;
-  border-radius: 3px;
-  font-size: 13px;
-  width: 200px;
-}
-
-.category-filter {
-  padding: 8px 12px;
-  border: 1px solid #ced4da;
-  border-radius: 3px;
-  background-color: white;
-  font-size: 13px;
-  color: #495057;
-}
+  
+  /* Pagination Styles */
+  main > div {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 5px;
+  
+    .pages{
+      margin-top:1.5rem;
+      margin-bottom: 0.5rem;
+      align-self: center;
+      button{
+        border-radius: 0.6rem;
+        padding:0.5rem;
+        background-color: #f8f9fa;
+        font-size: 0.8rem;
+      }
+    }
+  
+    button {
+      background-color: white;
+      color: #495057;
+      border: 1px solid #dee2e6;
+      padding: 5px 10px;
+      min-width: 32px;
+      font-weight: 400;
+    }
+  
+    button:hover {
+      background-color: #f8f9fa;
+      color: #8a1538;
+      border-color: #8a1538;
+    }
+  }
+  
+  
+  
+  
+  /* Adjustments for the registration page */
+  .registration-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .search-course {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .search-course input {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    font-size: 13px;
+    width: 200px;
+  }
+  
+  .category-filter {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    background-color: white;
+    font-size: 13px;
+    color: #495057;
+  }

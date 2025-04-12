@@ -2,45 +2,33 @@
     font-family: "montserrat-light";
     src:  url('../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
 }
+
 body {
     background-color: #3d051b;
     align-items: center;
     justify-items: center;
     margin-top: 4rem;
-}
-/* 
-.container{
-    background-color: white;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-    width: 500px;
-    border-radius: 30px;
-    gap: 1rem;
 }
-header{
+
+header {
     color: white;
-    justify-items: center;
+    text-align: center;
     font-size: 1.25rem;
     font-family: "montserrat-light";
     font-weight: 1;
+    margin-bottom: 2rem;
 }
-input {
-    width: 80%;
-    height: 40px; 
-    line-height: 40px; 
-    border-radius: 20px;
-    padding-left: 1rem;
-    font-size: 1rem;
-    font-family: "montserrat-light";
-    border: 1px solid #ccc; 
-    box-sizing: border-box; 
-}
- */
 
- .container{
+.logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.container {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -49,23 +37,21 @@ input {
     height: 350px;
     width: 550px;
     border-radius: 30px;
-    /* gap: 1rem; */
-    /* padding: 1rem; */
+    padding: 2rem;
 }
-
 
 form {
     display: flex;
     flex-direction: column;
-    width: 100%; 
-    align-items: center; 
+    width: 100%;
+    align-items: center;
     gap: 1rem;
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     width: 80%;
 }
 
@@ -87,14 +73,6 @@ input {
     box-sizing: border-box;
 }
 
-header{
-    color: white;
-    justify-items: center;
-    font-size: 1.25rem;
-    font-family: "montserrat-light";
-    font-weight: 1;
-}
-
 button {
     width: 30%;
     height: 40px;
@@ -106,4 +84,43 @@ button {
     border: none;
     cursor: pointer;
     margin-top: 1rem;
+}
+
+#error-message {
+    color: #ff0000;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    body {
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+
+    header {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        min-height: 300px;
+        padding: 1.5rem;
+    }
+
+    .input-group {
+        width: 90%;
+    }
+
+    button {
+        width: 50%;
+    }
 }
