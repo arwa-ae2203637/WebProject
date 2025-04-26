@@ -1,0 +1,60 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  username        String   @unique
+  password        String
+  userType        String
+  expertise_area  String?  // optional for instructors
+  assigned_classes String? // optional for instructors
+
+  Enrollments     Enrollment[]
+  Classes         Class[]  @relation("InstructorClasses")
+}
+
+model Course {
+  id             String   @id
+  name           String
+  credit_hours   Int
+  category       String
+  prerequisites  String? // store as JSON or comma-separated list
+  campus         String
+  status         String
+
+  Classes        Class[]
+}
+
+model Class {
+  crn           Int       @id
+  course_id     String
+  instructorId  Int
+  class_limit   Int
+  schedule      String
+  status        String
+
+  course        Course    @relation(fields: [course_id], references: [id])
+  instructor    User      @relation("InstructorClasses", fields: [instructorId], references: [id])
+  Enrollments   Enrollment[]
+}
+
+model Enrollment {
+  id           Int      @id @default(autoincrement())
+  studentId    Int
+  classCrn     Int
+  status       String
+  grade        String
+
+  student      User     @relation(fields: [studentId], references: [id])
+  class        Class    @relation(fields: [classCrn], references: [crn])
+}
