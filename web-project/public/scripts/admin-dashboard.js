@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loggedUser = dh.getLoggedUser(users);
     dh.updateUserProfile(loggedUser);
     const container = document.querySelector('.container');
+    
     if (!container) {
         console.error('Container element not found');
         return;
