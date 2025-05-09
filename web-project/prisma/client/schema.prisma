@@ -43,8 +43,8 @@ model Class {
   class_limit   Int
   schedule      String
   status        String
-  course        Course       @relation(fields: [course_id], references: [id])
-  instructor    User         @relation("InstructorClasses", fields: [instructor_id], references: [id])
+  course        Course       @relation(fields: [course_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  instructor    User         @relation("InstructorClasses", fields: [instructor_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   enrollments   Enrollment[]
 }
 
@@ -55,7 +55,7 @@ model Enrollment {
   status     String
   grade      String
   course_id  String
-  student    User   @relation(fields: [student_id], references: [id])
-  course     Course @relation(fields: [course_id], references: [id])
-  class      Class  @relation(fields: [crn], references: [crn])
+  student    User   @relation(fields: [student_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  course     Course @relation(fields: [course_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  class      Class  @relation(fields: [crn], references: [crn], onUpdate: Cascade, onDelete: Cascade)
 }

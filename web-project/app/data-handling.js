@@ -6,7 +6,7 @@
 const API_URL_USERS = '/api/users';
 const API_URL_COURSES = '/api/courses';
 const API_URL_CLASS = '/api/classes';
-
+const API_URL_ENROLLMENTS = '/api/enrollments';
 
 
 export async function fetchUsers() {
@@ -251,3 +251,69 @@ export async function getClassByCourse(course_id) {
     return [];
   }
 }
+
+
+export async function fetchEnrollments() {
+  try {
+    const response = await fetch(API_URL_ENROLLMENTS);
+    let enrollments = await response.json();
+    // console.log(courses);
+    return enrollments;
+  } catch (error) {
+    console.error('Error fetching course:', error);
+  }
+}
+
+export async function addEnrollment(cls) {
+  try {
+    const response = await fetch(API_URL_ENROLLMENTS, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cls),
+    });
+    
+    if (response.status === 201) {
+      console.log("Enrollment added");
+    } 
+    else if (response.status === 409) {
+      alert('Enrollment for this crn already exists');
+    }
+  } catch (error) {
+    console.error('Error enrolling', error);
+  }
+}
+
+export async function updateEnrollment(id, newEnrollment) {
+  try {
+    const response = await fetch(`${API_URL_ENROLLMENTS}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify( newEnrollment ),
+    });
+    
+    if (response.ok) {
+      console.log("OK");
+    }
+  } catch (error) {
+    console.error('Error updating enrollment:', error);
+  }
+}
+
+export async function deleteEnrollment(id) {
+  try {
+    const response = await fetch(`${API_URL_ENROLLMENTS}/${id}`, {
+      method: 'DELETE',
+    });
+    
+    if (response.ok) {
+      console.log("Deleted");
+    }
+  } catch (error) {
+    console.error('Error deleting task:', error);
+  }
+}
+  

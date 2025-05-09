@@ -1,5 +1,5 @@
 'use client';
-
+import './login.css';
 import {fetchUsers } from "../data-handling.js";
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
@@ -45,24 +45,33 @@ export default function Page() {
 
   }
   return (
+    <>  
+    <div className='login-body'>
+    <header className="header">
+    <img className="logo" src="../assets/media/qu-logo.png" alt="Qatar University Logo"  />
+    <h1>Qatar University Portal</h1>
+    </header>
     <main>
-    <div className="container">
+    <div className="login-container">
         <h2>Login</h2>
         <form id="loginForm">
             <div className="input-group">
-                <label htmlFor="username">Username:</label>
+                <label className="label-login" htmlFor="username">Username:</label>
                 <input ref={username} type="text" id="username" name="username" placeholder="example@qu.edu.qa" required/>
-                
             </div>
             <div className="input-group">
-                <label htmlFor="password">Password:</label>
+                <label className="label-login" htmlFor="password">Password:</label>
                 <input ref={password} type="password" id="password" name="password" placeholder="enter your password" required/>
             </div>
             <button type="submit" id="login-button" onClick={handleLogin}>Login</button>
+      
         </form>
         <p id="error-message"></p>
     </div>
   </main>
+  </div> 
+    </>
+  
 );
 
 }
