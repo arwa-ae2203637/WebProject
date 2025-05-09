@@ -25,7 +25,7 @@ export async function PUT(request, {params}){
     
         const updated = await repo.update(id, body);
         console.log(updated);
-        return NextResponse.json(updated.toJSON(), { status: 200 });
+        return NextResponse.json(updated, { status: 200 });
       } catch (e) {
         console.error(e);
         return NextResponse.json({ message: "Update failed" }, { status: 500 });

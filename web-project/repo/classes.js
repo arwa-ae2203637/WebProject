@@ -89,3 +89,18 @@ export async function remove(crn){
           };
         }
 }
+
+export async function getClassByCourse(course_id) {
+  try {
+    const classes = prisma.class.findMany({
+      where: {
+        course_id: course_id,
+      }
+    })
+    return classes;
+    // return [];
+  } catch (error) {
+    console.error('Error fetching classes:', error);
+    return [];
+  }
+}

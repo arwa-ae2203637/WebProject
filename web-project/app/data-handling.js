@@ -78,7 +78,7 @@ export async function fetchCourses() {
   try {
     const response = await fetch(API_URL_COURSES);
     let courses = await response.json();
-    // console.log(courses);
+   
     return courses;
   } catch (error) {
     console.error('Error fetching course:', error);
@@ -105,19 +105,33 @@ export async function addCourse(course) {
   }
 }
 
-export async function updateCourse(id, newCourse) {
+export async function updateCourse(id, newCourse, url) {
   try {
-    const response = await fetch(`${API_URL_COURSES}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify( newCourse ),
-    });
-    
-    if (response.ok) {
-      console.log("OK");
+    let response = null;
+    if(url){
+       response = await fetch(`${url}/${API_URL_COURSES}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( newCourse ),
+      });
     }
+    else{
+      response  =await fetch(`${API_URL_COURSES}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( newCourse ),
+      });
+    }
+    if(response){
+      let course = await response.json();
+      return course;
+    }
+
+
   } catch (error) {
     console.error('Error updating course:', error);
   }
@@ -202,4 +216,38 @@ export async function deleteClass(crn) {
     console.error('Error deleting task:', error);
   }
 }
+
+export async function fetchCourseById(id, url){
+  try {
+    let response = null;
+    if(url){
+       response = await fetch(`${url}/${API_URL_COURSES}/${id}`);
+    }
+    else{
+      response  = await fetch(`${API_URL_COURSES}/${id}`);
+    }
+    if(response){
+      let course = await response.json();
+      return course;
+    }
+   
+    
+  } catch (error) {
+    console.error('Error fetching course:', error);
+  }
+}
   
+export async function getClassByCourse(course_id) {
+  try {
+    const classes = prisma.class.findMany({
+      where: {
+        course_id: id,
+      }
+    })
+    return classes;
+    // return [];
+  } catch (error) {
+    console.error('Error fetching classes:', error);
+    return [];
+  }
+}

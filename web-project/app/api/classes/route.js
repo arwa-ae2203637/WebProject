@@ -27,7 +27,7 @@ export async function POST(request, { params }){
         catch(e){
             return NextResponse.json({ message: "Conflict" }, { status: 409 });
         }
-        return NextResponse.json(cls.toJSON(), { status: 201 });
+        return NextResponse.json(cls, { status: 201 });
     }
     catch(e){
         console.error(e);
