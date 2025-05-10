@@ -139,7 +139,7 @@ export default function Page() {
           <h1>Weekly Course Schedule</h1>
           <div className="schedule-grid">
           {days.map((day) => 
-                <div className="day-column" id={day}>
+                <div className="day-column" id={day} key={day}>
                 <h2>{day}</h2>
                 <div className="classes-container">
                   {currentWeekSchedule

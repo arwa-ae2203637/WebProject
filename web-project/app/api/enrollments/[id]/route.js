@@ -20,7 +20,7 @@ export async function GET(reuqest, {params}){
 
 export async function PUT(request, {params}){
     try {
-        const { id } = params; // params is already awaited in Next.js 13+
+        const { id } = await params; 
     const parsedId = parseInt(id, 10);
         if (isNaN(parsedId)) throw new Error("Invalid enrollment ID");
     
