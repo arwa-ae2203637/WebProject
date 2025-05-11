@@ -16,8 +16,8 @@ model User {
   username        String   @unique
   password        String
   userType        String
-  expertise_area  String?  // optional for instructors
-  assigned_classes String? // optional for instructors
+  expertise_area  String?  //  for instructors
+  assigned_classes String? //  for instructors
 
   Enrollments     Enrollment[]
   Classes         Class[]  @relation("InstructorClasses")
