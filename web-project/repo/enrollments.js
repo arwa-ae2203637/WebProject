@@ -90,3 +90,30 @@ export async function remove(id){
     }
 }
 
+// export async function fetchEnrollmentsByStudentAndCrn(studentId, crn) {
+//   return await prisma.enrollment.findFirst({
+//     where: {
+//       student_id: parseInt(studentId),
+//       crn: crn
+//     },
+//     include: {
+//       class: true,
+//       course: true,
+//       student: true
+//     }
+//   });
+// }
+
+export async function fetchEnrollmentsByStudentAndStatus(studentId, status) {
+  return await prisma.enrollment.findMany({
+      where: {
+          student_id: parseInt(studentId),
+          status: status
+      },
+      include: {
+          student: true,
+          class: true,
+          course: true,
+      },
+  });
+}

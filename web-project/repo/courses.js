@@ -88,3 +88,46 @@ export async function remove(id){
     }
 }
 
+export async function getCourseById(id) {
+  try {
+    const course = await prisma.course.findUnique({
+      where: { id },
+      include: {
+        classes: true 
+      }
+    });
+    
+    if (!course) {
+      throw new Error(`Course with ID ${id} not found`);
+    }
+    
+    return course;
+  } catch (error) {
+    console.error(`Error fetching course ${id}:`, error);
+    throw error;
+  }
+}
+
+export async function fetchCoursesByStatus(status) {
+  return await prisma.course.findMany({
+    where: {
+      status: status
+    },
+    include: {
+      classes: true,
+      enrollment: true,
+  },
+  });
+}
+
+export async function searchCoursesByName(searchTerm) {
+    return await prisma.course.findMany({
+    where: {
+      name: {
+        contains: searchTerm,
+        mode: 'insensitive'
+      }
+    }
+  });
+}
+

@@ -22,14 +22,11 @@ export default function InstructorDashboard() {
 
         const classes = await dh.fetchClasses();
         const courses = await dh.fetchCourses();
-        console.log(classes);
-        //---
-        let assignedClasses = classes.filter((c)=> c.instructor_id === currentUser.id);
-        //---
-        assignedClasses = assignedClasses.filter((cls)=>cls.status == "active");
+     
+        const instructorId = Number(currentUser.id);
+        let assignedClasses = await dh.fetchClassesByInstructorAndStatus(instructorId,"active");
         setAssignedClasses(assignedClasses);
         setCourses(courses);
-        console.log("Assigned classes:", assignedClasses);
  
       } catch (error) {
         console.error("Error loading courses or user:", error);
@@ -39,16 +36,14 @@ export default function InstructorDashboard() {
     loadData();
   }, []);
 
-  function handleViewClick(crn) {
-    const selectedClass = assignedClasses.find(cls => cls.crn === crn);
-    console.log("Selected class:", selectedClass);
+  async function  handleViewClick(cls) {
     localStorage.setItem("selectedClass", JSON.stringify({
-      crn: selectedClass.crn,
-      course_id: selectedClass.course_id,
-      instructor: selectedClass.instructor,
-      class_limit: selectedClass.class_limit,
-      schedule: selectedClass.schedule,
-      students: selectedClass.students,
+      crn: cls.crn,
+      course_id: cls.course_id,
+      instructor: cls.instructor,
+      class_limit: cls.class_limit,
+      schedule: cls.schedule,
+      students: cls.students,
     }));
     router.push("./instructor-classes");
   }
@@ -141,7 +136,7 @@ export default function InstructorDashboard() {
                     <td>{cls.status}</td>
                     <td>
                      
-                      <button onClick={() =>handleViewClick(cls.crn)} className="view-button">
+                      <button onClick={() =>handleViewClick(cls)} className="view-button">
                         View
                       </button>
                     </td>
