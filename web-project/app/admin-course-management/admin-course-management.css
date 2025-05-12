@@ -95,23 +95,7 @@ h1 {
   font-weight: 500;
 }
 
-.user-name {
-  margin-right: 1rem;
-  font-weight: 500;
-}
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--white);
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 18px;
-}
 
 /* Main Content Styles */
 main {

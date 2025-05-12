@@ -6,7 +6,6 @@ import * as dh from "../data-handling.js";
 import AddCourseModal from "./components/AddCourseModal";
 import AddClassModal from "./components/AddClassModal";
 import {Plus} from "lucide-react";
-// import * as actions from "../actions.js";
 
 export default function AdminCourseManagement() {
   const [users, setUsers] = useState([]);
@@ -159,10 +158,6 @@ export default function AdminCourseManagement() {
               await dh.updateEnrollment(enrollment.id, { status: "current" });
             }
           }          
-          // if (updated) {
-          //   const { classes, ...studentDataWithoutClasses } = student;
-          //   await dh.updateUser(student.id, studentDataWithoutClasses);
-          // }
         })
       );
       

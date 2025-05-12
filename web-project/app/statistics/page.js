@@ -120,8 +120,12 @@ export default function StatisticsPage() {
           <h2 className="title">System Statistics</h2>
         </div>
         <div className="user-profile">
-          <div className="avatar">US</div>
-          <span className="user-name">User Name</span>
+          <div className="avatar">
+            {loggedUser ? `${loggedUser.firstName.charAt(0)}${loggedUser.lastName.charAt(0)}`.toUpperCase() : "UN"}
+          </div>
+          <span className="user-name">
+            {loggedUser ? `${loggedUser.firstName} ${loggedUser.lastName.charAt(0)}`.trim() : "User Name"}
+          </span>
           <span className="dropdown-icon">▼</span>
         </div>
       </div>
