@@ -74,7 +74,7 @@ export default function StatisticsPage() {
           results[stat.key] = { error: e.message };
         }
       }
-      const currentUser = await dh.getLoggedUser();
+      const currentUser = await dh.getLoggedUser(users);
       setLoggedUser(currentUser);
       setStats(results);
       setLoading(false);

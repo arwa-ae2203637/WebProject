@@ -117,6 +117,10 @@ export default function Page() {
                 <img src="/assets/icons/registration-icon.png" />
                 <a href="/admin-course-management"> Course Management</a>
               </div>
+              <div className="options">
+                <img src="/assets/icons/statistics.svg" />
+                <a href="/statistics"> System Statistics</a>
+              </div>
             </nav>
           </div>
           <div className="sidebar-footer">

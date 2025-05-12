@@ -16,7 +16,7 @@ body {
     flex-direction: column;
 }
 
-.header {
+.login-header {
     color: white;
     text-align: center;
     font-size: 1.25rem;

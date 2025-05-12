@@ -6,8 +6,8 @@
 }
 
 :root {
-  --primary-color: #3D051B;  /* Keeping primary color from admin-course-management */
-  --primary-dark: #5a0a2b;   /* Darkened version of the primary color */
+  --primary-color: #3D051B;  
+  --primary-dark: #5a0a2b;   
   --primary-light: #e8f0fe;
   --secondary-color: #34a853;
   --warning-color: #fbbc05;
@@ -34,18 +34,16 @@
   margin-left: 2px;
 }
 
-/* This ensures at least one checkbox is required, but allows any of them */
 input[type="checkbox"].day-checkbox:invalid {
   outline: 2px solid var(--danger-color);
 }
 
-/* Remove the outline once at least one is checked */
 input[type="checkbox"].day-checkbox:valid {
   outline: none;
 }
 
 body {
-  background-color: #F3F3F3;  /* Using background from admin-course-management */
+  background-color: #F3F3F3;  
   color: var(--text-primary);
   line-height: 1.6;
 }
@@ -56,7 +54,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: var(--primary-color);  /* Using primary color */
+  background-color: var(--primary-color);  
   color: var(--white);
   box-shadow: var(--shadow-md);
   position: sticky;

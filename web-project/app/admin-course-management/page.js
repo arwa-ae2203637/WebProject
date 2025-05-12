@@ -6,6 +6,7 @@ import * as dh from "../data-handling.js";
 import AddCourseModal from "./components/AddCourseModal";
 import AddClassModal from "./components/AddClassModal";
 import {Plus} from "lucide-react";
+// import * as actions from "../actions.js";
 
 export default function AdminCourseManagement() {
   const [users, setUsers] = useState([]);
@@ -25,7 +26,7 @@ export default function AdminCourseManagement() {
       try {
         const fetchedUsers = await dh.fetchUsers();
         setUsers(fetchedUsers);
-        setLoggedUser(dh.getLoggedUser(fetchedUsers));
+        setLoggedUser(dh.getLoggedUser(users));
         await refreshData();
         await loadCategories();
       } catch (error) {
@@ -204,7 +205,6 @@ export default function AdminCourseManagement() {
           <h2 className="title">QU Student Management</h2>
           <p>Course Management</p>
         </div>
-
         <div className="user-profile">
           <div className="avatar">
             {loggedUser ? `${loggedUser.firstName.charAt(0)}${loggedUser.lastName.charAt(0)}`.toUpperCase() : "UN"}
@@ -232,6 +232,10 @@ export default function AdminCourseManagement() {
               <img src="../assets/icons/registration-icon.png" alt="Registration icon" />
               <a href="#"> Course Management</a>
             </div>
+            <div className="options">
+                <img src="/assets/icons/statistics.svg" />
+                <a href="/statistics"> System Statistics</a>
+              </div>
           </nav>
         </div>
         <div className="sidebar-footer">
