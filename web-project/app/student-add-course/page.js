@@ -23,7 +23,7 @@ export default function InstructorDashboard() {
         let courses = await dh.fetchCourses();
         let classes = await dh.fetchClasses();
         let allEnrollments = await dh.fetchEnrollments();
-        
+
         const currentUser = await dh.getLoggedUser(users);
         setLoggedUser(currentUser);
         dh.updateUserProfile(currentUser);
@@ -36,13 +36,8 @@ export default function InstructorDashboard() {
         
         setEnrollments(allEnrollments);
         
-        classes = classes.map(cls => {
-          const classEnrollments = allEnrollments.filter(e => e.crn === cls.crn);
-          return { ...cls, enrollments: classEnrollments };
-        });
-        
-        let courseClasses = classes.filter(
-          (cls) => cls.course_id === selectedCourse.id
+        let courseClasses =await dh.getClassesByCourse(
+          selectedCourse.id
         );
         setCourseClasses(courseClasses);
 
@@ -61,8 +56,9 @@ export default function InstructorDashboard() {
     enrollInClass(cls);
   }
 
-  function enrollInClass(cls) {
+  async function enrollInClass(cls,l) {
     try {
+      //----------
       const existingCourseEnrollment = enrollments.find(e => 
         e.student_id === loggedUser.id && 
         e.course_id === selectedCourse.id &&
@@ -73,8 +69,11 @@ export default function InstructorDashboard() {
         alert("You are already enrolled or have a pending request for this course");
         return false;
       }
-      
-      const course = courses.find(c => c && c.id === selectedCourse.id);
+
+      const course = cls.course;
+      console.log("l:",l);
+      console.log(cls);
+      console.log("course:",course);
       
       const prerequisites = course && course.prerequisites ? 
         course.prerequisites.split(",").filter(id => id.trim() !== "") : [];
@@ -85,11 +84,8 @@ export default function InstructorDashboard() {
       }
   
       if (prerequisites.length > 0) {
-        const userCompletedCourses = enrollments.filter(e => 
-          e.student_id === loggedUser.id && 
-          e.status === "completed" && 
-          e.grade !== "F"
-        ).map(e => e.course_id);
+        const completed  = await dh.fetchEnrollmentsByStudentAndStatus(loggedUser.id, "completed");
+        let userCompletedCourses = completed.map(e => e.course_id);
         
         const missingPrerequisites = prerequisites.filter(prereqId => 
           !userCompletedCourses.includes(prereqId)
@@ -254,8 +250,8 @@ export default function InstructorDashboard() {
             <tbody className="tableBody">
               {courseClasses && courseClasses.length > 0 ? (
                 courseClasses.map((cls, index) => {
-                  const course = courses.find((c) => c.id === cls.course_id);
-                  const instructor = users.find(user => user.id === cls.instructor_id);
+                  const course = cls.course
+                  const instructor =cls.instructor;
                   
                   const courseEnrolled = isEnrolledInCourse();
                   const classEnrolled = isEnrolledInClass(cls.crn);
@@ -286,7 +282,7 @@ export default function InstructorDashboard() {
                       <td>{cls.status}</td>
                       <td>
                         <button
-                          onClick={() => !isEnrolled && handleViewClick(cls)}
+                          onClick={() => !isEnrolled && handleViewClick(cls,course)}
                           className={`view-button ${classEnrolled ? "enrolled-button" : ""}`}
                           disabled={isEnrolled}
                         >

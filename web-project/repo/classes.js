@@ -90,18 +90,36 @@ export async function remove(crn){
         }
 }
 
-export async function getClassByCourse(course_id) {
-  try {
-    const classes = prisma.class.findMany({
-      where: {
-        course_id: course_id,
-      }
-    })
-    return classes;
-    // return [];
-  } catch (error) {
-    console.error('Error fetching classes:', error);
-    return [];
+export async function getClassesByCourse(course_id) {
+  return await prisma.class.findMany({
+    where: {
+      course_id: course_id
+    },
+    include: {
+      course: true,
+      enrollments: true,
+      instructor: true
   }
+  });
 }
 
+export async function fetchClassesByInstructorAndStatus(instructorId, status = null) {
+  const where = {
+    instructor_id: instructorId
+  };
+  if (status) {
+    where.status = status;
+  }
+  return await prisma.class.findMany({
+    where,
+    include: {
+      course: true,
+      instructor: true,
+      enrollments: {
+        include: {
+          student: true,
+        },
+      },
+    },
+  });
+}

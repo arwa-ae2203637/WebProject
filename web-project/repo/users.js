@@ -1,7 +1,7 @@
 import prisma from '@/repo/prisma';
 
 export async function read(id){
-    const users = prisma.user.findMany({
+    const users =  prisma.user.findMany({
         include: {
             classes: true,
             enrollments: true,
@@ -104,4 +104,29 @@ export async function remove(id){
             }
           };
         }
+}
+
+export async function getUsers(filters = {}) {
+  const { userType, enrollmentCrn } = filters;
+  
+  return await prisma.user.findMany({
+    where: {
+      ...(userType && { userType }),
+      ...(enrollmentCrn && {
+        enrollments: {
+          some: {
+            crn: enrollmentCrn
+          }
+        }
+      })
+    },
+    include: {
+      enrollments: {
+        where: enrollmentCrn ? { crn: enrollmentCrn } : undefined,
+        include: {
+          class: true
+        }
+      }
+    }
+  });
 }

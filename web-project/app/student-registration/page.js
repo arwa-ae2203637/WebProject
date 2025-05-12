@@ -19,20 +19,27 @@ export default function StudentRegistration() {
     async function loadData() {
       try {
         let users = await dh.fetchUsers();
-        let courses = await dh.fetchCourses();
+        // let courses = await dh.fetchCourses();
         let classes = await dh.fetchClasses();
-              
+
         const currentUser = await dh.getLoggedUser(users);
         setLoggedUser(currentUser);
         dh.updateUserProfile(currentUser);
+        console.log("User logged in:", currentUser);
 
-        courses = courses.filter(course => course.status !== "Close");
-        
+        const c = await dh.searchCoursesByName("Data Structures	");
+        console.log("c:", c);
+
+        const [active, pending] = await Promise.all([
+          dh.fetchCoursesByStatus("Active"),
+          dh.fetchCoursesByStatus("Pending")
+        ]);
+        let courses = [...active, ...pending];
+
         setUsers(users);
         setCourses(courses);
         setFilteredCourses(courses);
         setClasses(classes);
-      
       } catch (error) {
         console.error("Error loading data:", error);
       }
@@ -44,7 +51,7 @@ export default function StudentRegistration() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const categoriesResponse = await fetch("/assets/categories.json");   
+        const categoriesResponse = await fetch("/assets/categories.json");
         const categoriesData = await categoriesResponse.json();
         if (categoriesData) {
           setCategories(categoriesData);
@@ -57,44 +64,56 @@ export default function StudentRegistration() {
     fetchCategories();
   }, []);
 
-  function handleFilter() {
+
+  async function handleFilter() {
     const searchTerm = searchInputRef.current.value.trim().toLowerCase();
     const selectedCategory = categoryFilterRef.current.value.toLowerCase();
     let filtered = [...courses];
-    
-    if(selectedCategory === "" && searchTerm === "") {
+
+    if (selectedCategory === "" && searchTerm === "") {
       setFilteredCourses(courses);
       return;
     }
-    
-    if(selectedCategory === "" && searchTerm !== "") {
-      filtered = courses.filter(course => course.name.toLowerCase().includes(searchTerm));
-    }
-    
-    if(selectedCategory !== "" && searchTerm === "") {
-      filtered = courses.filter(course => course.category.toLowerCase().includes(selectedCategory));
-    }
-    
-    if(selectedCategory !== "" && searchTerm !== "") {
-      filtered = courses.filter(course => 
-        course.category.toLowerCase().includes(selectedCategory) && 
+
+    if (selectedCategory === "" && searchTerm !== "") {
+       //----------
+      filtered = courses.filter((course) =>
         course.name.toLowerCase().includes(searchTerm)
       );
     }
-    
+
+    if (selectedCategory !== "" && searchTerm === "") {
+      //----------
+      filtered = courses.filter((course) =>
+        course.category.toLowerCase().includes(selectedCategory)
+      );
+    }
+
+    if (selectedCategory !== "" && searchTerm !== "") {
+      //----------
+      filtered = courses.filter(
+        (course) =>
+          course.category.toLowerCase().includes(selectedCategory) &&
+          course.name.toLowerCase().includes(searchTerm)
+      );
+    }
+
     setFilteredCourses(filtered);
   }
 
   function handleViewClick(course) {
-    localStorage.setItem("selectedCourse", JSON.stringify({
-      id: course.id,
-      name: course.name,
-      category: course.category,
-      credit_hours: course.credit_hours,
-      campus: course.campus,
-      status: course.status
-    }));
-    
+    localStorage.setItem(
+      "selectedCourse",
+      JSON.stringify({
+        id: course.id,
+        name: course.name,
+        category: course.category,
+        credit_hours: course.credit_hours,
+        campus: course.campus,
+        status: course.status,
+      })
+    );
+
     window.location.href = "./student-add-course";
   }
 
@@ -108,16 +127,20 @@ export default function StudentRegistration() {
 
         <div className="search-container">
           <div className="search-bar">
-            <img src="../assets/icons/search.svg" alt="Search" className="search-icon" />
-            <input 
-              type="text" 
-              placeholder="Search course" 
+            <img
+              src="../assets/icons/search.svg"
+              alt="Search"
+              className="search-icon"
+            />
+            <input
+              type="text"
+              placeholder="Search course"
               id="search-input"
               ref={searchInputRef}
               onChange={handleFilter}
             />
           </div>
-          <select 
+          <select
             className="category-filter"
             ref={categoryFilterRef}
             onChange={handleFilter}
@@ -147,27 +170,29 @@ export default function StudentRegistration() {
           </div>
           <div className="space-box"></div>
           <nav>
-            <div className="options"> 
-              <img src="../assets/icons/registration-icon.png" alt="" /> 
-              <a href="/student-registration" className="active">Registration</a>
+            <div className="options">
+              <img src="../assets/icons/registration-icon.png" alt="" />
+              <a href="/student-registration" className="active">
+                Registration
+              </a>
             </div>
-            <div className="options"> 
-              <img src="../assets/icons/dashboard-icon.svg" alt="" /> 
+            <div className="options">
+              <img src="../assets/icons/dashboard-icon.svg" alt="" />
               <a href="/student-dashboard">Dashboard</a>
             </div>
           </nav>
         </div>
         <div className="sidebar-footer">
-          <div className="options"> 
-            <img src="../assets/icons/circle-help.svg" alt="" /> 
+          <div className="options">
+            <img src="../assets/icons/circle-help.svg" alt="" />
             <a href="#">Help</a>
           </div>
-          <div className="options"> 
-            <img src="../assets/icons/phone.svg" alt="" /> 
+          <div className="options">
+            <img src="../assets/icons/phone.svg" alt="" />
             <a href="#">Contact us</a>
           </div>
-          <div className="options"> 
-            <img src="../assets/icons/log-out.svg" alt="" /> 
+          <div className="options">
+            <img src="../assets/icons/log-out.svg" alt="" />
             <a href="/login">Log out</a>
             <div className="mb-10">.</div>
           </div>
@@ -196,7 +221,7 @@ export default function StudentRegistration() {
                   <td colSpan="7">No courses found</td>
                 </tr>
               ) : (
-                filteredCourses.map((course, index) => (
+                filteredCourses?.map((course, index) => (
                   <tr key={index}>
                     <td>{course.name}</td>
                     <td>{course.id}</td>
@@ -205,8 +230,8 @@ export default function StudentRegistration() {
                     <td>{course.campus}</td>
                     <td>{course.status}</td>
                     <td>
-                      <button 
-                        className="view-button" 
+                      <button
+                        className="view-button"
                         data-index={index}
                         onClick={() => handleViewClick(course)}
                       >
@@ -218,7 +243,7 @@ export default function StudentRegistration() {
               )}
             </tbody>
           </table>
-          
+
           {/* Pagination */}
           <div className="pages">
             <button>1</button>

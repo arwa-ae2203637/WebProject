@@ -33,18 +33,17 @@ export default function StudentDashboard() {
         setCourses(courses);
         setClasses(classes);
         
-   
-        processUserCourses(currentUser, courses, classes, users);
+        await processUserCourses(currentUser, courses, classes, users);
 
       } catch (error) {
-        console.error("Error loading data:", error);
+        console.error("Error in loadData:", error);
       }
     }
 
     loadData();
   }, []);
 
-  const processUserCourses = (user, allCourses, allClasses, allUsers) => {
+  const processUserCourses = async (user, allCourses, allClasses, allUsers) => {
     const courseMap = {};
     const classMap = {};
     const instructorMap = {};
@@ -69,25 +68,23 @@ export default function StudentDashboard() {
         schedule: cls.schedule
       };
     });
-    
-    const userEnrollments = user.enrollments || [];
-    
-    const completed =  user.enrollments .filter(enrollment => enrollment.status === "completed")
-      .map(enrollment => ({
-        ...enrollment,
-        courseName: courseMap[enrollment.course_id]?.name || enrollment.course_id,
-        creditHours: courseMap[enrollment.course_id]?.creditHours || 'N/A'
-      }));
-    
-    const current =  user.enrollments .filter(enrollment => enrollment.status === "current")
-      .map(enrollment => ({
+  
+    let completed = await dh.fetchEnrollmentsByStudentAndStatus(user.id, "completed");
+      completed = completed.map(enrollment => ({
+      ...enrollment,
+      courseName: courseMap[enrollment.course_id]?.name || enrollment.course_id,
+      creditHours: courseMap[enrollment.course_id]?.creditHours || 'N/A'
+    }));
+
+    let current = await dh.fetchEnrollmentsByStudentAndStatus(user.id, "current");
+      current = current.map(enrollment => ({
         ...enrollment,
         courseName: courseMap[enrollment.course_id]?.name || enrollment.course_id,
         instructor: classMap[enrollment.crn]?.instructor || 'N/A'
       }));
     
-    const pending =  user.enrollments .filter(enrollment => enrollment.status === "pending")
-      .map(enrollment => ({
+    let pending = await dh.fetchEnrollmentsByStudentAndStatus(user.id, "pending");
+    pending=pending.map(enrollment => ({
         ...enrollment,
         courseName: courseMap[enrollment.course_id]?.name || enrollment.course_id,
         creditHours: courseMap[enrollment.course_id]?.creditHours || 'N/A'
@@ -97,19 +94,22 @@ export default function StudentDashboard() {
     setCurrentCourses(current);
     setPendingCourses(pending);
     
-    updateProgressChart(userEnrollments);
+    updateProgressChart(user,user.enrollments);
   };
 
-  const updateProgressChart = (enrollments) => {
+  const updateProgressChart = async (user,enrollments) => {
+ 
+    
+    const completedEnrollments = await dh.fetchEnrollmentsByStudentAndStatus(user.id, "completed");
+    const completedCount = completedEnrollments.length;
+    console.log("Completed enrollments:", completedCount);
+    const cureentEnrollments = await dh.fetchEnrollmentsByStudentAndStatus(user.id, "current");
+    const currentCount = cureentEnrollments.length;
     const totalCourses = enrollments.length;
     if (totalCourses === 0) return;
-    
-    const completedCount = enrollments.filter(c => c.status === "completed").length;
-    const currentCount = enrollments.filter(c => c.status === "current").length;
-    
     const completedDeg = (completedCount / totalCourses) * 360;
     const currentDeg = (currentCount / totalCourses) * 360;
-    
+
     setChartStyle({
       backgroundImage: `conic-gradient(
         #3D051B ${completedDeg}deg,

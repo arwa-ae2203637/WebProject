@@ -1,16 +1,48 @@
 import * as repo from "@/repo/courses.js";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-    try{
-        const courses = await repo.read();
-        return NextResponse.json(courses, {status: 200});
+// export async function GET(request) {
+//     try {
+//       const { searchParams } = new URL(request.url);
+//       const status = searchParams.get('status');
+//         if (status) {
+//         const courses = await repo.fetchCoursesByStatus(status);
+        
+//         return NextResponse.json(courses, { status: 200 });
+//       }
+//         const courses = await repo.read();
+//       return NextResponse.json(courses, { status: 200 });
+  
+//     } catch (error) {
+//       console.error('Error in courses API:', error);
+//       return NextResponse.json({ message: "Error fetching courses" }, { status: 500 });
+//     }
+//   }
+
+
+export async function GET(request) {
+    try {
+      const { searchParams } = new URL(request.url);
+      const searchTerm = searchParams.get('q');
+      const status = searchParams.get('status');
+  
+      let courses;
+  
+      if (searchTerm) {
+        courses = await repo.searchCoursesByName(searchTerm);
+      } else if (status) {
+        courses = await repo.fetchCoursesByStatus(status);
+      } else {
+        courses = await repo.read();
+      }
+  
+      return NextResponse.json(courses ?? [], { status: 200 });
+  
+    } catch (error) {
+      console.error("Error in courses API:", error);
+      return NextResponse.json({ message: "Error fetching courses" }, { status: 500 });
     }
-    catch(e){
-        console.error(e);
-        return NextResponse.json({ message: "Error" }, { status: 500 });
-    }
-}
+  }
 
 export async function POST(request, {params}){
     try{

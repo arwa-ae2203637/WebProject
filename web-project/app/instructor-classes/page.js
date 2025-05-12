@@ -32,10 +32,7 @@ export default function StudentRecords() {
         const selectedClass = JSON.parse(localStorage.getItem("selectedClass"));
         setSelectedClass(selectedClass);
         console.log("Selected class from localStorage:", selectedClass);
-        // ---
-        const selectedCourse = courses.find(
-          (course) => course.id === selectedClass.course_id
-        );
+        const selectedCourse = await dh.fetchCourseById(selectedClass.course_id);
         setSelectedCourse(selectedCourse);
         console.log("Selected class:", selectedClass);
         console.log("Selected course:", selectedCourse);
@@ -46,13 +43,8 @@ export default function StudentRecords() {
         setEnrollments(allEnrollments);
         console.log("All enrollments:", allEnrollments);
 
-        //---
-        const students = users.filter((user) => {
-          if (user.userType !== "student") return false;
-          return user.enrollments.some(
-            (enrollment) => enrollment.crn === selectedClass.crn
-          );
-        });
+        let students = await dh.fetchStudentsByClassCrn(selectedClass.crn);
+
 
         console.log("Filtered students:", students);
         setStudents(students);
@@ -75,12 +67,16 @@ export default function StudentRecords() {
 
     if (confirm(`Change grade from ${initialGrade} to ${newGrade}?`)) {
       try {
-        //---
         setIsUpdating(true);
+         //---
         const enrollmentToUpdate = student.enrollments.find(
           (e) => e.crn === selectedClass.crn
         );
-
+        // const enrollmentToUpdate = await dh.fetchEnrollmentsByStudentAndCrn(
+        //   student.id,
+        //   selectedClass.crn
+        // );
+        console.log("Enrollment to update:", enrollmentToUpdate);
         if (!enrollmentToUpdate || !enrollmentToUpdate.id) {
           throw new Error("Enrollment record not found");
         }
@@ -202,6 +198,7 @@ export default function StudentRecords() {
             <tbody className="tableBody">
               {students.length > 0 ? (
                 students.map((student) => {
+                  //----------
                   const enrollment = student.enrollments.find(
                     (e) => e.crn === selectedClass?.crn
                   );
@@ -266,3 +263,5 @@ export default function StudentRecords() {
     </>
   );
 }
+
+
